@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8"> 
+	<meta http-equiv="content-language" content="pt-br">
+	<meta name="Autor" content="Ruan">
+	<meta name="Reply-To" content="XYZ@hotmail.com">
+	<meta name="Generator" content="Sublime 3.0">
+  	<TITLE>Cadastro de Ator</TITLE>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	    <!-- Carregando o CSS do Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+
+    <!-- Arquivo Css Criado -->
+    <link href="css/style.css" rel="stylesheet" media="screen">
+
+    
+
+    
+</head>
+
+<body bgcolor="white">
+		<!-- Menu Superior -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header col-sm-12">
+            <div class="navbar-brand col-sm-10" href="#" style=" padding-top: 10px">
+                <div class="row">
+                    <div class="nav col-sm-2">
+                        <img alt="" src="img/logo.png">
+                        Locadora   
+                    </div>   
+                </div>
+            </div>
+            <div class="nav col-sm-2">
+                <li class="dropdown img-User-nome">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <div>
+                            <img src="img/user.png" alt=""  >
+                            Administrador
+                            <span class="caret"></span>   
+                        </div>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                <!--
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                -->
+                    
+                    <li><a href="#">Sair</a></li>
+                  </ul>
+                </li>
+            </div>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+        <div class="container-fluid" style="overflow: hidden">
+    		<div class="row">
+    			<div class="col-md-2">
+                <div class="accordion" id="leftMenu" class="left-menu">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#">
+                                  <i class="icon-home"></i> Home
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseAtor">
+                                <i class="icon-th"></i> Ator
+                            </a>
+                        </div>
+                        <div id="collapseAtor" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaAtor.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="cadastraAtor.html">Novo</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseCliente">
+                                <i class="icon-th"></i> Cliente
+                            </a>
+                        </div>
+                        <div id="collapseCliente" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaCliente.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="cadastraCliente.html">Novo</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseClasse">
+                                <i class="icon-th-list"></i> Classe
+                            </a>
+                        </div>
+                        <div id="collapseClasse" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaClasse.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="cadastraClasse.html">Novo</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseDevolucao">
+                                <i class="icon-list-alt"></i> Devolução
+                            </a>
+                        </div>
+                        <div id="collapseDevolucao" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaDevolucao.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="efetuaDevolucao.html">Novo</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseDiretor">
+                                <i class="icon-th"></i> Diretor
+                            </a>
+                        </div>
+                        <div id="collapseDiretor" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaDiretor.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="cadastraDiretor.html">Novo</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseDistribuidor">
+                                <i class="icon-cog"></i> Distribuidor
+                            </a>
+                        </div>
+                        <div id="collapseDistribuidor" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaDistribuidor.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="cadastraDistribuidor.html">Novo</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseFuncionario">
+                                <i class="icon-file"></i> Funcionário
+                            </a>
+                        </div>
+                        <div id="collapseFuncionario" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaFuncionario.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="cadastraFuncionario.html">Novo</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseItem">
+                                <i class="icon-file"></i> Item
+                            </a>
+                        </div>
+                        <div id="collapseItem" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaItem.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="cadastraItem.html">Novo</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseLocacao">
+                                <i class="icon-file"></i> Locação
+                            </a>
+                        </div>
+                        <div id="collapseLocacao" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaLocacao.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="efetuaLocacao.html">Novo</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapsePagamento">
+                                <i class="icon-file"></i> Pagamento
+                            </a>
+                        </div>
+                        <div id="collapsePagamento" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaPagamento.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="efetuaPagamento.html">Novo</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseReserva">
+                                <i class="icon-file"></i> Reserva
+                            </a>
+                        </div>
+                        <div id="collapseReserva" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaReserva.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="efetuaReserva.html">Novo</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseTitulo">
+                                <i class="icon-file"></i> Título
+                            </a>
+                        </div>
+                        <div id="collapseTitulo" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li class="opcoesDeMenu"><a href="consultaTitulo.html">Consultar</a></li>
+                                    <li class="opcoesDeMenu"><a href="cadastraTitulo.html">Novo</a></li>
+                                </ul>                 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    			
+    			<div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
+                    <h2>Cadastro de Ator</h2>
+                    <div class="row">
+                        <form action="" >
+                            <div class="nav col-sm-12 "> 
+                                <div class="nav row">
+                                    <label for="User" class="col-sm-12">Nome</label>
+                                    <div class="input-group input-group-sm col-sm-5">
+                                        <input type="text" class="form-control" placeholder="Nome" aria-describedby="nome">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" align="rigth">
+                                <div class="col-sm-6 formBTN2 " align="right"> 
+                                <button class="btn"> Cancelar </button>
+                                <button class="btn"> Salvar </button>
+                                </div> 
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                   
+                    <div class="divider divider-single"></div>
+    			</div>
+
+    		</div>
+        </div>
+
+	<!-- MENU
+<div class="col-sm-2 testeAzul">
+				<ul id="nav nav">
+				    <li><a href="#">Cliente</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+
+				    <li><a href="#">Classe</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+
+				    <li><a href="#">Distribuidor</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+
+				    <li><a href="#">Devolução</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+
+				    <li><a href="#">Funcionário</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+				 
+				 	<li><a href="#">Item</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+				    
+				    <li><a href="#">Locação</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+
+				    <li><a href="#">Pagamento</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+
+				    <li><a href="#">Reserva</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+
+				    <li><a href="#">Título</a>
+				      <ul>
+				        <li><a href="#">Consultar</a></li>
+				        <li><a href="#">Novo</a></li>
+				      </ul>
+				    </li>
+				</ul>
+			</div>
+
+	-->
+    
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="js/jsProject.js"></script>-->
+
+		
+</body>
+</html>

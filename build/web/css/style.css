@@ -1,0 +1,130 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+ .testeVermelho{
+  background: #DCDCDC;
+ }
+ .testeAzul{
+  background: while;
+  padding: 0;
+    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    border: 0;
+ }
+
+body {
+  background: white;
+}
+
+.container-fluid{
+  margin:0;
+  padding: 0;
+}
+
+.btn{
+  padding : 3px;
+}
+
+/* ===================================*Form ==========================================*/
+.formCadastro .nav{
+  margin-bottom: 0;
+  padding: 0;
+  padding-left: 20px;
+  margin-bottom: 5px;
+}
+.formCadastro label{
+  padding-left: 0;
+
+  padding: 0;
+}
+
+.formCadastro-RadioButtom{
+  padding :0; 
+  margin-left: 0;
+  margin-bottom: 5px;
+}
+
+.formBTN2 { /* aplicado para que os botões finais de cancelar e salvar fiquem alinhados ao ultimo input*/
+  padding-right: 75px;
+}
+
+/* ===================================*Barra final body ==========================================*/
+.divider-single {
+  background-color: #e0dede;
+  height: 1px;
+}
+.divider {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  clear: both;
+  margin-right: 40px;
+}
+
+/* ===================================*Barra Superior (NavBar) ==========================================*/
+.navbar{
+  margin-bottom: 0;
+}
+.navbar .nav {
+  position: relative;
+  left: 0;
+  display: block;
+  float: left;
+  margin: 0 10px 0 0;
+  padding: 0;
+}
+
+.img-User-nome{
+  float: right;
+}
+ /* ===================================*menu ==========================================*/
+
+ .opcoesDeMenu{
+  padding-left: 20px;
+ }
+
+#leftMenu .accordion-group {
+    margin-bottom: 0px;
+    border:0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}    
+
+#leftMenu .accordion-heading {
+    height: 34px;
+    border-top: 1px solid #717171; /* inner stroke */
+    border-bottom: 1px solid #5A5A5A; /* inner stroke */
+    background-color: #353535; /* layer fill content */
+    background-image: -moz-linear-gradient(90deg, #595b59 0%, #616161 100%); /* gradient overlay */
+    background-image: -o-linear-gradient(90deg, #595b59 0%, #616161 100%); /* gradient overlay */
+    background-image: -webkit-linear-gradient(90deg, #595b59 0%, #616161 100%); /* gradient overlay */
+    background-image: linear-gradient(90deg, #595b59 0%, #616161 100%); /* gradient overlay */
+    list-style-type:none;
+}  
+
+#leftMenu .accordion-heading  a{  
+    color: #cbcbcb; /* text color */
+    text-shadow: 0 1px 0 #3b3b3b; /* drop shadow */
+    text-decoration:none;
+    font-weight:bold;
+    margin-left: 10%;  
+}
+
+#leftMenu .accordion-heading  a:hover{  
+    color:#ccc     
+}
+
+#leftMenu .accordion-heading .active {
+    width: 182px;
+    height: 34px;
+    border: 1px solid #5b5b5b; /* inner stroke */
+    background-color: #353535; /* layer fill content */
+    background-image: -moz-linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+    background-image: -o-linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+    background-image: -webkit-linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+    background-image: linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+}
