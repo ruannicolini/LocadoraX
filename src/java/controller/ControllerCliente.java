@@ -79,24 +79,29 @@ public class ControllerCliente extends HttpServlet {
         //processRequest(request, response);
         String nome = request.getParameter("nome");
         String sexo = request.getParameter("sex");
-        String DataNascimento = request.getParameter("DataNascimento");
-        String CPF = request.getParameter("CPF");
-        String nome = request.getParameter("nome");
-        String nome = request.getParameter("nome");
-        String nome = request.getParameter("nome");
-        String nome = request.getParameter("nome");
-        String nome = request.getParameter("nome");
+        String dataNascimento = request.getParameter("dataNascimento");
+        String cpf = request.getParameter("cpf");
+        String endereco = request.getParameter("endereco");
+        String tel = request.getParameter("tel");
+        
                 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
+            
             out.println("<head>");
             out.println("<title>Servlet ControllerCliente</title>");            
             out.println("</head>");
+            
             out.println("<body>");
-            out.println("<h1>Servlet ControllerCliente at " + nome + "</h1>");
+            out.println("<h1>" + nome + "</h1>");
+            out.println("<h1>" + sexo + "</h1>");
+            out.println("<h1>" + dataNascimento + "</h1>");
+            out.println("<h1>" + endereco + "</h1>");
+            out.println("<h1>" + tel + "</h1>");
             out.println("</body>");
+            
             out.println("</html>");
         }
     }

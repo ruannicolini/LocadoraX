@@ -270,10 +270,7 @@
                         <form action= "ControllerCliente" method="POST">
 
                             <div class="nav col-sm-12 ">
-                                <!--   
-                                <label for="User" class="col-sm-2">Nome</label>
-                                <input type="text" id="User" name="Name" class="nav col-sm-8" />
-                                -->  
+                                  
                                 <div class="nav row">
                                     <label for="User" class="col-sm-12">Nome</label>
                                     <div class="input-group input-group-sm col-sm-5">
@@ -300,7 +297,7 @@
                                 <div class="nav row">
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">Data de Nascimento</label>
-                                        <input type="date" class="form-control" placeholder="Data de Nascimento" name="DataNascimento">
+                                        <input type="date" class="form-control" placeholder="Data de Nascimento" name="dataNascimento">
                                     </div>
                                 </div>
                             </div>
@@ -309,16 +306,17 @@
                                 <div class="nav row">
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">CPF</label>
-                                        <input type="text" class="form-control" placeholder="CPF" name="CPF">
+                                        <input type="text" class="form-control" placeholder="CPF" name="cpf">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="nav col-sm-12 "> 
+                            <div class="nav col-sm-12"> 
                                 <div class="nav row">
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">Endereço</label>
-                                        <input type="text" class="form-control" placeholder="Endereço" name="endereco">
+                                        <input type="text" class="form-control" placeholder="Endereço" 
+                                        name="endereco">
                                     </div>
                                 </div>
                             </div>
@@ -337,27 +335,27 @@
                             <div class=" nav col-sm-5 " style="margin-left: 10px">
                                 <h4>Incluir Depedentes</h4>
                             </div>
-                            <div class="col-sm-12" "padding : 35px">
+                            <div class="col-sm-12" style="padding : 35px">
                                 <div class="nav col-sm-5 testeVermelho" style="padding : 10px; margin-left : 10px">
 
                                     <div style= "padding : 0">
                                         <label for="User" class="nav col-sm-1" style= "padding : 0" >Nome</label>
-                                        <input type="text" class="form-control nav col-sm-3" placeholder="Nome" name="nome´Dependente">
+                                        <input type="text" class="form-control nav col-sm-3" placeholder="Nome" name="nomeDependente">
                                     </div>
 
                                     <div style= "padding : 0">
                                         <label for="User" class="nav col-sm-12" style= "padding : 0" >Data de Nascimento</label>
-                                        <input type="Date" id="DN" name="DataNascimento" class="nav col-sm-12" />
+                                        <input type="Date" id="DN" name="DataNascimentoDependente" class="nav col-sm-12" />
                                     </div> 
 
                                     <div style= "padding : 0">
                                         <label for="User" class="nav col-sm-12" style= "padding : 0" >Sexo</label>
 
                                         <div class="col-sm-3 formCadastro-RadioButtom">
-                                            <input type="radio" name="sex" value="Masculino">&nbsp Masculino
+                                            <input type="radio" name="sexDependente" value="Masculino">&nbsp Masculino
                                         </div>
                                         <div class="col-sm-3 formCadastro-RadioButtom">
-                                            <input type="radio" name="sex" value="Feminino">&nbsp Feminino
+                                            <input type="radio" name="sexDependente" value="Feminino">&nbsp Feminino
                                         </div>
                                     </div> 
 
