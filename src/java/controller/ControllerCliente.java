@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.application.ClienteBD;
 
 /**
  *
@@ -83,7 +84,7 @@ public class ControllerCliente extends HttpServlet {
         String cpf = request.getParameter("cpf");
         String endereco = request.getParameter("endereco");
         String tel = request.getParameter("tel");
-        
+        int resposta = 0 ;
                 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -97,12 +98,35 @@ public class ControllerCliente extends HttpServlet {
             out.println("<body>");
             out.println("<h1>" + nome + "</h1>");
             out.println("<h1>" + sexo + "</h1>");
+            out.println("<h1>" + cpf + "</h1>");
             out.println("<h1>" + dataNascimento + "</h1>");
             out.println("<h1>" + endereco + "</h1>");
             out.println("<h1>" + tel + "</h1>");
             out.println("</body>");
             
             out.println("</html>");
+            
+            
+            if(sexo == "Masculino"){
+                resposta = ClienteBD.cadastrarSocio(endereco, tel, cpf, nome, dataNascimento, 'm');
+            }else{
+                if(sexo == "Feminino"){
+                    resposta = ClienteBD.cadastrarSocio(endereco, tel, cpf, nome, dataNascimento, 'f');
+                }
+            }
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            
+            out.println("<head>");
+            out.println("<title>Servlet ControllerCliente</title>");            
+            out.println("</head>");
+            
+            out.println("<body>");
+            out.println("<h1> Resposta = " + resposta + "</h1>");
+            out.println("</body>");
+            
+            out.println("</html>");
+            
         }
     }
 

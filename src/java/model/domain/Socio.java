@@ -22,8 +22,8 @@ public class Socio extends Cliente{
     @Column(nullable = false)
     private String cpf;
 
-    public Socio(String endereco, String telefone, String cpf, String nome, String dataNascimento, String numInscricao, Boolean ativo, char sexo) {
-        super(nome, dataNascimento, numInscricao, ativo, sexo);
+    public Socio(String endereco, String telefone, String cpf, String nome, String dataNascimento, Boolean ativo, char sexo) {
+        super(nome, dataNascimento, ativo, sexo);
         this.endereco = endereco;
         this.telefone = telefone;
         this.cpf = cpf;

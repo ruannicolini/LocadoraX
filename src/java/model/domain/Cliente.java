@@ -28,10 +28,9 @@ public class Cliente {
     private char sexo;
 
     
-    public Cliente(String nome, String dataNascimento, String numInscricao, Boolean ativo, char sexo) {
+    public Cliente(String nome, String dataNascimento, Boolean ativo, char sexo) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.numInscricao = numInscricao;
         this.ativo = ativo;
         this.sexo = sexo;
     }
@@ -56,9 +55,7 @@ public class Cliente {
         return numInscricao;
     }
 
-    public void setNumInscricao(String numInscricao) {
-        this.numInscricao = numInscricao;
-    }
+    
 
     public Boolean isAtivo() {
         return ativo;
