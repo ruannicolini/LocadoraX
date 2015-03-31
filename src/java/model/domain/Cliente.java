@@ -35,6 +35,11 @@ public class Cliente{
         this.sexo = sexo;
     }
 
+    public Cliente() {
+    }
+    
+    
+
     public String getNome() {
         return nome;
     }

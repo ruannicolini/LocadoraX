@@ -28,6 +28,11 @@ public class Socio extends Cliente{
         this.telefone = telefone;
         this.cpf = cpf;
     }
+
+    public Socio() {
+        super();
+    }
+
     
     
     
