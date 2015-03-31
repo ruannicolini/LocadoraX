@@ -107,10 +107,10 @@ public class ControllerCliente extends HttpServlet {
             out.println("</html>");
             
             
-            if(sexo == "Masculino"){
+            if(sexo.equals("Masculino")){
                 resposta = ClienteBD.cadastrarSocio(endereco, tel, cpf, nome, dataNascimento, 'm');
             }else{
-                if(sexo == "Feminino"){
+                if(sexo.equals("Feminino")){
                     resposta = ClienteBD.cadastrarSocio(endereco, tel, cpf, nome, dataNascimento, 'f');
                 }
             }

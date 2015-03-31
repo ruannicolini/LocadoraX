@@ -17,13 +17,13 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Cliente {
+public class Cliente{
     @Column(nullable = false)
     private String nome;
     private String dataNascimento;
     @Id
     @GeneratedValue
-    private String numInscricao;
+    private long numInscricao;
     private Boolean ativo;
     private char sexo;
 
@@ -51,7 +51,7 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getNumInscricao() {
+    public long getNumInscricao() {
         return numInscricao;
     }
 

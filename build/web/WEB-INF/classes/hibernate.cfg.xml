@@ -6,9 +6,9 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/locadora?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    
-    <mapping class="model.domain.Cliente" />
-    <mapping class="model.domain.Socio" />
-    
+    <property name="hibernate.order_updates">true</property>
+    <property name="hbm2ddl.auto">update</property>
+    <mapping class="model.domain.Cliente"/>
+    <mapping class="model.domain.Socio"/>
   </session-factory>
 </hibernate-configuration>

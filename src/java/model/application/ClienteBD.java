@@ -5,6 +5,7 @@
  */
 package model.application;
 
+import java.io.PrintWriter;
 import model.domain.Socio;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,14 +24,31 @@ public class ClienteBD {
         }
         
         Socio s = new Socio(end, tel, cpf, nome, dtNasc, true, sexo);
+        
+        try{
 
-        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-        Session session = sessions.openSession();
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
 
-        session.beginTransaction();
-        session.save(s);
-        session.getTransaction().commit();
-        session.close();
+            session.beginTransaction();
+            session.save(s);
+            session.getTransaction().commit();
+            session.close();
+        }catch(Exception x){
+            PrintWriter out = null; 
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+
+                out.println("<head>");
+                out.println("<title>Erro</title>");            
+                out.println("</head>");
+
+                out.println("<body>");
+                out.println("<h1> Erro " + x.getMessage() + "</h1>");
+                out.println("</body>");
+
+                out.println("</html>");
+        }
 
         return 1;
     }
