@@ -267,11 +267,11 @@
                         <table class="table table-striped table-hover table-users">
                             <thead>
                                 <tr>
-                                    <th class="hidden-phone">Usuario</th>
+                                    <th class="hidden-phone">Cod</th>
                                     <th>Nome</th>
-                                    <th>Apellido</th>
-                                    <th class="hidden-phone">Email</th>
-                                    <th class="hidden-phone">Provincia</th>
+                                    <th class="hidden-phone">CPF</th>
+                                    <th>Data de Nascimento</th>
+                                    <th class="hidden-phone">Telefone</th>
                                     <th class="hidden-phone">Miembro desde</th>
                                     <th>Estado</th>
                                     <th></th>
@@ -281,11 +281,11 @@
 
                             <tbody>
                                 <tr style=" padding-rigth: 30px;">
-                                    <td class="hidden-phone">johnny</td>
-                                    <td>john velasquez Nicolini</td>
-                                    <td>doe</td>
-                                    <td class="hidden-phone">dsd@gmail.com</td>
-                                    <td class="hidden-phone">active</td>
+                                    <td class="hidden-phone">1</td>
+                                    <td>johnny velasquez Nicolini</td>
+                                    <td>11014912644</td>
+                                    <td class="hidden-phone">10/08/1991</td>
+                                    <td class="hidden-phone">(33)9132-1006</td>
                                     <td class="hidden-phone">10/12/1999</td>
                                                         
                                     <td><span class="label label-warning">Not Active</span></td>
@@ -295,11 +295,11 @@
                                     <td><a href="#" class="confirm-delete btn mini red-stripe" role="button" data-title="johnny" data-id="1">Delete</a></td>
                                 </tr>
                                 <tr>
-                                    <td class="hidden-phone">kitty</td>
-                                    <td>jane</td>
-                                    <td>doe</td>
-                                    <td class="hidden-phone">dasasasd@gmail.com</td>
-                                    <td class="hidden-phone">active</td>
+                                    <td class="hidden-phone">2</td>
+                                    <td>jane Ferreira Loca</td>
+                                    <td>12843265514</td>
+                                    <td class="hidden-phone">31/10/1964</td>
+                                    <td class="hidden-phone">(33)3263-2920</td>
                                     <td class="hidden-phone">10/1/1999</td>
                                                         
                                     <td><span class="label label-danger">Activo</span></td>
