@@ -268,7 +268,7 @@
                     <h2>Cadastro de Cliente</h2>
                     <div class="row">
                         <form action= "ControllerCliente" method="POST">
-
+                            <input type="hidden" name="operacao" value="cadastrar">
                             <div class="nav col-sm-12 ">
                                   
                                 <div class="nav row">
@@ -284,10 +284,10 @@
                                     <div class="col-sm-5" style="padding :0">
                                         <label for="User" class="col-sm-12">Sexo</label>
                                         <div class="col-sm-3 formCadastro-RadioButtom">
-                                            <input type="radio" name="sex" value="Masculino">&nbsp Masculino
+                                            <input type="radio" name="sex" value="m">&nbsp Masculino
                                         </div>
                                         <div class="col-sm-3 formCadastro-RadioButtom">
-                                            <input type="radio" name="sex" value="Feminino">&nbsp Feminino
+                                            <input type="radio" name="sex" value="f">&nbsp Feminino
                                         </div>
                                     </div>
                                 </div>

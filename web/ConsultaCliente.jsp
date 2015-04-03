@@ -4,6 +4,10 @@
     Author     : Ruan
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="model.domain.Cliente"%>
+<%@page import="java.util.List"%>
+<%@page import="model.application.ClienteBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -262,6 +266,18 @@
 
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
                     <h2>Consultar Cliente</h2>
+                    <%
+                        List clientes = ClienteBD.consultaClientes();
+                        Iterator<Cliente> i = clientes.iterator();
+                        while (i.hasNext()) {
+
+                           Cliente c = (Cliente) i.next();
+
+                           out.print(c.getNome() + "<br>");
+                       }
+                    %>
+
+                    
                     <div class="row" style="margin-right: 18px">
                         
                         <table class="table table-striped table-hover table-users">

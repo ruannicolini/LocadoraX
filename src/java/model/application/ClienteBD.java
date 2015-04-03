@@ -51,19 +51,16 @@ public class ClienteBD {
     public static List consultaClientes(){
         SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
         Session s = sessions.openSession();
-
         String strQuery = "from Cliente";
         s.beginTransaction();
         Query qr = s.createQuery(strQuery);
         List clientes = qr.list();
-        
 //        Iterator<Cliente> i = clientes.iterator();
 //        while (i.hasNext()) {
 //            Cliente c = (Cliente) i.next();
 //
 //            out.print(c.getNome() + "<br>");
 //        }
-
         s.close();
         return clientes;
     }

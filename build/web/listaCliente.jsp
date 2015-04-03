@@ -4,6 +4,7 @@
     Author     : Ruan
 --%>
 
+<%@page import="model.application.ClienteBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,28 +21,18 @@
         <%@ page import="model.domain.Cliente"%>
         <%@ page import="java.util.Iterator"%>
         <%@ page import="java.util.List"%>
+        
+       
 
         <%
-
-            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-            Session s = sessions.openSession();
-
-            String strQuery = "from Cliente";
-
-            s.beginTransaction();
-            Query qr = s.createQuery(strQuery);
-            List clientes = qr.list();
-
-            Iterator<Cliente> i = clientes.iterator();
-            while (i.hasNext()) {
+             List clientes = ClienteBD.consultaClientes();
+             Iterator<Cliente> i = clientes.iterator();
+             while (i.hasNext()) {
 
                 Cliente c = (Cliente) i.next();
 
                 out.print(c.getNome() + "<br>");
             }
-
-            s.close();
-
         %>
 
 
