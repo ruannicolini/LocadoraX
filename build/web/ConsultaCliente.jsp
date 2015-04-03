@@ -4,6 +4,11 @@
     Author     : Ruan
 --%>
 
+<%@page import="org.hibernate.Query"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.cfg.AnnotationConfiguration"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="model.domain.Socio"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="model.domain.Cliente"%>
 <%@page import="java.util.List"%>
@@ -267,14 +272,14 @@
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
                     <h2>Consultar Cliente</h2>
                     <%
-                        List clientes = ClienteBD.consultaClientes();
-                        Iterator<Cliente> i = clientes.iterator();
-                        while (i.hasNext()) {
+                        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+                        Session s = sessions.openSession();
 
-                           Cliente c = (Cliente) i.next();
+                        String strQuery = "from Cliente";
 
-                           out.print(c.getNome() + "<br>");
-                       }
+                        s.beginTransaction();
+                        Query qr = s.createQuery(strQuery);
+                        List socios = qr.list();
                     %>
 
                     
@@ -288,21 +293,59 @@
                                     <th class="hidden-phone">CPF</th>
                                     <th>Data de Nascimento</th>
                                     <th class="hidden-phone">Telefone</th>
-                                    <th class="hidden-phone">Miembro desde</th>
-                                    <th>Estado</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Status</th>
+                                    <th>Editar</th>
+                                    <th>Deletar</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <tr style=" padding-rigth: 30px;">
+                                <%
+                                    Iterator<Socio> i = socios.iterator();
+                                    while (i.hasNext()){			
+                                        Socio so = (Socio)i.next();
+					
+                                        out.println("<tr>"			
+                                        + "<td class= \"hidden-phone\">" + so.getNumInscricao()+ "</td>"
+                    					+ "<td>" + so.getNome() + "</td>"
+                    					+ "<td>" + so.getCpf() + "</td>"
+                                        + "<td>" 
+                                            + so.getDataNascimento() 
+                                        + "</td>"
+                    					
+                                        + "<td>" 
+                                        + so.getTelefone() 
+                                        + "</td>");
+
+                                        if(((Cliente)so).isAtivo() == true) {
+                                            out.println("<td>" 
+                                                    + "<span class= \"label label-danger\"> Activo </span>" 
+                                                    + "</td>");  
+                                        }else{
+                                            out.println("<td>" 
+                                            + "<span class= \"label label-warning\"> Not Active </span>" 
+                                            + "</td>");
+                                        }
+
+                                       
+                                        out.println("<td>"
+                                                        + "<a class= \"btn mini blue-stripe\" href= \"{site_url()}admin/editFront/1\">Edit</a>"
+                                                    + "</td>"
+                                                    + "<td>"
+                                					   + "<a href=\"#\" class=\"confirm-delete btn mini red-stripe\" role=\"button\" data-title=\"johnny\" data-id=\"1\">Delete</a>"
+                                					+ "</td>"	
+                    				    + "</tr>");
+								
+                                    }
+                                    s.close();
+				%>
+                                
+                                <tr style="padding-rigth: 30px;">
                                     <td class="hidden-phone">1</td>
                                     <td>johnny velasquez Nicolini</td>
                                     <td>11014912644</td>
                                     <td class="hidden-phone">10/08/1991</td>
                                     <td class="hidden-phone">(33)9132-1006</td>
-                                    <td class="hidden-phone">10/12/1999</td>
                                                         
                                     <td><span class="label label-warning">Not Active</span></td>
                                                         
@@ -316,7 +359,7 @@
                                     <td>12843265514</td>
                                     <td class="hidden-phone">31/10/1964</td>
                                     <td class="hidden-phone">(33)3263-2920</td>
-                                    <td class="hidden-phone">10/1/1999</td>
+                                    
                                                         
                                     <td><span class="label label-danger">Activo</span></td>
                                                         
