@@ -10,5 +10,6 @@
     <property name="hbm2ddl.auto">update</property>
     <mapping class="model.domain.Cliente"/>
     <mapping class="model.domain.Socio"/>
+    <mapping class="model.domain.Ator"/>
   </session-factory>
 </hibernate-configuration>

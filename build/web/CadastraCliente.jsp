@@ -39,7 +39,6 @@
                         <form action= "ControllerCliente" method="POST">
                             <input type="hidden" name="operacao" value="cadastrar">
                             <div class="nav col-sm-12 ">
-                                  
                                 <div class="nav row">
                                     <label for="User" class="col-sm-12">Nome</label>
                                     <div class="input-group input-group-sm col-sm-5">
