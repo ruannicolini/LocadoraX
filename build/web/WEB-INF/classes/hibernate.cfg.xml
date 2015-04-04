@@ -12,5 +12,7 @@
     <mapping class="model.domain.Socio"/>
     <mapping class="model.domain.Ator"/>
     <mapping class="model.domain.Diretor"/>
+    <mapping class="model.domain.Distribuidor"/>
+    <mapping class="model.domain.Classe"/>
   </session-factory>
 </hibernate-configuration>
