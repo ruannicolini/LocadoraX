@@ -22,10 +22,6 @@
 
         <!-- Arquivo Css Criado -->
         <link href="css/style.css" rel="stylesheet" media="screen">
-
-
-
-
     </head>
 
     <body bgcolor="white">
@@ -48,7 +44,7 @@
                                 <div class="nav row">
                                     <label class="col-sm-12">Razão Social</label>
                                     <div class="input-group input-group-sm col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Razão Social" nome ="razao">
+                                        <input type="text" class="form-control" placeholder="Razão Social" name="razao">
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +53,7 @@
                                 <div class="nav row">
                                     <label class="col-sm-12">CNPJ</label>
                                     <div class="input-group input-group-sm col-sm-5">
-                                        <input type="text" class="form-control" placeholder="CNPJ" nome ="cnpj">
+                                        <input type="text" class="form-control" placeholder="CNPJ" name="cnpj">
                                     </div>
                                 </div>
                             </div>

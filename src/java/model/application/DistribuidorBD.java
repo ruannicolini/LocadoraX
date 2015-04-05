@@ -16,11 +16,11 @@ import org.hibernate.cfg.AnnotationConfiguration;
  * @author Ruan
  */
 public class DistribuidorBD {
-    public static int cadastrarDistribuidor( String rz, int cnpj){
-        if (rz.equals("")) {
+    public static int cadastrarDistribuidor( String rs, String cnpj){
+        if (rs.equals("") || cnpj.equals("")) {
             return -1;
         }
-        Distribuidor d = new Distribuidor(rz, cnpj);
+        Distribuidor d = new Distribuidor(rs, Integer.parseInt(cnpj));
         try{
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessions.openSession();
