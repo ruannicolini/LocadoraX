@@ -14,5 +14,6 @@
     <mapping class="model.domain.Diretor"/>
     <mapping class="model.domain.Distribuidor"/>
     <mapping class="model.domain.Classe"/>
+    <mapping class="model.domain.Item"/>
   </session-factory>
 </hibernate-configuration>
