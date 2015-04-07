@@ -6,10 +6,14 @@
 
 package model.domain;
 
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,6 +30,8 @@ public class Cliente{
     private long numInscricao;
     private Boolean ativo;
     private char sexo;
+    //@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //private Set<Locacao> locacoes;
 
     
     public Cliente(String nome, String dataNascimento, Boolean ativo, char sexo) {

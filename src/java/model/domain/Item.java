@@ -8,7 +8,9 @@ package model.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -20,6 +22,7 @@ public class Item {
     @Column(nullable = false)
     private int numSerie;
     private String dtArquisicao;
+    @OneToOne(fetch = FetchType.EAGER)
     private TipoItem tipo;
 
     public Item(int numSerie, String dtArquisicao) {

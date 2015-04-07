@@ -6,9 +6,14 @@
 
 package model.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -21,6 +26,8 @@ public class Socio extends Cliente{
     private String telefone;
     @Column(nullable = false)
     private String cpf;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Dependente> dependentes = new HashSet<Dependente>();
 
     public Socio(String endereco, String telefone, String cpf, String nome, String dataNascimento, Boolean ativo, char sexo) {
         super(nome, dataNascimento, ativo, sexo);
@@ -32,9 +39,6 @@ public class Socio extends Cliente{
     public Socio() {
         super();
     }
-
-    
-    
     
     public String getEndereco() {
         return endereco;
@@ -59,7 +63,17 @@ public class Socio extends Cliente{
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public Set<Dependente> getDependentes() {
+        return dependentes;
+    }
+
+    public void setDependentes(Set<Dependente> dependentes) {
+        this.dependentes = dependentes;
+    }
     
-    
+    public void inserirDependente(Dependente dep){
+		dependentes.add(dep);
+    }
     
 }

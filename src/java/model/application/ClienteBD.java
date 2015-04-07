@@ -7,6 +7,7 @@ package model.application;
 
 import java.io.PrintWriter;
 import java.util.List;
+import model.domain.Dependente;
 import model.domain.Socio;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -55,14 +56,33 @@ public class ClienteBD {
         s.beginTransaction();
         Query qr = s.createQuery(strQuery);
         List clientes = qr.list();
-//        Iterator<Cliente> i = clientes.iterator();
-//        while (i.hasNext()) {
-//            Cliente c = (Cliente) i.next();
-//
-//            out.print(c.getNome() + "<br>");
-//        }
         s.close();
         return clientes;
     }
+    
+    public static int inscreverDependente(Socio socio, String nome, char sexo, String dtNasc){
+
+		if (nome.equals(""))
+			return -1;
+		
+		Dependente d = new Dependente();
+		d.setDataNascimento(dtNasc);
+		d.setNome(nome);
+		d.setSexo(sexo);
+		d.setAtivo(true);
+				
+		SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+		Session session = sessions.openSession();
+				
+		session.beginTransaction();
+		session.save(d);
+		socio.inserirDependente(d);
+		session.update(socio);
+		session.getTransaction().commit();
+		session.close();
+		
+		return 1;
+		
+	}
 
 }
