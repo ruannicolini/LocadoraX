@@ -29,7 +29,21 @@
             </div>
         </div>
     </div>
-
+	<div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseClasse">
+                <i class="icon-th-list"></i> Classe
+            </a>
+        </div>
+        <div id="collapseClasse" class="accordion-body collapse" style="height: 0px; ">
+            <div class="accordion-inner">
+                <ul>
+                    <li class="opcoesDeMenu"><a href="ConsultaClasse.jsp">Consultar</a></li>
+                    <li class="opcoesDeMenu"><a href="CadastraClasse.jsp">Novo</a></li>
+                </ul>                 
+            </div>
+        </div>
+    </div>
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseCliente">
@@ -47,16 +61,16 @@
     </div>
     <div class="accordion-group">
         <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseClasse">
-                <i class="icon-th-list"></i> Classe
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseDep">
+                <i class="icon-th"></i> Dependente
             </a>
         </div>
-        <div id="collapseClasse" class="accordion-body collapse" style="height: 0px; ">
+        <div id="collapseDep" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <li class="opcoesDeMenu"><a href="ConsultaClasse.jsp">Consultar</a></li>
-                    <li class="opcoesDeMenu"><a href="CadastraClasse.jsp">Novo</a></li>
-                </ul>                 
+                    <li class="opcoesDeMenu"><a href="ConsultaDependente.jsp">Consultar</a></li>
+                    <li class="opcoesDeMenu"><a href="CadastraDependente.jsp">Novo</a></li>
+                </ul>
             </div>
         </div>
     </div>

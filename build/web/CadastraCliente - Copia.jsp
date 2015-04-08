@@ -98,7 +98,6 @@
                                 </div>
                             </div>
 
-                            <!--
                             <div class=" nav col-sm-5 " style="margin-left: 10px">
                                 <h4>Incluir Depedentes</h4>
                             </div>
@@ -153,10 +152,8 @@
                                     </table>
                                 </div>   
                             </div>
-                            -->
-
                             <div class="col-sm-12" align="rigth">
-                                <div class="col-sm-6 formBTN2 " align="right">  
+                                <div class="nav col-sm-5 " align="right"> 
                                     <button class="btn"> Cancelar </button>
                                     <button type ="submit" class="btn"> Salvar </button>
                                 </div> 
