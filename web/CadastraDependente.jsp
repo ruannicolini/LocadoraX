@@ -25,6 +25,15 @@
     </head>
 
     <body bgcolor="white">
+        <%@ page import="org.hibernate.Session"%>
+        <%@ page import="org.hibernate.SessionFactory"%>
+        <%@ page import="org.hibernate.Query"%>
+        <%@ page import="org.hibernate.cfg.AnnotationConfiguration"%>
+        <%@ page import="model.domain.Cliente"%>
+        <%@ page import="model.domain.Socio"%>
+        <%@ page import="java.util.Iterator"%>
+        <%@ page import="java.util.List"%>
+
         <!-- Menu Superior -->
         <%@ include file="navBar.jsp"%>
         <div class="container-fluid" style="overflow: hidden">
@@ -38,18 +47,53 @@
                     <div class="row">
                         <form action= "ControllerCliente" method="POST">
                             <input type="hidden" name="operacao" value="cadastrarDependente">
+                            <%
+                            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+                            Session s = sessions.openSession();
 
+                            //Listagem de socios
+                            String strQuery = "from Cliente as cli where cli.class=Socio";
 
+                            s.beginTransaction();
+                            Query qr = s.createQuery(strQuery);
+
+                            List socios = qr.list();
+                            %>
+                            <!--
                             <div class="nav col-sm-12 "> 
                                 <div class="nav row">
                                     <div class="col-sm-5 testeVermelho" style="padding :0">
+                                        
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Socio" nome ="socio">
-                                             <span class="input-group-addon" id="basic-addon2">Pesq</span>
-                                        </div>  
+                                            <span class="input-group-addon" id="basic-addon2">Pesq</span>
+                                        </div> 
+                                        
                                     </div>
                                 </div>
                             </div>
+                            -->
+
+                            <div class="nav col-sm-12 ">
+                                <div class="nav row">
+                                    <label for="User" class="col-sm-12">Socio</label>
+                                    <div class="col-sm-5">
+                                        <div class="row">
+                                            <select name="idSocio" class=" col-sm-12">
+                                                <%
+                                                Iterator i = socios.iterator();
+                                                while (i.hasNext()){
+                                                    
+                                                    Cliente c = (Cliente)i.next();
+                                                %>  
+                                                    <option value="<%out.println(c.getNumInscricao());%>"><%out.println(c.getNome());%></option>
+                                                <%}%>
+                                            </select>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="nav col-sm-12 ">
                                 <div class="nav row">
                                     <label for="User" class="col-sm-12">Dependente</label>
@@ -89,7 +133,7 @@
                                 </div> 
                             </div>
                         </form>
-                        
+
                     </div>
                     <div class="divider divider-single"></div>
                 </div>

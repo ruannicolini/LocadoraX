@@ -24,7 +24,7 @@ import javax.persistence.OneToMany;
 public class Socio extends Cliente{
     private String endereco;
     private String telefone;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(255) default '0'")
     private String cpf;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Dependente> dependentes = new HashSet<Dependente>();

@@ -126,12 +126,12 @@ public class ControllerCliente extends HttpServlet {
                  */
             }
 
-        } else if (operacao.equals("inscreverDependente")) {
-
+        } else if (operacao.equals("cadastrarDependente")) {
+            
             String idSocio = request.getParameter("idSocio");
             String nome = request.getParameter("nome");
-            char sexo = ((request.getParameter("sexo")).toCharArray())[0];
-            String nasc = request.getParameter("nasc");
+            char sexo = ((request.getParameter("sex")).toCharArray())[0];
+            String nasc = request.getParameter("dataNascimento");
 
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessions.openSession();

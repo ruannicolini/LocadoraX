@@ -158,7 +158,7 @@
                             <div class="col-sm-12" align="rigth">
                                 <div class="col-sm-6 formBTN2 " align="right">  
                                     <button class="btn"> Cancelar </button>
-                                    <button type ="submit" class="btn"> Salvar </button>
+                                    <button type ="submit" class="btn" > Salvar </button>
                                 </div> 
                             </div>
                         </form>

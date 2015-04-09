@@ -20,36 +20,36 @@ import org.hibernate.cfg.AnnotationConfiguration;
  */
 public class ClienteBD {
 
-    public static int cadastrarSocio( String end, String tel, String cpf, String nome, String dtNasc, char sexo) {
+    public static int cadastrarSocio(String end, String tel, String cpf, String nome, String dtNasc, char sexo) {
 
         if (nome.equals("") || cpf.equals("")) {
             return -1;
         }
         Socio s = new Socio(end, tel, cpf, nome, dtNasc, true, sexo);
-        try{
+        try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessions.openSession();
             session.beginTransaction();
             session.save(s);
             session.getTransaction().commit();
             session.close();
-        }catch(Exception x){
-            PrintWriter out = null; 
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Erro</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1> Erro " + x.getMessage() + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
+        } catch (Exception x) {
+            PrintWriter out = null;
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Erro</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1> Erro " + x.getMessage() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
 
         return 1;
     }
-    
-    public static List consultaClientes(){
+
+    public static List consultaClientes() {
         SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
         Session s = sessions.openSession();
         String strQuery = "from Cliente";
@@ -59,30 +59,44 @@ public class ClienteBD {
         s.close();
         return clientes;
     }
-    
-    public static int inscreverDependente(Socio socio, String nome, char sexo, String dtNasc){
 
-		if (nome.equals(""))
-			return -1;
-		
-		Dependente d = new Dependente();
-		d.setDataNascimento(dtNasc);
-		d.setNome(nome);
-		d.setSexo(sexo);
-		d.setAtivo(true);
-				
-		SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-		Session session = sessions.openSession();
-				
-		session.beginTransaction();
-		session.save(d);
-		socio.inserirDependente(d);
-		session.update(socio);
-		session.getTransaction().commit();
-		session.close();
-		
-		return 1;
-		
-	}
+    public static int inscreverDependente(Socio socio, String nome, char sexo, String dtNasc) {
+
+        if (nome.equals("")) {
+            return -1;
+        }
+
+        Dependente d = new Dependente();
+        d.setDataNascimento(dtNasc);
+        d.setNome(nome);
+        d.setSexo(sexo);
+        d.setAtivo(true);
+
+        try {
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
+
+            session.beginTransaction();
+            
+            socio.inserirDependente(d);
+            session.update(socio);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception x) {
+            PrintWriter out = null;
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Erro</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1> Erro " + x.getMessage() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+
+        return 1;
+
+    }
 
 }
