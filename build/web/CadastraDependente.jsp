@@ -79,7 +79,7 @@
                                     <label for="User" class="col-sm-12">Socio</label>
                                     <div class="col-sm-5">
                                         <div class="row">
-                                            <select name="idSocio" class=" col-sm-12">
+                                            <select name="idSocio" class="form-control col-sm-12">
                                                 <%
                                                 Iterator i = socios.iterator();
                                                 while (i.hasNext()){
