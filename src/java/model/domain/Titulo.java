@@ -36,4 +36,82 @@ public class Titulo {
     @ManyToOne
     private Classe classe;
 
+    public Titulo() {
+    }
+
+    public Titulo(String nome, String ano, String sinopse, String categoria, Diretor diretor, Classe classe) {
+        this.nome = nome;
+        this.ano = ano;
+        this.sinopse = sinopse;
+        this.categoria = categoria;
+        this.diretor = diretor;
+        this.classe = classe;
+    }
+
+    public long getIdTitulo() {
+        return idTitulo;
+    }
+
+    public void setIdTitulo(long idTitulo) {
+        this.idTitulo = idTitulo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getAno() {
+        return ano;
+    }
+
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+
+    public String getSinopse() {
+        return sinopse;
+    }
+
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public Set<Ator> getAtores() {
+        return atores;
+    }
+
+    public void setAtores(Set<Ator> atores) {
+        this.atores = atores;
+    }
+
+    public Diretor getDiretor() {
+        return diretor;
+    }
+
+    public void setDiretor(Diretor diretor) {
+        this.diretor = diretor;
+    }
+
+    public Classe getClasse() {
+        return classe;
+    }
+
+    public void setClasse(Classe classe) {
+        this.classe = classe;
+    }
+    
+    
+
 }

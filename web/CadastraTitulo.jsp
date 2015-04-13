@@ -222,7 +222,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <%                                                    i = atores.iterator();
+                                                <%                                                    
+                                                    i = atores.iterator();
                                                     while (i.hasNext()) {
 
                                                         Ator at = (Ator) i.next();
@@ -230,7 +231,9 @@
                                                         "<tr>"
                                                                 + "<td>" + at.getIdAtor() + "</td>"
                                                                 + "<td>" + at.getNome() + "</td>"
-                                                                + "<td>" + "Selecionar" + "</td>"
+                                                                + "<td>" 
+                                                                + "<INPUT TYPE=\"checkbox\" NAME=\"selecionado\" VALUE=\"" + at.getIdAtor() +"\">" 
+                                                                + "</td>"
                                                       + "</tr>");
                                                     }
                                                 %>
