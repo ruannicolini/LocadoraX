@@ -48,7 +48,7 @@
                         SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
                         Session s = sessions.openSession();
 
-                        String strQuery = "from Cliente";
+                        String strQuery = "from Cliente as c where c.class=Socio";
 
                         s.beginTransaction();
                         Query qr = s.createQuery(strQuery);

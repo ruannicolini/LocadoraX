@@ -106,7 +106,7 @@
                                                     <label for="" class="col-sm-12">Distribuidor</label>
                                                     <div class="col-sm-11" style="padding :0">
                                                         <select name="distribuidor" class="form-control">
-                                                            <%                                                                Iterator i = dist.iterator();
+                                                            <%                                                   Iterator i = dist.iterator();
                                                                 while (i.hasNext()) {
 
                                                                     Distribuidor d = (Distribuidor) i.next();
@@ -136,7 +136,7 @@
                                                     <label for="" class="col-sm-12">Classe </label>
                                                     <div class="col-sm-12" style="padding :0">
                                                         <select name="classe" class="form-control">
-                                                            <%                                                                i = classes.iterator();
+                                                            <%                                                   i = classes.iterator();
                                                                 while (i.hasNext()) {
 
                                                                     Classe cla = (Classe) i.next();
@@ -172,7 +172,8 @@
                                     <label for="Nome" class="col-sm-12">Diretor</label>
                                     <div class="input-group input-group-sm col-sm-5">
                                         <select name="diretor" class="form-control">
-                                            <%                                                i = diretores.iterator();
+                                            <%                                                
+                                                i = diretores.iterator();
                                                 while (i.hasNext()) {
 
                                                     Diretor dir = (Diretor) i.next();
@@ -213,7 +214,7 @@
                                             <input type="text" class="form-control" placeholder="Nome" nome ="basic-addon2">
                                             <span class="input-group-addon" id="basic-addon2">ADD</span>
                                         </div> 
-                                        <table class="table table-bordered">
+                                        <table class="table table-striped table-hover table-users">
                                             <thead>
                                                 <tr>
                                                     <th>Cod</th>
@@ -247,7 +248,7 @@
                             <div class="col-sm-12" align="rigth">
                                 <div class="col-sm-6 formBTN2 " align="right"> 
                                     <button class="btn"> Cancelar </button>
-                                    <button class="btn"> Salvar </button>
+                                    <button type ="submit" class="btn"> Salvar </button>
                                 </div> 
                             </div>
                         </form>

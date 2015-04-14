@@ -34,4 +34,8 @@ public class DistribuidorBD {
         return 1;  
     }
     
+    public static Distribuidor consultaId(String cnpj){
+        return null;
+    }
+    
 }

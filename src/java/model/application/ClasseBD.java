@@ -7,7 +7,9 @@
 package model.application;
 
 import java.io.PrintWriter;
+import java.util.List;
 import model.domain.Classe;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -35,4 +37,16 @@ public class ClasseBD {
         return 1;
     }
     
+    public static Classe consultaId(String idClasse){
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
+
+            String strQuery = "from Classe where idClasse = " + idClasse;
+            session.beginTransaction();
+            Query qr = session.createQuery(strQuery);
+            List classes = qr.list();
+            session.close();
+
+            return (Classe) classes.get(0);
+    }
 }

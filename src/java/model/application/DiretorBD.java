@@ -31,9 +31,11 @@ public class DiretorBD {
         }catch(Exception x){
                 System.out.println("Erro: " + x.getMessage());
         }
-
         return 1;
-        
+    }
+    
+    public static Diretor consultaId(String idDiretor){
+        return null;
     }
     
 }
