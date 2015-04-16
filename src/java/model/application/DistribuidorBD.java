@@ -6,7 +6,9 @@
 
 package model.application;
 
+import java.util.List;
 import model.domain.Distribuidor;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -35,7 +37,16 @@ public class DistribuidorBD {
     }
     
     public static Distribuidor consultaId(String cnpj){
-        return null;
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
+
+            String strQuery = "from Distribuidor where idDistribuidor = " + cnpj;
+            session.beginTransaction();
+            Query qr = session.createQuery(strQuery);
+            List classes = qr.list();
+            session.close();
+
+            return (Distribuidor) classes.get(0);
     }
     
 }

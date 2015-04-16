@@ -8,6 +8,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -82,7 +84,6 @@ public class ControllerTitulo extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         String operacao = request.getParameter("operacao");
-
         if (operacao.equals("cadastrar")) {
             String nome = request.getParameter("nome");
             String ano = request.getParameter("ano");
@@ -97,8 +98,39 @@ public class ControllerTitulo extends HttpServlet {
             String idDiretor = request.getParameter("diretor");
             Diretor diretor = DiretorBD.consultaId(idDiretor);
             
-            List atores = null;
+            
+            // Lista de Atores
+            Enumeration e = request.getParameterNames();
+            List atores = new ArrayList();
+            while(e.hasMoreElements()){
+                Object o = e.nextElement();
+                System.out.println("==="+o);
+                if (o.toString().equals("selecionado%")){
+                    System.out.println("ator="+request.getParameter(o.toString()));
+
+                }
+            }
         }
+        
+        
+        
+        
+        
+//        if (operacao.equals("cadastrar")) {
+//            String nome = request.getParameter("nome");
+//            String ano = request.getParameter("ano");
+//            String categoria = request.getParameter("categoria");
+//            
+//            String cnpjDist = request.getParameter("distribuidor");
+//            Distribuidor distribuidor = DistribuidorBD.consultaId(cnpjDist);
+//            
+//            String idClasse = request.getParameter("classe");
+//            Classe classe = ClasseBD.consultaId(idClasse);
+//            
+//            String idDiretor = request.getParameter("diretor");
+//            Diretor diretor = DiretorBD.consultaId(idDiretor);
+//            
+//        }
     }
 
     /**

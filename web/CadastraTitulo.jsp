@@ -233,7 +233,7 @@
                                                                 + "<td>" + at.getIdAtor() + "</td>"
                                                                 + "<td>" + at.getNome() + "</td>"
                                                                 + "<td>" 
-                                                                + "<INPUT TYPE=\"checkbox\" NAME=\"selecionado\" VALUE=\"" + at.getIdAtor() +"\">" 
+                                                                + "<INPUT TYPE=\"checkbox\" NAME=\"selecionado"+ at.getIdAtor()+ "\" VALUE=\"" + at.getIdAtor() +"\">" 
                                                                 + "</td>"
                                                       + "</tr>");
                                                     }

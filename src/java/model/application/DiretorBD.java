@@ -6,7 +6,9 @@
 
 package model.application;
 
+import java.util.List;
 import model.domain.Diretor;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -35,7 +37,16 @@ public class DiretorBD {
     }
     
     public static Diretor consultaId(String idDiretor){
-        return null;
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
+
+            String strQuery = "from Diretor where idDiretor = " + idDiretor;
+            session.beginTransaction();
+            Query qr = session.createQuery(strQuery);
+            List classes = qr.list();
+            session.close();
+
+            return (Diretor) classes.get(0);
     }
     
 }
