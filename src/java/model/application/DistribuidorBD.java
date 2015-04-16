@@ -37,16 +37,21 @@ public class DistribuidorBD {
     }
     
     public static Distribuidor consultaId(String cnpj){
-        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessions.openSession();
 
-            String strQuery = "from Distribuidor where idDistribuidor = " + cnpj;
+            String strQuery = "from Distribuidor where cnpj = " + cnpj;
             session.beginTransaction();
             Query qr = session.createQuery(strQuery);
-            List classes = qr.list();
+            List<Distribuidor> dists = qr.list();
             session.close();
 
-            return (Distribuidor) classes.get(0);
+            return (Distribuidor) dists.get(0);
+        }catch(Exception x){
+                System.out.println("Erro: " + x.getMessage());
+        }
+        return null;
     }
     
 }

@@ -51,7 +51,7 @@
                                 <div class="nav row">
                                     <label for="Nome" class="col-sm-12">Nome</label>
                                     <div class="input-group input-group-sm col-sm-5">
-                                        <input type="text" class="form-control" placeholder=" " nome ="nome">
+                                        <input type="text" class="form-control" placeholder="Nome" name="nome">
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Ano</label>
                                                     <div class="col-sm-11" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder=" " nome ="ano" style="text-align:right">
+                                                        <input type="text" class="form-control" placeholder="Ano" name="ano">
                                                     </div> 
                                                 </div>
 
@@ -73,7 +73,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Categoria </label>
                                                     <div class="col-sm-12" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder=" " nome ="categoria" style="text-align:right">
+                                                        <input type="text" class="form-control" placeholder="Categoria" name="categoria">
                                                     </div> 
                                                 </div>
 

@@ -37,7 +37,8 @@ public class DiretorBD {
     }
     
     public static Diretor consultaId(String idDiretor){
-        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessions.openSession();
 
             String strQuery = "from Diretor where idDiretor = " + idDiretor;

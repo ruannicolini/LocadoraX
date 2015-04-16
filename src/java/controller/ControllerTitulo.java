@@ -98,6 +98,20 @@ public class ControllerTitulo extends HttpServlet {
             String idDiretor = request.getParameter("diretor");
             Diretor diretor = DiretorBD.consultaId(idDiretor);
             
+            try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ControllerTitulo</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1> nome : " + nome + "</h1>");
+            out.println("<h1> ano : " + ano + "</h1>");
+            out.println("<h1> categoria : " + categoria + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
             
             // Lista de Atores
             Enumeration e = request.getParameterNames();
