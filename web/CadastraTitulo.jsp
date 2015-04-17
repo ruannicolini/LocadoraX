@@ -187,6 +187,16 @@
 
                             <div class="nav col-sm-12 "> 
                                 <div class="nav row">
+                                    <label for="sinopse" class="col-sm-12">Sinopse</label>
+                                    <div class="input-group input-group-sm col-sm-5">
+                                        <textarea rows="4" cols="50" class="form-control" placeholder="Sinopse" name="sinopse">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="nav col-sm-12 "> 
+                                <div class="nav row">
                                     <div class="col-sm-5" style="padding :0">
                                         <h4>Atores Participantes</h4> 
                                         <%

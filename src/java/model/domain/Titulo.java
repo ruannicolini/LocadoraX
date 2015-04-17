@@ -29,8 +29,10 @@ public class Titulo {
     private String ano;
     private String sinopse;
     private String categoria;
+    
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Ator> atores = new HashSet<Ator>();
+    
     @ManyToOne
     private Diretor diretor;
     @ManyToOne
@@ -112,6 +114,8 @@ public class Titulo {
         this.classe = classe;
     }
     
-    
+    public void InserirAtor(Ator at){
+		atores.add(at);
+    }
 
 }

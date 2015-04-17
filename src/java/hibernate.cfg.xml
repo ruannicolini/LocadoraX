@@ -17,5 +17,6 @@
     <mapping class="model.domain.Item"/>
     <mapping class="model.domain.Cliente"/>
     <mapping class="model.domain.Dependente"/>
+    <mapping class="model.domain.Titulo"/>
   </session-factory>
 </hibernate-configuration>

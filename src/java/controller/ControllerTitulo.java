@@ -16,12 +16,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.application.AtorBD;
 import model.application.ClasseBD;
 import model.application.DiretorBD;
 import model.application.DistribuidorBD;
+import model.application.TituloBD;
 import model.domain.Classe;
 import model.domain.Diretor;
 import model.domain.Distribuidor;
+import model.domain.Titulo;
 
 /**
  *
@@ -83,11 +86,13 @@ public class ControllerTitulo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+
         String operacao = request.getParameter("operacao");
         if (operacao.equals("cadastrar")) {
             String nome = request.getParameter("nome");
             String ano = request.getParameter("ano");
             String categoria = request.getParameter("categoria");
+            String sinopse = request.getParameter("sinopse");
             
             String cnpjDist = request.getParameter("distribuidor");
             Distribuidor distribuidor = DistribuidorBD.consultaId(cnpjDist);
@@ -107,11 +112,12 @@ public class ControllerTitulo extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1> nome : " + nome + "</h1>");
-            out.println("<h1> ano : " + ano + "</h1>");
+            out.println("<h1> sinopse : " + sinopse + "</h1>");
             out.println("<h1> categoria : " + categoria + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
+            
             
             // Lista de Atores
             Enumeration e = request.getParameterNames();
@@ -119,11 +125,13 @@ public class ControllerTitulo extends HttpServlet {
             while(e.hasMoreElements()){
                 Object o = e.nextElement();
                 System.out.println("==="+o);
-                if (o.toString().equals("selecionado%")){
+        
+                if (o.toString().toLowerCase().contains("selecionado".toLowerCase())){
                     System.out.println("ator="+request.getParameter(o.toString()));
-
+                    atores.add(AtorBD.consultaId(request.getParameter(o.toString())));
                 }
             }
+            TituloBD.cadastrarTitulo(nome, ano, sinopse, categoria, diretor, classe, atores);
         }
         
         
