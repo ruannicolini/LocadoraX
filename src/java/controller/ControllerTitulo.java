@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +23,7 @@ import model.application.ClasseBD;
 import model.application.DiretorBD;
 import model.application.DistribuidorBD;
 import model.application.TituloBD;
+import model.domain.Ator;
 import model.domain.Classe;
 import model.domain.Diretor;
 import model.domain.Distribuidor;
@@ -121,7 +124,7 @@ public class ControllerTitulo extends HttpServlet {
             
             // Lista de Atores
             Enumeration e = request.getParameterNames();
-            List atores = new ArrayList();
+            Set<Ator> atores = new HashSet<Ator>();
             while(e.hasMoreElements()){
                 Object o = e.nextElement();
                 System.out.println("==="+o);
