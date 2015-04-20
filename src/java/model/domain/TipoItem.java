@@ -8,6 +8,7 @@ package model.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -19,10 +20,19 @@ import javax.persistence.Id;
 public class TipoItem {
     @Id
     @Column(nullable = false)
+    @GeneratedValue
     private long idTipoItem;
     @Column(nullable = false)
     private String nome;
 
+    public TipoItem() {
+    }
+
+    public TipoItem(long idTipoItem, String nome) {
+        this.idTipoItem = idTipoItem;
+        this.nome = nome;
+    }
+    
     public TipoItem(String nome) {
         this.nome = nome;
     }
@@ -33,6 +43,10 @@ public class TipoItem {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public long getIdTipoItem() {
+        return idTipoItem;
     }
     
     

@@ -4,6 +4,14 @@
     Author     : Ruan
 --%>
 
+<%@page import="model.domain.TipoItem"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.cfg.AnnotationConfiguration"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="model.domain.Titulo"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.Query"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,8 +50,28 @@
                             <div class="nav col-sm-12 "> 
                                 <div class="nav row">
                                     <label for="Nome" class="col-sm-12">Titulo</label>
+                                    <%
+                                        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+                                        Session s = sessions.openSession();
+
+                                        //Listagem de socios
+                                        String strQuery = "from Titulo";
+
+                                        s.beginTransaction();
+                                        Query qr = s.createQuery(strQuery);
+                                        List titulos = qr.list();
+                                        s.close();
+                                    %>
                                     <div class="input-group input-group-sm col-sm-5">
-                                        <input type="text" class="form-control" placeholder=" " nome="nomeTitulo">
+                                        <select name="titulo" class="form-control">
+                                            <%
+                                                Iterator i = titulos.iterator();
+                                                while (i.hasNext()) {
+                                                    Titulo t = (Titulo) i.next();
+                                            %>  
+                                            <option value="<%out.println(t.getIdTitulo());%>"><%out.println(t.getNome());%></option>
+                                            <%}%>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +81,7 @@
                                     <div class="input-group input-group-sm col-sm-5"> 
                                         <label for="" class="col-sm-12">Nº de Série</label>
                                         <div class="col-sm-12" style="padding :0">
-                                            <input type="text" class="form-control" placeholder=" " nome="numDeSerie" style="padding :0">
+                                            <input type="text" class="form-control" placeholder="Numero De Serie" name="numDeSerie" style="padding :0">
                                         </div>        
                                     </div>
                                 </div>
@@ -66,11 +94,27 @@
                                             <div class="col-sm-6">
                                                 <div class="row">
                                                     <label for="" class="col-sm-12" style="padding: 0 ">Tipo</label>
+                                                    <%
+                                                        sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+                                                        s = sessions.openSession();
+
+                                                        //Listagem de socios
+                                                        strQuery = "from TipoItem";
+
+                                                        s.beginTransaction();
+                                                        qr = s.createQuery(strQuery);
+                                                        List tipos = qr.list();
+                                                        s.close();
+                                                    %>
                                                     <div class="col-sm-11" style="padding :0">
                                                         <select name="tipo" class="form-control">
-                                                            <option value="Selecione">Selecione</option>
-                                                            <option value="fita">FITA</option>
-                                                            <option value="dvd">DVD</option>
+                                                            <%
+                                                                i = tipos.iterator();
+                                                                while (i.hasNext()) {
+                                                                    TipoItem tp = (TipoItem) i.next();
+                                                            %>  
+                                                            <option value="<%out.println(tp.getIdTipoItem());%>"><%out.println(tp.getNome());%></option>
+                                                            <%}%>
                                                         </select>
                                                     </div> 
                                                 </div>
@@ -79,7 +123,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Data de Aquisição</label>
                                                     <div class="col-sm-12" style="padding :0">
-                                                        <input type="date" class="form-control" placeholder=" " nome="dtAquisicao">
+                                                        <input type="text" class="form-control" placeholder="Data" name="dtAquisicao">
                                                     </div> 
                                                 </div>
 

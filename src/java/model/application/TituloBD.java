@@ -13,6 +13,7 @@ import model.domain.Ator;
 import model.domain.Classe;
 import model.domain.Diretor;
 import model.domain.Titulo;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -56,4 +57,17 @@ public class TituloBD {
         return 1;
     }
     
+    public static Titulo consultaId(String id){
+
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
+
+            String strQuery = "from Titulo where idTitulo= " + id;
+            session.beginTransaction();
+            Query qr = session.createQuery(strQuery);
+            List classes = qr.list();
+            session.close();
+
+            return (Titulo) classes.get(0);
+    }
 }

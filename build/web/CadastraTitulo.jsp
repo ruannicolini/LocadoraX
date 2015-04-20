@@ -106,7 +106,8 @@
                                                     <label for="" class="col-sm-12">Distribuidor</label>
                                                     <div class="col-sm-11" style="padding :0">
                                                         <select name="distribuidor" class="form-control">
-                                                            <%                                                   Iterator i = dist.iterator();
+                                                            <%                                                   
+                                                                Iterator i = dist.iterator();
                                                                 while (i.hasNext()) {
 
                                                                     Distribuidor d = (Distribuidor) i.next();
@@ -136,7 +137,8 @@
                                                     <label for="" class="col-sm-12">Classe </label>
                                                     <div class="col-sm-12" style="padding :0">
                                                         <select name="classe" class="form-control">
-                                                            <%                                                   i = classes.iterator();
+                                                            <%                                                   
+                                                                i = classes.iterator();
                                                                 while (i.hasNext()) {
 
                                                                     Classe cla = (Classe) i.next();
