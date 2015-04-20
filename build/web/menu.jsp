@@ -47,7 +47,7 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseCliente">
-                <i class="icon-th"></i> Cliente
+                <i class="icon-th"></i> Socio
             </a>
         </div>
         <div id="collapseCliente" class="accordion-body collapse" style="height: 0px; ">

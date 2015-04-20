@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/application/TituloBD.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/controller/ControllerTitulo.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/application/DiretorBD.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/application/AtorBD.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/web/CadastraCliente.jsp</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/web/CadastraFuncionario.jsp</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/controller/ControllerClasse.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/controller/ControllerFuncionario.java</file>
         </group>
     </open-files>
 </project-private>

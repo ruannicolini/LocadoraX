@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package model.application;
 
-import java.io.PrintWriter;
-import java.util.List;
-import model.domain.Ator;
-import model.domain.Socio;
-import org.hibernate.Query;
+import model.domain.Funcionario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -18,18 +15,17 @@ import org.hibernate.cfg.AnnotationConfiguration;
  *
  * @author Ruan
  */
-public class AtorBD {
-
-    public static int cadastrarAtor(String nome) {
+public class FuncionarioBD {
+        public static int cadastrarFuncionario(String nome, String userName, String senha) {
         if (nome.equals("")) {
             return -1;
         }
-        Ator a = new Ator(nome);
+        Funcionario f = new Funcionario(nome, userName, senha);
         try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessions.openSession();
             session.beginTransaction();
-            session.save(a);
+            session.save(f);
             session.getTransaction().commit();
             session.close();
         } catch (Exception x) {
@@ -37,18 +33,5 @@ public class AtorBD {
         }
         return 1;
     }
-
-    public static Ator consultaId(String id) {
-
-        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-        Session session = sessions.openSession();
-
-        String strQuery = "from Ator where idAtor = " + id;
-        session.beginTransaction();
-        Query qr = session.createQuery(strQuery);
-        List classes = qr.list();
-        session.close();
-
-        return (Ator) classes.get(0);
-    }
+    
 }
