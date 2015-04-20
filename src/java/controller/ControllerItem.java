@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.application.ItemBD;
 import model.application.TipoItemBD;
 import model.application.TituloBD;
 import model.domain.TipoItem;
@@ -104,6 +105,7 @@ public class ControllerItem extends HttpServlet {
                 out.println("</body>");
                 out.println("</html>");
             }
+            ItemBD.cadastrarItem(numSerie, dtAquisicao, tipoitem, titulo);
             
         }
     }
