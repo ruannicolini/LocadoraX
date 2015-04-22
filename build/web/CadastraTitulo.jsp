@@ -100,8 +100,6 @@
                                                         Query qr = s.createQuery(strQuery);
                                                         List dist = qr.list();
                                                         s.close();
-
-
                                                     %>
                                                     <label for="" class="col-sm-12">Distribuidor</label>
                                                     <div class="col-sm-11" style="padding :0">
@@ -265,17 +263,14 @@
                             </div>
                         </form>
                     </div>
-
-
-
-
                     <div class="divider divider-single"></div>
                 </div>
-
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        
+
         <!--<script type="text/javascript" src="js/jsProject.js"></script>-->   
     </body>
 </html>

@@ -28,6 +28,9 @@ public class Item {
     @OneToOne(fetch = FetchType.EAGER)
     private Titulo titulo;
 
+    public Item() {
+    }
+    
     public Item(int numSerie, String dtArquisicao, TipoItem tipo, Titulo titulo) {
         this.numSerie = numSerie;
         this.dtArquisicao = dtArquisicao;
