@@ -6,10 +6,14 @@
 
 package model.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -37,6 +41,9 @@ public class Locacao {
     @ManyToOne
     private Item item;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Pagamento> pagamentos = new HashSet<Pagamento>();
+    
     public Locacao() {
     }
 
@@ -49,7 +56,7 @@ public class Locacao {
         this.cliente = cliente;
         this.item = item;
     }
-
+    
     public long getIdLocacao() {
         return idLocacao;
     }
@@ -112,6 +119,14 @@ public class Locacao {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public Set<Pagamento> getPagamentos() {
+        return pagamentos;
+    }
+
+    public void setPagamentos(Set<Pagamento> pagamentos) {
+        this.pagamentos = pagamentos;
     }
     
     

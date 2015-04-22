@@ -190,6 +190,12 @@
                                 <div class="col-sm-6 formBTN2 " align="right"> 
                                     <button class="btn"> Cancelar </button>
                                     <button type ="submit" class="btn"> Salvar </button>
+                                    <a href="EfetuaPagamento.jsp">
+                                            <button type="button" class="btn btn-success btn-lg pull-left">
+                                                    <span class="glyphicon glyphicon-usd"></span>
+                                                    Efetuar Pagamento
+                                            </button>
+                                    </a>
                                 </div> 
                             </div>
                         </form>

@@ -19,5 +19,6 @@
     <mapping class="model.domain.TipoItem"/>
     <mapping class="model.domain.Titulo"/>
     <mapping class="model.domain.Item"/>
+    <mapping class="model.domain.Reserva"/>
   </session-factory>
 </hibernate-configuration>

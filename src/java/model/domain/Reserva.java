@@ -32,4 +32,11 @@ public class Reserva {
     
     @ManyToOne
     private Cliente cliente;
+    
+    @ManyToOne
+    private Titulo titulo;
+    
+    @ManyToOne
+    private TipoItem tipoItem;
+    
 }
