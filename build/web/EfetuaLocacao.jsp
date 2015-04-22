@@ -42,7 +42,7 @@
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
                     <h2>Cadastro de Locação </h2>
                     <div class="row">
-                        <form action= "ControllerTitulo" method="POST">
+                        <form action= "ControllerLocacao" method="POST">
                             <input type="hidden" name="operacao" value="cadastrar"> 
                             <div class="nav col-sm-12 "> 
                                 <div class="nav row">
@@ -169,7 +169,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Data Prevista de Devolução</label>
                                                     <div class="col-sm-11" style="padding :0">
-                                                        <input type="date" class="form-control" placeholder=" " aria-describedby="dtAquisicao">
+                                                        <input type="date" class="form-control" placeholder=" " nome="dtPrevDev">
                                                     </div>
                                                 </div>
                                             </div>
@@ -177,7 +177,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Valor</label>
                                                     <div class="col-sm-12" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder=" " aria-describedby="dtAquisicao">
+                                                        <input type="text" class="form-control" placeholder=" " nome="valor">
                                                     </div>
                                                 </div>
 

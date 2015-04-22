@@ -7,6 +7,7 @@ package model.application;
 
 import java.io.PrintWriter;
 import java.util.List;
+import model.domain.Cliente;
 import model.domain.Dependente;
 import model.domain.Socio;
 import org.hibernate.Query;
@@ -77,7 +78,7 @@ public class ClienteBD {
             Session session = sessions.openSession();
 
             session.beginTransaction();
-            
+
             socio.inserirDependente(d);
             session.update(socio);
             session.getTransaction().commit();
@@ -97,6 +98,19 @@ public class ClienteBD {
 
         return 1;
 
+    }
+
+    public static Cliente consultaId(String id) {
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+        Session session = sessions.openSession();
+
+        String strQuery = "from Cliente where numInscricao = " + id;
+        session.beginTransaction();
+        Query qr = session.createQuery(strQuery);
+        List clientes = qr.list();
+        session.close();
+
+        return (Cliente) clientes.get(0);
     }
 
 }

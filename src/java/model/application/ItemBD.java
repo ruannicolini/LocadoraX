@@ -7,10 +7,12 @@
 package model.application;
 
 import java.io.PrintWriter;
+import java.util.List;
 import model.domain.Item;
 import model.domain.Socio;
 import model.domain.TipoItem;
 import model.domain.Titulo;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -47,6 +49,19 @@ public class ItemBD {
         
         
         return 1;
+    }
+
+    public static Item consultaId(String id) {
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+        Session session = sessions.openSession();
+
+        String strQuery = "from Item where numSerie = " + id;
+        session.beginTransaction();
+        Query qr = session.createQuery(strQuery);
+        List itens = qr.list();
+        session.close();
+
+        return (Item) itens.get(0);
     }
     
 }
