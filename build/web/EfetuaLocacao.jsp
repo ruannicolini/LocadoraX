@@ -169,7 +169,8 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Data Prevista de Devolução</label>
                                                     <div class="col-sm-11" style="padding :0">
-                                                        <input type="date" class="form-control" placeholder=" " nome="dtPrevDev">
+                                                        <input type="date" class="form-control" placeholder="Nome" name="dtPrevDev">
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -177,7 +178,8 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Valor</label>
                                                     <div class="col-sm-12" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder=" " nome="valor">
+                                                        
+                                                        <input type="text" class="form-control" placeholder="" name="valor">
                                                     </div>
                                                 </div>
 

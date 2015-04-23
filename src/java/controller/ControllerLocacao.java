@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.ClienteBD;
 import model.application.ItemBD;
+import model.application.LocacaoBD;
 import model.domain.Cliente;
 import model.domain.Item;
 
@@ -80,8 +82,14 @@ public class ControllerLocacao extends HttpServlet {
         //processRequest(request, response);
         String operacao = request.getParameter("operacao");
         if (operacao.equals("cadastrar")) {
+            
             String dtDevolucao = request.getParameter("dtPrevDev");
-            Date dtAquisicao = new Date();
+            
+              
+            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = new Date();
+            String dtAquisicao = formatador.format( data );
+
 
             String valor = request.getParameter("valor");
 
@@ -91,6 +99,8 @@ public class ControllerLocacao extends HttpServlet {
             String numSerie = request.getParameter("item");
             Item item = ItemBD.consultaId(numSerie);
 
+            int resposta = LocacaoBD.cadastrarLocacao(dtAquisicao, dtDevolucao, valor, cliente, item);
+            
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 out.println("<!DOCTYPE html>");
@@ -104,9 +114,11 @@ public class ControllerLocacao extends HttpServlet {
                 out.println("<h1> Valor : " + valor + "</h1>");
                 out.println("<h1> Cliente : " + cliente.getNome() + "</h1>");
                 out.println("<h1> Item : " + item.getNumSerie() + "</h1>");
+                out.println("<h1> Resposta : " + resposta + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
             }
+            
         }
     }
 

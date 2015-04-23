@@ -30,7 +30,6 @@ public class Locacao {
     private String dtLocacao;
     @Column(nullable = false)
     private String dtDevolucaoPrevista;
-    @Column(nullable = false)
     private String dtDevolucaoEfetiva;
     private float valorCobrado;
     private float multaCobrada;
@@ -53,6 +52,14 @@ public class Locacao {
         this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
         this.valorCobrado = valorCobrado;
         this.multaCobrada = multaCobrada;
+        this.cliente = cliente;
+        this.item = item;
+    }
+
+    public Locacao(String dtLocacao, String dtDevolucaoPrevista, float valorCobrado, Cliente cliente, Item item) {
+        this.dtLocacao = dtLocacao;
+        this.dtDevolucaoPrevista = dtDevolucaoPrevista;
+        this.valorCobrado = valorCobrado;
         this.cliente = cliente;
         this.item = item;
     }
