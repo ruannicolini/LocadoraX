@@ -44,7 +44,7 @@
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
                     <h2>Cadastro de Reserva</h2>
                     <div class="row">
-                        <form action= "ControllerLocacao" method="POST">
+                        <form action= "ControllerReserva" method="POST">
                             <input type="hidden" name="operacao" value="cadastrar"> 
                             <div class="nav col-sm-12 "> 
                                 <div class="nav row">
@@ -147,6 +147,34 @@
                                                      </div> 
                                                 </div>
                                                 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="nav col-sm-12"> 
+                                <div class="nav row">
+                                    <div class="input-group input-group-sm col-sm-5">
+                                        <div class="row" style="margin :0">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label for="" class="col-sm-12">Reservar Para(Dia):</label>
+                                                    <div class="col-sm-11" style="padding :0">
+                                                        
+                                                        <input type="date" class="form-control" name="dtReserva">
+                                                    </div> 
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label for="" class="col-sm-12">Hora da Reserva </label>
+                                                    <div class="col-sm-12" style="padding :0">
+                                                        <input type="time" class="form-control"  name="hrReserva">
+                                                    </div> 
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
