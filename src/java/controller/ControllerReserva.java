@@ -13,6 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.application.ClienteBD;
+import model.application.ReservaBD;
+import model.application.TipoItemBD;
+import model.application.TituloBD;
+import model.domain.Cliente;
+import model.domain.TipoItem;
+import model.domain.Titulo;
 
 /**
  *
@@ -73,7 +80,45 @@ public class ControllerReserva extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String operacao = request.getParameter("operacao");
+        if (operacao.equals("cadastrar")) {
+            
+            String idCliente = request.getParameter("cliente");
+            Cliente cliente = ClienteBD.consultaId(idCliente);
+            
+            String idTipo = request.getParameter("tipo");
+            TipoItem tipoitem = TipoItemBD.consultaId(idTipo);
+            
+            String idTitulo = request.getParameter("titulo");
+            Titulo titulo = TituloBD.consultaId(idTitulo);
+            
+            String dtReserva = request.getParameter("dtReserva");
+            String hrReserva = request.getParameter("hrReserva");
+            
+            int resposta = 0;
+            
+            resposta = ReservaBD.cadastrarReserva(dtReserva, hrReserva, cliente, titulo, tipoitem);
+            
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet ControllerReserva</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1> Cliente : " + cliente.getNome() + "</h1>");
+                out.println("<h1> Tipo : " + tipoitem.getNome() + "</h1>");
+                out.println("<h1> Titulo : " + titulo.getNome() + "</h1>");
+                out.println("<h1> dtReserva : " + dtReserva + "</h1>");
+                out.println("<h1> hrReserva : " + hrReserva + "</h1>");
+                out.println("<h1> Resposta : " + resposta + "</h1>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+            
+        }
     }
 
     /**
