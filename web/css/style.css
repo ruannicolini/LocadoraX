@@ -29,12 +29,51 @@ body {
   padding : 3px;
 }
 
-/* ===================================TABELAS CONSULTA ==========================================*/
+/* ===================================TABELAS E CONSULTA ==========================================*/
 
 thead{
   background : black;
   color: silver;
+}
 
+#input-div #search {
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+#search {
+    width: 80%;
+    height: 45px;
+    line-height: 45px;
+    font-size: 35px;
+}
+#suggestions {
+    position: absolute;
+    background-color: #fff;
+    width: 80%;
+    color: black;
+    z-index: 2000;
+    border-color: grey;
+    border-width: 1px;
+    border-style: double;
+    margin-left: 10%;
+}
+.btn-suggest {
+    width: 100%;
+    background-color: white;
+    border-radius: 0;
+}
+.btn-suggest:hover {
+    background-color: #eee;
+}
+.suggestion-text {
+    font-weight: bolder;
+    font-size: 20px
+}
+#input-div {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* ===================================*Form ==========================================*/
