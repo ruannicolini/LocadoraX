@@ -55,11 +55,12 @@
                         List socios = qr.list();
                     %>
 
+                    
                     <div class="nav col-sm-12"> 
                         <div class="nav row">
                             <div class="col-sm-5" style="padding :0">
                                 <div id="input-div">
-                                    <input id="search" class="center-block form-control" placeholder="Search.." autocomplete="off" />
+                                    <input id="search" class="center-block form-control" placeholder="Search.." autocomplete= "off" />
                                     <div id="suggestions" class="text-center center-block" style="display:none;">
                                         <div id="suggestion-results"></div>
                                     </div>

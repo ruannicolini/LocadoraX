@@ -117,7 +117,7 @@ public class ControllerLocacao extends HttpServlet {
                 out.println("<h1> Resposta : " + resposta + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
-                if(resposta == 1){
+                if( resposta == 1){
                     response.sendRedirect(request.getContextPath() + "/EfetuaPagamento.jsp");
                 }
             }
