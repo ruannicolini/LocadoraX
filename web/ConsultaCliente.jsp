@@ -80,11 +80,19 @@
                                     <th class="hidden-phone">Telefone</th>
                                     <th>Status</th>
                                     <th>Editar</th>
-                                    <th>Deletar</th>
+                                    <th>Excluir</th>
                                 </tr>
                             </thead>
 
                             <tbody>
+
+                                <script type="text/javascript">
+                                function consultaCli()
+                                {
+                                location.href= "ConsultaClienteEspecifico.jsp"
+                                }
+                                </script>
+
                                 <%
                                     Iterator<Socio> i = socios.iterator();
                                     while (i.hasNext()){			
@@ -112,15 +120,16 @@
                                             + "</td>");
                                         }
 
-                                       
+
                                         out.println("<td>"
-                                                        + "<a class= \"btn mini blue-stripe\" href= \"{site_url()}admin/editFront/1\">Edit</a>"
-                                                    + "</td>"
-                                                    + "<td>"
-                                					   + "<a href=\"#\" class=\"confirm-delete btn mini red-stripe\" role=\"button\" data-title=\"johnny\" data-id=\"1\">Delete</a>"
-                                					+ "</td>"	
-                    				    + "</tr>");
+                                                        + "<a href=\"ConsultaClienteEspecifico.jsp\"> <button type=\"button\" value = " + so.getNumInscricao() + ">Editar</button></a>"
+                                                + "</td>"
+                                                + "<td>"
+                                                    + "<button type=\"button\" onClick= \"consultaCli()\">Excluir</button>"
+                                		+ "</td>"	
+                                            + "</tr>");
 								
+                                        
                                     }
                                     s.close();
 				                %>                               
