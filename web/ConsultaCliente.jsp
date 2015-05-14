@@ -87,9 +87,10 @@
                             <tbody>
 
                                 <script type="text/javascript">
-                                function consultaCli()
+                                function consultaCli(id)
                                 {
-                                location.href= "ConsultaClienteEspecifico.jsp"
+                                    alert("Cod Cliente = " + id);
+                                    location.href= "ConsultaClienteEspecifico.jsp?valor="+id
                                 }
                                 </script>
 
@@ -125,7 +126,7 @@
                                                         + "<a href=\"ConsultaClienteEspecifico.jsp\"> <button type=\"button\" value = " + so.getNumInscricao() + ">Editar</button></a>"
                                                 + "</td>"
                                                 + "<td>"
-                                                    + "<button type=\"button\" onClick= \"consultaCli()\">Excluir</button>"
+                                                    + "<button type=\"button\" onClick= \"consultaCli(" + so.getNumInscricao() + ")\">Excluir</button>"
                                 		+ "</td>"	
                                             + "</tr>");
 								

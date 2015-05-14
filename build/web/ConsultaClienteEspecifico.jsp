@@ -13,7 +13,7 @@
         <meta name="Autor" content="Ruan">
         <meta name="Reply-To" content="XYZ@hotmail.com">
         <meta name="Generator" content="Sublime 3.0">
-        <TITLE>Cadastro de Cliente</TITLE>
+        <TITLE>Editar Cadastro</TITLE>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,6 +25,7 @@
     </head>
 
     <body bgcolor="white">
+        
         <!-- Menu Superior -->
         <%@ include file="navBar.jsp"%>
         <div class="container-fluid" style="overflow: hidden">
@@ -34,7 +35,7 @@
                 </div>
 
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
-                    <h2>Cadastro de Cliente</h2>
+                    <h2>Editar Cliente</h2>
                     <div class="row">
                         <form action= "ControllerCliente" method="POST">
                             <input type="hidden" name="operacao" value="cadastrar">
