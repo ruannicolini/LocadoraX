@@ -4,6 +4,7 @@
     Author     : Ruan
 --%>
 
+<%@page import="model.domain.Socio"%>
 <%@page import="model.domain.Cliente"%>
 <%@page import="model.application.ClienteBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,8 +33,7 @@
             String id = request.getParameter("valor");
             System.out.println(id);
             
-            Cliente cli = ClienteBD.consultaId(id);
-            
+            Socio so = (Socio) ClienteBD.consultaId(id);
         %>
         
         <!-- Menu Superior -->
@@ -54,7 +54,7 @@
                                 <div class="nav row">
                                     <label for="User" class="col-sm-12">Nome</label>
                                     <div class="input-group input-group-sm col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Nome" name="nome" value = "<%out.print(cli.getNome()); %>" >
+                                        <input type="text" class="form-control" placeholder="Nome" name="nome" value = "<%out.print(so.getNome()); %>" >
                                     </div>
                                 </div>
                             </div>
@@ -64,10 +64,21 @@
                                     <div class="col-sm-5" style="padding :0">
                                         <label for="User" class="col-sm-12">Sexo</label>
                                         <div class="col-sm-3 formCadastro-RadioButtom">
-                                            <input type="radio" name="sex" value="m">&nbsp Masculino
+                                            <input type="radio" name="sex" value="m"  
+                                                <% 
+                                                    if(so.getSexo() == 'm'){
+                                                        out.print("checked");
+                                                    }
+                                            %> >&nbsp Masculino
                                         </div>
                                         <div class="col-sm-3 formCadastro-RadioButtom">
-                                            <input type="radio" name="sex" value="f">&nbsp Feminino
+                                            <input type="radio" name="sex" value="f"
+                                                <% 
+                                                    if(so.getSexo() == 'f'){
+                                                        out.print("checked");
+                                                    }
+                                                %>
+                                            >&nbsp Feminino
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +88,7 @@
                                 <div class="nav row">
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">Data de Nascimento</label>
-                                        <input type="date" class="form-control" placeholder="Data de Nascimento" name="dataNascimento" value = "<%out.print(cli.getDataNascimento()); %>">
+                                        <input type="text" class="form-control" placeholder="Data de Nascimento" name="dataNascimento" value = "<%out.print(so.getDataNascimento()); %>">
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +97,7 @@
                                 <div class="nav row">
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">CPF</label>
-                                        <input type="text" class="form-control" placeholder="CPF" name="cpf" >
+                                        <input type="text" class="form-control" placeholder="CPF" name="cpf" value = "<%out.print(so.getCpf()); %>">
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +107,7 @@
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">Endereço</label>
                                         <input type="text" class="form-control" placeholder="Endereço" 
-                                        name="endereco">
+                                        name="endereco" value = "<%out.print(so.getEndereco()); %>">
                                     </div>
                                 </div>
                             </div>
@@ -105,65 +116,11 @@
                                 <div class="nav row">
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">Telefone</label>
-                                        <input type="text" class="form-control" placeholder="Telefone" name="tel">
+                                        <input type="text" class="form-control" placeholder="Telefone" name="tel" value = "<%out.print(so.getTelefone()); %>">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class=" nav col-sm-5 " style="margin-left: 10px">
-                                <h4>Incluir Depedentes</h4>
-                            </div>
-                            <div class="col-sm-12" style="padding : 35px">
-                                <div class="nav col-sm-5 testeVermelho" style="padding : 10px; margin-left : 10px">
-
-                                    <div style= "padding : 0">
-                                        <label for="User" class="nav col-sm-1" style= "padding : 0" >Nome</label>
-                                        <input type="text" class="form-control nav col-sm-3" placeholder="Nome" name="nomeDependente">
-                                    </div>
-
-                                    <div style= "padding : 0">
-                                        <label for="User" class="nav col-sm-12" style= "padding : 0" >Data de Nascimento</label>
-                                        <input type="Date" id="DN" name="DataNascimentoDependente" class="nav col-sm-12" />
-                                    </div> 
-
-                                    <div style= "padding : 0">
-                                        <label for="User" class="nav col-sm-12" style= "padding : 0" >Sexo</label>
-
-                                        <div class="col-sm-3 formCadastro-RadioButtom">
-                                            <input type="radio" name="sexDependente" value="Masculino">&nbsp Masculino
-                                        </div>
-                                        <div class="col-sm-3 formCadastro-RadioButtom">
-                                            <input type="radio" name="sexDependente" value="Feminino">&nbsp Feminino
-                                        </div>
-                                    </div> 
-
-
-                                </div>
-                            </div>     
-
-                            <div class="col-sm-12">
-                                <div class="nav col-sm-4 testeVermelho" style="margin-left :10px">
-                                </div>
-
-                                <div class="nav col-sm-1 " align="right"> 
-                                    <button class="btn" style= "padding : 3px"> Adicionar </button>
-                                </div>   
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="nav col-sm-5 ">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nome</th>
-                                                <th>Sexo</th>
-                                                <th>Data Nasc.</th>
-                                                <th>Opções</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>   
-                            </div>
                             <div class="col-sm-12" align="rigth">
                                 <div class="nav col-sm-5 " align="right"> 
                                     <button class="btn"> Cancelar </button>
