@@ -13,6 +13,7 @@ import model.domain.Socio;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
@@ -111,6 +112,15 @@ public class ClienteBD {
         session.close();
 
         return (Cliente) clientes.get(0);
+    }
+    
+    public static void EditarCliente(Cliente cli){
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+        Session s = sessions.openSession();
+        Transaction tx = s.beginTransaction();
+        s.update(cli);
+        tx.commit();
+        s.close();
     }
 
 }

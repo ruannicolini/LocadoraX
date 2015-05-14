@@ -48,8 +48,8 @@
                     <h2>Editar Cliente</h2>
                     <div class="row">
                         <form action= "ControllerCliente" method="POST">
-                            <input type="hidden" name="operacao" value="alterar">
-                            <input type="hidden" name="idSocio" value="">
+                            <input type="hidden" name="operacao" value="alterarSocio">
+                            <input type="hidden" name="idSocio" value="<%out.print(so.getNumInscricao()); %>">
                             <div class="nav col-sm-12 ">
                                 <div class="nav row">
                                     <label for="User" class="col-sm-12">Nome</label>

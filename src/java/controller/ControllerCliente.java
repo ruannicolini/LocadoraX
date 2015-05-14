@@ -149,6 +149,18 @@ public class ControllerCliente extends HttpServlet {
             } else {
 
             }
+        } else if (operacao.equals("alterarSocio")) {
+            
+            Socio so = (Socio) ClienteBD.consultaId(request.getParameter("idSocio"));
+            so.setNome(request.getParameter("nome"));
+            so.setSexo(((request.getParameter("sex")).toCharArray())[0]);
+            so.setDataNascimento(request.getParameter("dataNascimento"));
+            so.setCpf(request.getParameter("cpf"));
+            so.setEndereco(request.getParameter("endereco"));
+            so.setTelefone(request.getParameter("tel"));
+            
+            ClienteBD.EditarCliente(so);
+            
         } else {
             System.out.println("Operacao invalida");
         }
