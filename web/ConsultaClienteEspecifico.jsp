@@ -4,6 +4,8 @@
     Author     : Ruan
 --%>
 
+<%@page import="model.domain.Cliente"%>
+<%@page import="model.application.ClienteBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,6 +27,14 @@
     </head>
 
     <body bgcolor="white">
+        <%
+            //Pega o Registro do Cliente
+            String id = request.getParameter("valor");
+            System.out.println(id);
+            
+            Cliente cli = ClienteBD.consultaId(id);
+            
+        %>
         
         <!-- Menu Superior -->
         <%@ include file="navBar.jsp"%>
@@ -38,12 +48,13 @@
                     <h2>Editar Cliente</h2>
                     <div class="row">
                         <form action= "ControllerCliente" method="POST">
-                            <input type="hidden" name="operacao" value="cadastrar">
+                            <input type="hidden" name="operacao" value="alterar">
+                            <input type="hidden" name="idSocio" value="">
                             <div class="nav col-sm-12 ">
                                 <div class="nav row">
                                     <label for="User" class="col-sm-12">Nome</label>
                                     <div class="input-group input-group-sm col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Nome" name="nome">
+                                        <input type="text" class="form-control" placeholder="Nome" name="nome" value = "<%out.print(cli.getNome()); %>" >
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +77,7 @@
                                 <div class="nav row">
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">Data de Nascimento</label>
-                                        <input type="date" class="form-control" placeholder="Data de Nascimento" name="dataNascimento">
+                                        <input type="date" class="form-control" placeholder="Data de Nascimento" name="dataNascimento" value = "<%out.print(cli.getDataNascimento()); %>">
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +86,7 @@
                                 <div class="nav row">
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">CPF</label>
-                                        <input type="text" class="form-control" placeholder="CPF" name="cpf">
+                                        <input type="text" class="form-control" placeholder="CPF" name="cpf" >
                                     </div>
                                 </div>
                             </div>

@@ -123,7 +123,7 @@
 
 
                                         out.println("<td>"
-                                                        + "<a href=\"ConsultaClienteEspecifico.jsp\"> <button type=\"button\" value = " + so.getNumInscricao() + ">Editar</button></a>"
+                                                        + "<button type=\"button\" onClick= \"consultaCli(" + so.getNumInscricao() + ")\">Editar</button>"
                                                 + "</td>"
                                                 + "<td>"
                                                     + "<button type=\"button\" onClick= \"consultaCli(" + so.getNumInscricao() + ")\">Excluir</button>"
