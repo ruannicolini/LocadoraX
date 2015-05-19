@@ -13,6 +13,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -51,4 +52,23 @@ public class AtorBD {
 
         return (Ator) classes.get(0);
     }
+    
+    public static void Editar(Ator a){
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+        Session s = sessions.openSession();
+        Transaction tx = s.beginTransaction();
+        s.update(a);
+        tx.commit();
+        s.close();
+    }
+    
+    public static void Excluir(Ator at){
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+        Session s = sessions.openSession();
+        Transaction tx = s.beginTransaction();
+        s.delete(at);
+        tx.commit();
+        s.close();
+    }
+    
 }

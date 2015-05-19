@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.AtorBD;
+import model.domain.Ator;
 
 /**
  *
@@ -94,6 +95,19 @@ public class ControllerAtor extends HttpServlet {
                 out.println("</body>");
                 out.println("</html>");
             }
+        } else if (operacao.equals("alterar")) {
+            
+            Ator at =  AtorBD.consultaId(request.getParameter("idAtor"));
+            at.setNome(request.getParameter("nome"));
+            
+            AtorBD.Editar(at);
+            
+        } else if (operacao.equals("excluir")) {
+            String id = request.getParameter("btnExcluir");
+            Ator at =  AtorBD.consultaId(id);
+            AtorBD.Excluir(at);
+        } else {
+            System.out.println("Operacao invalida");
         }
     }
 

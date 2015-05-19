@@ -91,11 +91,6 @@
                                 {
                                     location.href= "ConsultaClienteEspecifico.jsp?valor="+id;
                                 }
-                                
-                                function excluiCli(id)
-                                {
-                                    location.href= "ConsultaClienteEspecifico.jsp?valor="+id;
-                                }
                                 </script>
 
                                 <%
@@ -133,7 +128,7 @@
                                                             + "<button type=\"button\" onClick= \"consultaCli(" + so.getNumInscricao() + ")\">Editar</button>"
                                                     + "</td>"       
                                                     + "<td>"
-                                                        + "<button type=\"submit\" name = \"btnExcluir\" value = "+ so.getNumInscricao() +">Excluir</button>"
+                                                        + "<button type=\"submit\" name = \"btnExcluir\" value = "+ so.getNumInscricao() +">ExcluirSocio</button>"
                                                     + "</td>"                                           
                                             + "</tr>");
                                             out.println("</form>");

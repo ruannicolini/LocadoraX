@@ -1,18 +1,15 @@
 <%-- 
-    Document   : ConsultaCliente
-    Created on : 02/04/2015, 21:26:46
+    Document   : ConsultaAtor
+    Created on : 19/05/2015, 10:12:59
     Author     : Ruan
 --%>
-
 <%@page import="org.hibernate.Query"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="org.hibernate.cfg.AnnotationConfiguration"%>
 <%@page import="org.hibernate.SessionFactory"%>
-<%@page import="model.domain.Socio"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="model.domain.Cliente"%>
 <%@page import="java.util.List"%>
-<%@page import="model.application.ClienteBD"%>
+<%@page import="model.domain.Ator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +19,7 @@
         <meta name="Autor" content="Ruan">
         <meta name="Reply-To" content="XYZ@hotmail.com">
         <meta name="Generator" content="Sublime 3.0">
-        <TITLE>Consulta de Socio</TITLE>
+        <TITLE>Consulta de Atores</TITLE>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -43,16 +40,16 @@
                 </div>
 
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
-                    <h2>Consultar Sócio</h2>
+                    <h2>Consultar Ator</h2>
                     <%
                         SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
                         Session s = sessions.openSession();
 
-                        String strQuery = "from Cliente as c where c.class=Socio";
+                        String strQuery = "from Ator";
 
                         s.beginTransaction();
                         Query qr = s.createQuery(strQuery);
-                        List socios = qr.list();
+                        List  atores = qr.list();
                     %>
 
                     
@@ -75,10 +72,6 @@
                                 <tr>
                                     <th class="hidden-phone">Cod</th>
                                     <th>Nome</th>
-                                    <th class="hidden-phone">CPF</th>
-                                    <th>Data de Nascimento</th>
-                                    <th class="hidden-phone">Telefone</th>
-                                    <th>Status</th>
                                     <th>Editar</th>
                                     <th>Excluir</th>
                                 </tr>
@@ -87,48 +80,29 @@
                             <tbody>
 
                                 <script type="text/javascript">
-                                function consultaCli(id)
+                                function consultaAt(id)
                                 {
-                                    location.href= "ConsultaClienteEspecifico.jsp?valor="+id;
+                                    location.href= "EditarAtor.jsp?valor="+id;
                                 }
                                 </script>
 
                                 <%
-                                    Iterator<Socio> i = socios.iterator();
-                                    while (i.hasNext()){			
-                                        Socio so = (Socio)i.next();
-                                            out.println("<form action= \"ControllerCliente\" method=\"POST\">"
+                                    Iterator<Ator> i = atores.iterator();
+                                    while (i.hasNext()){            
+                                        Ator at = (Ator)i.next();
+                                            out.println("<form action= \"ControllerAtor\" method=\"POST\">"
                                                +" <input type=\"hidden\" name=\"operacao\" value=\"excluir\">");
                                         
                                                                                
-					    out.println("<tr>");
-                                            out.println("<td class= \"hidden-phone\">" + so.getNumInscricao()+ "</td>"
-                    					+ "<td>" + so.getNome() + "</td>"
-                    					+ "<td>" + so.getCpf() + "</td>"
-                                                        + "<td>" 
-                                                            + so.getDataNascimento() 
-                                                        + "</td>"
-
-                                                        + "<td>" 
-                                                        + so.getTelefone() 
-                                                        + "</td>");
-
-                                                if(((Cliente)so).isAtivo() == true) {
-                                                    out.println("<td>" 
-                                                            + "<span class= \"label label-danger\"> Ativo </span>" 
-                                                            + "</td>");  
-                                                }else{
-                                                    out.println("<td>" 
-                                                    + "<span class= \"label label-warning\"> Não Ative </span>" 
-                                                    + "</td>");
-                                                }
-
+                                            out.println("<tr>");
+                                            out.println("<td class= \"hidden-phone\">" + at.getIdAtor()+ "</td>"
+                                                + "<td>" + at.getNome() + "</td>");
 
                                             out.println("<td>"
-                                                            + "<button type=\"button\" onClick= \"consultaCli(" + so.getNumInscricao() + ")\">Editar</button>"
+                                                            + "<button type=\"button\" onClick= \"consultaAt(" + at.getIdAtor() + ")\">Editar</button>"
                                                     + "</td>"       
                                                     + "<td>"
-                                                        + "<button type=\"submit\" name = \"btnExcluir\" value = "+ so.getNumInscricao() +">ExcluirSocio</button>"
+                                                        + "<button type=\"submit\" name = \"btnExcluir\" value = "+ at.getIdAtor() +">Excluir</button>"
                                                     + "</td>"                                           
                                             + "</tr>");
                                             out.println("</form>");

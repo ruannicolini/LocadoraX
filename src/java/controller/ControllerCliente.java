@@ -161,7 +161,7 @@ public class ControllerCliente extends HttpServlet {
             
             ClienteBD.EditarCliente(so);
             
-        } else if (operacao.equals("excluir")) {
+        } else if (operacao.equals("ExcluirSocio")) {
             String id = request.getParameter("btnExcluir");
             Socio so = (Socio) ClienteBD.consultaId(id);
             ClienteBD.ExcluiCliente(so);
