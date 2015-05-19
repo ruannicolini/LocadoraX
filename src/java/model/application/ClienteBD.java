@@ -122,5 +122,14 @@ public class ClienteBD {
         tx.commit();
         s.close();
     }
+    
+    public static void ExcluiCliente(Cliente cli){
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+        Session s = sessions.openSession();
+        Transaction tx = s.beginTransaction();
+        s.delete(cli);
+        tx.commit();
+        s.close();
+    }
 
 }

@@ -89,8 +89,12 @@
                                 <script type="text/javascript">
                                 function consultaCli(id)
                                 {
-                                    alert("Cod Cliente = " + id);
-                                    location.href= "ConsultaClienteEspecifico.jsp?valor="+id
+                                    location.href= "ConsultaClienteEspecifico.jsp?valor="+id;
+                                }
+                                
+                                function excluiCli(id)
+                                {
+                                    location.href= "ConsultaClienteEspecifico.jsp?valor="+id;
                                 }
                                 </script>
 
@@ -98,42 +102,44 @@
                                     Iterator<Socio> i = socios.iterator();
                                     while (i.hasNext()){			
                                         Socio so = (Socio)i.next();
-					
-                                        out.println("<tr>"			
-                                        + "<td class= \"hidden-phone\">" + so.getNumInscricao()+ "</td>"
+                                            out.println("<form action= \"ControllerCliente\" method=\"POST\">"
+                                               +" <input type=\"hidden\" name=\"operacao\" value=\"excluir\">");
+                                        
+                                                                               
+					    out.println("<tr>");
+                                            out.println("<td class= \"hidden-phone\">" + so.getNumInscricao()+ "</td>"
                     					+ "<td>" + so.getNome() + "</td>"
                     					+ "<td>" + so.getCpf() + "</td>"
-                                        + "<td>" 
-                                            + so.getDataNascimento() 
-                                        + "</td>"
-                    					
-                                        + "<td>" 
-                                        + so.getTelefone() 
-                                        + "</td>");
+                                                        + "<td>" 
+                                                            + so.getDataNascimento() 
+                                                        + "</td>"
 
-                                        if(((Cliente)so).isAtivo() == true) {
-                                            out.println("<td>" 
-                                                    + "<span class= \"label label-danger\"> Ativo </span>" 
-                                                    + "</td>");  
-                                        }else{
-                                            out.println("<td>" 
-                                            + "<span class= \"label label-warning\"> Não Ative </span>" 
-                                            + "</td>");
-                                        }
+                                                        + "<td>" 
+                                                        + so.getTelefone() 
+                                                        + "</td>");
+
+                                                if(((Cliente)so).isAtivo() == true) {
+                                                    out.println("<td>" 
+                                                            + "<span class= \"label label-danger\"> Ativo </span>" 
+                                                            + "</td>");  
+                                                }else{
+                                                    out.println("<td>" 
+                                                    + "<span class= \"label label-warning\"> Não Ative </span>" 
+                                                    + "</td>");
+                                                }
 
 
-                                        out.println("<td>"
-                                                        + "<button type=\"button\" onClick= \"consultaCli(" + so.getNumInscricao() + ")\">Editar</button>"
-                                                + "</td>"
-                                                + "<td>"
-                                                    + "<button type=\"button\" onClick= \"consultaCli(" + so.getNumInscricao() + ")\">Excluir</button>"
-                                		+ "</td>"	
+                                            out.println("<td>"
+                                                            + "<button type=\"button\" onClick= \"consultaCli(" + so.getNumInscricao() + ")\">Editar</button>"
+                                                    + "</td>"       
+                                                    + "<td>"
+                                                        + "<button type=\"submit\" name = \"btnExcluir\" value = "+ so.getNumInscricao() +">Excluir</button>"
+                                                    + "</td>"                                           
                                             + "</tr>");
-								
-                                        
+                                            out.println("</form>");
                                     }
                                     s.close();
-				                %>                               
+                                %>                               
                             </tbody>
                         </table>
                     </div>
