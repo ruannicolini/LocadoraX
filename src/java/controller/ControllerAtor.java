@@ -102,10 +102,14 @@ public class ControllerAtor extends HttpServlet {
             
             AtorBD.Editar(at);
             
+            response.sendRedirect("ConsultaAtor.jsp");
+            
         } else if (operacao.equals("excluir")) {
             String id = request.getParameter("btnExcluir");
             Ator at =  AtorBD.consultaId(id);
             AtorBD.Excluir(at);
+            
+            response.sendRedirect("ConsultaAtor.jsp");
         } else {
             System.out.println("Operacao invalida");
         }
