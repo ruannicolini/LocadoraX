@@ -20,7 +20,9 @@ import org.hibernate.Transaction;
  * @author Ruan
  */
 public class AtorBD {
-
+    
+    // Retorna das funções CRUD:      0 = ok  |   -1 = Erro
+    
     public static int cadastrarAtor(String nome) {
         if (nome.equals("")) {
             return -1;
@@ -35,8 +37,9 @@ public class AtorBD {
             session.close();
         } catch (Exception x) {
             System.out.println("Erro: " + x.getMessage());
+            return -1;
         }
-        return 1;
+        return 0;
     }
 
     public static Ator consultaId(String id) {
@@ -53,22 +56,32 @@ public class AtorBD {
         return (Ator) classes.get(0);
     }
     
-    public static void Editar(Ator a){
-        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-        Session s = sessions.openSession();
-        Transaction tx = s.beginTransaction();
-        s.update(a);
-        tx.commit();
-        s.close();
+    public static int Editar(Ator a){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.update(a);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
     }
     
-    public static void Excluir(Ator at){
-        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-        Session s = sessions.openSession();
-        Transaction tx = s.beginTransaction();
-        s.delete(at);
-        tx.commit();
-        s.close();
+    public static int Excluir(Ator at){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.delete(at);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
     }
     
 }

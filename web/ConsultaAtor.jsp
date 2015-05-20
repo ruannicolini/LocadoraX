@@ -34,13 +34,12 @@
         <%@ include file="navBar.jsp"%>
 
         <div class="container-fluid" style="overflow: hidden">
-            <div class="row">
+            <div class="row nav">
                 <div class="col-md-2">
                     <%@ include file="menu.jsp"%>
                 </div>
 
-                <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
-                    <h2>Consultar Ator</h2>
+                <div class="col-sm-10 formCadastro" style="padding-left: 20px">
                     <%
                         SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
                         Session s = sessions.openSession();
@@ -53,19 +52,44 @@
                     %>
 
                     
-                    <div class="nav col-sm-12"> 
-                        <div class="nav row">
-                            <div class="col-sm-5" style="padding :0">
-                                <div id="input-div">
-                                    <input id="search" class="center-block form-control" placeholder="Search.." autocomplete= "off" />
-                                    <div id="suggestions" class="text-center center-block" style="display:none;">
-                                        <div id="suggestion-results"></div>
+                    <div class="col-sm-12" style="padding : 0"> 
+                        <div class="row">
+                            <div class="col-sm-3" style="padding :0">
+                                <h1>Consultar Ator</h1>
+                            </div>
+                            <div class="col-sm-9" style="padding :0; ">
+                                <div class="row">
+                                    <div id="input-div" class="col-sm-3" style="float : right; margin-right: 35px;">
+
+                                        <input id="search" class="center-block form-control" placeholder="Search.." autocomplete= "off" />
+                                        <div id="suggestions" class="text-center center-block" style="display:none;">
+                                            <div id="suggestion-results"></div>
+                                        </div>
+
                                     </div>
                                 </div>
+                                
+                            </div>
+                            <div class="col-sm-12" style="padding :0">
+
+                                <%
+                                     // Errors
+                                    String error = request.getParameter("erro");
+                                    if( error != null) {
+                                        if(error.equals("0")) {
+                                            out.println("<div class='alert alert-success' style = 'margin-right: 35px'>Ação realizada com sucesso!</div>");
+                                        } else {
+                                            out.println("<div class='alert alert-danger' style = 'margin-right: 35px'>Erro!</div>");
+                                        }
+                                    }
+
+                                %>
                             </div>
                         </div>
                     </div>
-
+                    
+                    
+                    
                     <div class="row" style="margin-right: 18px">
                         <table class="table table-responsive table-striped table-hover table-users">
                             <thead>

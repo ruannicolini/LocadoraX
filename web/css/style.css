@@ -1,3 +1,5 @@
+
+
 * {
     padding: 0;
     margin: 0;
@@ -43,10 +45,11 @@ thead{
     box-shadow: none !important;
 }
 #search {
-    width: 80%;
+    /*width: 80%;
     height: 45px;
     line-height: 45px;
     font-size: 35px;
+    */
 }
 #suggestions {
     position: absolute;

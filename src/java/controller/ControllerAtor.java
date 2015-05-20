@@ -83,33 +83,43 @@ public class ControllerAtor extends HttpServlet {
         String operacao = request.getParameter("operacao");
         if (operacao.equals("cadastrar")){
             String nome = request.getParameter("nome");
-            resposta = AtorBD.cadastrarAtor(nome);
-            try (PrintWriter out = response.getWriter()) { 
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ControllerCliente</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1> Resposta = " + resposta + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
+            if(AtorBD.cadastrarAtor(nome) == 1){
+                // Colocar mensagem de sucesso aqui!
+                
+                response.sendRedirect("CadastraAtor.jsp");
+            }else{
+                // Colocar mensagem de Erro aqui!
+                
+                response.sendRedirect("CadastraAtor.jsp");
             }
-        } else if (operacao.equals("alterar")) {
             
+        } else if (operacao.equals("alterar")) {
             Ator at =  AtorBD.consultaId(request.getParameter("idAtor"));
             at.setNome(request.getParameter("nome"));
             
-            AtorBD.Editar(at);
-            
-            response.sendRedirect("ConsultaAtor.jsp");
-            
+            if(AtorBD.Editar(at) == 0){
+                // Colocar mensagem de sucesso aqui!
+                
+                response.sendRedirect("ConsultaAtor.jsp?erro=0");
+            }else{
+                // Colocar mensagem de Erro aqui!
+                
+                response.sendRedirect("ConsultaAtor.jsp?erro=-1");
+            }
+
         } else if (operacao.equals("excluir")) {
             String id = request.getParameter("btnExcluir");
             Ator at =  AtorBD.consultaId(id);
-            AtorBD.Excluir(at);
-            
-            response.sendRedirect("ConsultaAtor.jsp");
+                        
+            if(AtorBD.Excluir(at) == 0){
+                // Colocar mensagem de sucesso aqui!
+                
+                response.sendRedirect("ConsultaAtor.jsp?erro=0");
+            }else{
+                // Colocar mensagem de Erro aqui!
+                
+                response.sendRedirect("ConsultaAtor.jsp?erro=-1");
+            }
         } else {
             System.out.println("Operacao invalida");
         }
