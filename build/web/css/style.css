@@ -1,4 +1,10 @@
-
+.page-title {
+  
+  font-size: 3rem;
+  /* text-transform: uppercase;*/  /* Letras Todas Maiúsculas*/
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
 
 * {
     padding: 0;
