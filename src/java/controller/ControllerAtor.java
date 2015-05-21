@@ -83,14 +83,13 @@ public class ControllerAtor extends HttpServlet {
         String operacao = request.getParameter("operacao");
         if (operacao.equals("cadastrar")){
             String nome = request.getParameter("nome");
-            if(AtorBD.cadastrarAtor(nome) == 1){
-                // Colocar mensagem de sucesso aqui!
-                
-                response.sendRedirect("CadastraAtor.jsp");
+            
+            if(AtorBD.cadastrarAtor(nome) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("CadastraAtor.jsp?erro=0");
             }else{
-                // Colocar mensagem de Erro aqui!
-                
-                response.sendRedirect("CadastraAtor.jsp");
+                // Coloca mensagem de Erro!
+                response.sendRedirect("CadastraAtor.jsp?erro=-1");
             }
             
         } else if (operacao.equals("alterar")) {
