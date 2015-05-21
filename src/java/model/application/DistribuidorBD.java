@@ -11,6 +11,7 @@ import model.domain.Distribuidor;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
@@ -31,9 +32,10 @@ public class DistribuidorBD {
             session.getTransaction().commit();
             session.close();
         }catch(Exception x){
-                System.out.println("Erro: " + x.getMessage());
+            System.out.println("Erro: " + x.getMessage());
+            return -1;
         }
-        return 1;  
+        return 0;  
     }
     
     public static Distribuidor consultaId(String cnpj){
@@ -54,4 +56,31 @@ public class DistribuidorBD {
         return null;
     }
     
+    public static int Editar(Distribuidor d){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.update(d);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
+    
+    public static int Excluir(Distribuidor d){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.delete(d);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
 }

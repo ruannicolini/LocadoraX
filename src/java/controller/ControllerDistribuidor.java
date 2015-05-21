@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.DistribuidorBD;
+import model.domain.Distribuidor;
 
 /**
  *
@@ -81,21 +82,41 @@ public class ControllerDistribuidor extends HttpServlet {
         if (operacao.equals("cadastrar")){
             String rs = request.getParameter("razao");
             String cnpj = request.getParameter("cnpj");
-            int resposta = 0;
-            resposta = DistribuidorBD.cadastrarDistribuidor(rs, cnpj);
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ControllerCliente</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>" + rs + "</h1>");
-                out.println("<h1>" + cnpj + "</h1>");
-                out.println("<h1> Resposta: " + resposta + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
-            }                
+            
+            if(DistribuidorBD.cadastrarDistribuidor(rs, cnpj) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("CadastraDistribuidor.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("CadastraDistribuidor.jsp?erro=-1");
+            }
+                            
+        } else if (operacao.equals("alterar")) {
+            Distribuidor dist =  DistribuidorBD.consultaId(request.getParameter("idDistribuidor"));
+            dist.setCnpj(Integer.parseInt(request.getParameter("cnpj")));
+            dist.setRazaoSocial(request.getParameter("razao"));
+            
+            if(DistribuidorBD.Editar(dist) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaDistribuidor.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("ConsultaDistribuidor.jsp?erro=-1");
+            }
+
+        } else if (operacao.equals("excluir")) {
+            String id = request.getParameter("btnExcluir");
+            Distribuidor dist =  DistribuidorBD.consultaId(id);
+                        
+            if(DistribuidorBD.Excluir(dist) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaDistribuidor.jsp?erro=0");
+            }else{
+                // Colocar mensagem de Erro!
+                response.sendRedirect("ConsultaDistribuidor.jsp?erro=-1");
+            }
+        } else {
+            System.out.println("Operacao invalida");
         }
     }
 
