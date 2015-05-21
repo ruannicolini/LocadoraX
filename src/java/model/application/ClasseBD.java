@@ -12,6 +12,7 @@ import model.domain.Classe;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
@@ -34,7 +35,7 @@ public class ClasseBD {
         }catch(Exception x){
             System.out.println("Erro: " + x.getMessage());
         }
-        return 1;
+        return 0;
     }
     
     public static Classe consultaId(String idClasse){
@@ -48,5 +49,32 @@ public class ClasseBD {
             session.close();
 
             return (Classe) classes.get(0);
+    }
+    public static int Editar(Classe c){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.update(c);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
+    
+    public static int Excluir(Classe c){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.delete(c);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
     }
 }

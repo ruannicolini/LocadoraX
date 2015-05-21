@@ -98,12 +98,10 @@ public class ControllerAtor extends HttpServlet {
             at.setNome(request.getParameter("nome"));
             
             if(AtorBD.Editar(at) == 0){
-                // Colocar mensagem de sucesso aqui!
-                
+                // Coloca mensagem de sucesso!
                 response.sendRedirect("ConsultaAtor.jsp?erro=0");
             }else{
-                // Colocar mensagem de Erro aqui!
-                
+                // Coloca mensagem de Erro!
                 response.sendRedirect("ConsultaAtor.jsp?erro=-1");
             }
 
@@ -112,12 +110,10 @@ public class ControllerAtor extends HttpServlet {
             Ator at =  AtorBD.consultaId(id);
                         
             if(AtorBD.Excluir(at) == 0){
-                // Colocar mensagem de sucesso aqui!
-                
+                // Coloca mensagem de sucesso!
                 response.sendRedirect("ConsultaAtor.jsp?erro=0");
             }else{
-                // Colocar mensagem de Erro aqui!
-                
+                // Colocar mensagem de Erro!
                 response.sendRedirect("ConsultaAtor.jsp?erro=-1");
             }
         } else {

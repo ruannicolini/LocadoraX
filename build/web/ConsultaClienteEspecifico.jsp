@@ -123,7 +123,7 @@
 
                             <div class="col-sm-12" align="rigth">
                                 <div class="nav col-sm-5 " align="right"> 
-                                    <button class="btn"> Cancelar </button>
+                                    <button type ="button" class="btn" onclick="location. href= 'ConsultaCliente.jsp' "> Cancelar </button>
                                     <button type ="submit" class="btn"> Salvar </button>
                                 </div> 
                             </div>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.ClasseBD;
+import model.domain.Classe;
 
 /**
  *
@@ -82,45 +83,40 @@ public class ControllerClasse extends HttpServlet {
             String valor = request.getParameter("valor");
             String prazo = request.getParameter("prazo");
             
-            int resposta = 0;
-            
-            resposta = ClasseBD.cadastrarClasse(nome, valor, prazo);
-            try (PrintWriter out = response.getWriter()) {
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControllerCliente</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>" + nome + "</h1>");
-            out.println("<h1> Resposta: " + resposta + "</h1>");
-            //out.println("<h1>" + sexo + "</h1>");
-            //out.println("<h1>" + cpf + "</h1>");
-//            out.println("<h1>" + dataNascimento + "</h1>");
-//            out.println("<h1>" + endereco + "</h1>");
-//            out.println("<h1>" + tel + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            
-           
-            
-            //resposta = ClienteBD.cadastrarSocio(endereco, tel, cpf, nome, dataNascimento, sexo);
-            
-            /*
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControllerCliente</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Resposta = " + resposta + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            */
+             
+            if(ClasseBD.cadastrarClasse(nome, valor, prazo) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("CadastraClasse.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("CadastraClasse.jsp?erro=-1");
             }
-                    
-       }
+       } else if (operacao.equals("alterar")) {
+            Classe cl =  ClasseBD.consultaId(request.getParameter("idClasse"));
+            cl.setNome(request.getParameter("nome"));
+            
+            if(ClasseBD.Editar(cl) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaClasse.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("ConsultaClasse.jsp?erro=-1");
+            }
+
+        } else if (operacao.equals("excluir")) {
+            String id = request.getParameter("btnExcluir");
+            Classe cl =  ClasseBD.consultaId(id);
+                        
+            if(ClasseBD.Excluir(cl) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaClasse.jsp?erro=0");
+            }else{
+                // Colocar mensagem de Erro!
+                response.sendRedirect("ConsultaClasse.jsp?erro=-1");
+            }
+        } else {
+            System.out.println("Operacao invalida");
+        }
     }
 
     /**
