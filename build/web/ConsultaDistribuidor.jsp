@@ -115,7 +115,7 @@
                                     Iterator<Distribuidor> i = distribuidores.iterator();
                                     while (i.hasNext()){            
                                         Distribuidor dist = (Distribuidor)i.next();
-                                            out.println("<form action= \"ControllerAtor\" method=\"POST\">"
+                                            out.println("<form action= \"ControllerDistribuidor\" method=\"POST\">"
                                                +" <input type=\"hidden\" name=\"operacao\" value=\"excluir\">");
                                         
                                                                                

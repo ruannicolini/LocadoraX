@@ -27,6 +27,9 @@ public class Funcionario {
     @Column(nullable = false)
     private String senha;
 
+    public Funcionario() {
+    }
+    
     public Funcionario(String nome, String username, String senha) {
         this.nome = nome;
         this.username = username;

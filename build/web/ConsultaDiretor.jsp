@@ -114,7 +114,7 @@
                                     Iterator<Diretor> i = diretores.iterator();
                                     while (i.hasNext()){            
                                         Diretor dir = (Diretor)i.next();
-                                            out.println("<form action= \"ControllerAtor\" method=\"POST\">"
+                                            out.println("<form action= \"ControllerDiretor\" method=\"POST\">"
                                                +" <input type=\"hidden\" name=\"operacao\" value=\"excluir\">");
                                         
                                                                                

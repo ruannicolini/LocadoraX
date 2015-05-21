@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ConsultaDistribuidor
-    Created on : 21/05/2015, 18:43:39
+    Document   : ConsultaFuncionario
+    Created on : 21/05/2015, 19:51:28
     Author     : Ruan
 --%>
 
@@ -10,7 +10,7 @@
 <%@page import="org.hibernate.SessionFactory"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="model.domain.Distribuidor"%>
+<%@page import="model.domain.Funcionario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
         <meta name="Autor" content="Ruan">
         <meta name="Reply-To" content="XYZ@hotmail.com">
         <meta name="Generator" content="Sublime 3.0">
-        <TITLE>Consulta de Distribuidores</TITLE>
+        <TITLE>Consulta de Funcionários</TITLE>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -45,22 +45,22 @@
                         SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
                         Session s = sessions.openSession();
 
-                        String strQuery = "from Distribuidor";
+                        String strQuery = "from Funcionario";
 
                         s.beginTransaction();
                         Query qr = s.createQuery(strQuery);
-                        List  distribuidores = qr.list();
+                        List  funcionarios = qr.list();
                     %>
 
                     
                     <div class="col-sm-12" style="padding : 0"> 
                         <div class="row">
-                            <div class="col-sm-3" style="padding :0">
-                                <h1 class="page-title">Consultar Distribuidor</h1>
+                            <div class="col-sm-4" style="padding :0">
+                                <h1 class="page-title">Consultar Funcionario</h1>
                             </div>
-                            <div class="col-sm-9" style="padding :0; ">
+                            <div class="col-sm-8" style="padding :0; ">
                                 <div class="row">
-                                    <div id="input-div" class="col-sm-3" style="float : right; margin-right: 35px;">
+                                    <div id="input-div" class="col-sm-4" style="float : right; margin-right: 35px;">
 
                                         <input id="search" class="center-block form-control" placeholder="Search.." autocomplete= "off" />
                                         <div id="suggestions" class="text-center center-block" style="display:none;">
@@ -95,8 +95,9 @@
                         <table class="table table-responsive table-striped table-hover table-users">
                             <thead>
                                 <tr>
-                                    <th class="hidden-phone">Cnpj</th>
-                                    <th>Razão Social</th>
+                                    <th class="hidden-phone">Cod</th>
+                                    <th>Nome</th>
+                                    <th>UserName</th>
                                     <th>Editar</th>
                                     <th>Excluir</th>
                                 </tr>
@@ -105,29 +106,30 @@
                             <tbody>
 
                                 <script type="text/javascript">
-                                function consultaDist(id)
+                                function consultafun(id)
                                 {
-                                    location.href= "EditarDistribuidor.jsp?valor="+id;
+                                    location.href= "EditarFuncionario.jsp?valor="+id;
                                 }
                                 </script>
 
                                 <%
-                                    Iterator<Distribuidor> i = distribuidores.iterator();
+                                    Iterator<Funcionario> i = funcionarios.iterator();
                                     while (i.hasNext()){            
-                                        Distribuidor dist = (Distribuidor)i.next();
-                                            out.println("<form action= \"ControllerDistribuidor\" method=\"POST\">"
+                                        Funcionario fun = (Funcionario)i.next();
+                                            out.println("<form action= \"ControllerFuncionario\" method=\"POST\">"
                                                +" <input type=\"hidden\" name=\"operacao\" value=\"excluir\">");
                                         
                                                                                
                                             out.println("<tr>");
-                                            out.println("<td class= \"hidden-phone\">" + dist.getCnpj() + "</td>"
-                                                + "<td>" + dist.getRazaoSocial() + "</td>");
+                                            out.println("<td class= \"hidden-phone\">" + fun.getIdFuncionario()+ "</td>"
+                                                + "<td>" + fun.getNome() + "</td>"
+                                                + "<td>" + fun.getUsername() + "</td>");
 
                                             out.println("<td>"
-                                                            + "<button type=\"button\" onClick= \"consultaDist(" + dist.getCnpj() + ")\">Editar</button>"
+                                                            + "<button type=\"button\" onClick= \"consultafun(" + fun.getIdFuncionario() + ")\">Editar</button>"
                                                     + "</td>"       
                                                     + "<td>"
-                                                        + "<button type=\"submit\" name = \"btnExcluir\" value = "+ dist.getCnpj() +">Excluir</button>"
+                                                        + "<button type=\"submit\" name = \"btnExcluir\" value = "+ fun.getIdFuncionario() +">Excluir</button>"
                                                     + "</td>"                                           
                                             + "</tr>");
                                             out.println("</form>");

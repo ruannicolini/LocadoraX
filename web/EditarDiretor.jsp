@@ -25,7 +25,6 @@
     <!-- Arquivo Css Criado -->
     <link href="css/style.css" rel="stylesheet" media="screen">
 </head>
-
 <body bgcolor="white">
     <%
             //Pega o Registro do Cliente
