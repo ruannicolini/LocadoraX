@@ -95,7 +95,7 @@ public class ControllerClasse extends HttpServlet {
             Classe cl =  ClasseBD.consultaId(request.getParameter("idClasse"));
             cl.setNome(request.getParameter("nome"));
             cl.setPrazo(Integer.parseInt(request.getParameter("prazo")));
-            cl.setValor(Integer.parseInt(request.getParameter("valor")));
+            cl.setValor(Float.parseFloat(request.getParameter("valor")));
             
             if(ClasseBD.Editar(cl) == 0){
                 // Coloca mensagem de sucesso!
