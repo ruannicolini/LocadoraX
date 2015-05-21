@@ -11,6 +11,7 @@ import model.domain.Diretor;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
@@ -32,8 +33,9 @@ public class DiretorBD {
             session.close();
         }catch(Exception x){
                 System.out.println("Erro: " + x.getMessage());
+                return -1;
         }
-        return 1;
+        return 0;
     }
     
     public static Diretor consultaId(String idDiretor){
@@ -48,6 +50,34 @@ public class DiretorBD {
             session.close();
 
             return (Diretor) classes.get(0);
+    }
+    
+    public static int Editar(Diretor d){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.update(d);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
+    
+    public static int Excluir(Diretor d){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.delete(d);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
     }
     
 }

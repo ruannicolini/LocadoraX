@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.DiretorBD;
+import model.domain.Diretor;
 
 /**
  *
@@ -80,18 +81,40 @@ public class ControllerDiretor extends HttpServlet {
         String operacao = request.getParameter("operacao");
         if (operacao.equals("cadastrar")){
             String nome = request.getParameter("nome");
-            resposta = DiretorBD.cadastrarDiretor(nome);
-            try (PrintWriter out = response.getWriter()) { 
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ControllerCliente</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1> Resposta = " + resposta + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
+            
+            if(DiretorBD.cadastrarDiretor(nome) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("CadastraDiretor.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("CadastraDiretor.jsp?erro=-1");
             }
+            
+        } else if (operacao.equals("alterar")) {
+            Diretor dir =  DiretorBD.consultaId(request.getParameter("idDiretor"));
+            dir.setNome(request.getParameter("nome"));
+            
+            if(DiretorBD.Editar(dir) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaDiretor.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("ConsultaDiretor.jsp?erro=-1");
+            }
+
+        } else if (operacao.equals("excluir")) {
+            String id = request.getParameter("btnExcluir");
+            Diretor dir =  DiretorBD.consultaId(id);
+                        
+            if(DiretorBD.Excluir(dir) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaDiretor.jsp?erro=0");
+            }else{
+                // Colocar mensagem de Erro!
+                response.sendRedirect("ConsultaDiretor.jsp?erro=-1");
+            }
+        } else {
+            System.out.println("Operacao invalida");
         }
     }
 
