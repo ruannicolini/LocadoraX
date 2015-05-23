@@ -44,6 +44,17 @@
                 </div>
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
                     <h2>Cadastro de Título</h2>
+                    <%
+                        // Errors
+                        String error = request.getParameter("erro");
+                        if (error != null) {
+                            if (error.equals("0")) {
+                                out.println("<div class='alert alert-success' style = 'margin-right: 35px'>Ação realizada com sucesso!</div>");
+                            } else {
+                                out.println("<div class='alert alert-danger' style = 'margin-right: 35px'>Erro!</div>");
+                            }
+                        }
+                    %>
                     <div class="row">
                         <form action= "ControllerTitulo" method="POST">
                             <input type="hidden" name="operacao" value="cadastrar">                    
@@ -219,10 +230,20 @@
 
                             <div class="nav col-sm-12 "> 
                                 <div class="nav row">
+                                    <div class="col-sm-5">
+                                                <input id="search" class="center-block form-control" placeholder="Search.." autocomplete= "off" />
+                                                <div id="suggestions" class="text-center center-block" style="display:none;">
+                                                    <div id="suggestion-results"></div>
+                                                </div>
+                                        </div>
+                                </div>
+                            </div>
+
+                            <div class="nav col-sm-12 "> 
+                                <div class="nav row">
+                                    
                                     <div class="col-sm-5 testeVermelho" style="padding :0">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Nome" nome ="basic-addon2">
-                                            <span class="input-group-addon" id="basic-addon2">ADD</span>
+                                        <div class="input-group">   
                                         </div> 
                                         <table class="table table-striped table-hover table-users">
                                             <thead>
@@ -248,13 +269,14 @@
                                                       + "</tr>");
                                                     }
                                                 %>
-
                                             </tbody>
-
                                         </table>  
                                     </div>
                                 </div>
                             </div>
+                            <!-- Codigo referente ao campo pesquisa -->
+                            <span id="no-rows" class="center-block text-center" style="display:none;">No results.</span>
+
                             <div class="col-sm-12" align="rigth">
                                 <div class="col-sm-6 formBTN2 " align="right"> 
                                     <button class="btn"> Cancelar </button>
@@ -269,8 +291,6 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        
-
-        <!--<script type="text/javascript" src="js/jsProject.js"></script>-->   
+        <script type="text/javascript" src="js/jsProject.js"></script>  
     </body>
 </html>

@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -30,32 +31,36 @@ public class Titulo {
     private String sinopse;
     private String categoria;
     
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Ator> atores = new HashSet<Ator>();
     
     @ManyToOne
     private Diretor diretor;
     @ManyToOne
     private Classe classe;
+    @ManyToOne
+    private Distribuidor distribuidor;
 
     public Titulo() {
     }
 
-    public Titulo(String nome, String ano, String sinopse, String categoria, Diretor diretor, Classe classe) {
+    public Titulo(String nome, String ano, String sinopse, String categoria, Diretor diretor, Classe classe, Distribuidor distribuidor) {
         this.nome = nome;
         this.ano = ano;
         this.sinopse = sinopse;
         this.categoria = categoria;
         this.diretor = diretor;
         this.classe = classe;
+        this.distribuidor = distribuidor;
     }
-    public Titulo(String nome, String ano, String sinopse, String categoria, Diretor diretor, Classe classe, Set<Ator> atores) {
+    public Titulo(String nome, String ano, String sinopse, String categoria, Diretor diretor, Classe classe, Distribuidor distribuidor, Set<Ator> atores) {
         this.nome = nome;
         this.ano = ano;
         this.sinopse = sinopse;
         this.categoria = categoria;
         this.diretor = diretor;
         this.classe = classe;
+        this.distribuidor = distribuidor;
         this.atores = atores;
     }
     
@@ -129,4 +134,13 @@ public class Titulo {
 		atores.add(at);
     }
 
+    public Distribuidor getDistribuidor() {
+        return distribuidor;
+    }
+
+    public void setDistribuidor(Distribuidor distribuidor) {
+        this.distribuidor = distribuidor;
+    }
+
+  
 }

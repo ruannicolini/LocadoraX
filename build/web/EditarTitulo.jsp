@@ -1,9 +1,8 @@
 <%-- 
-    Document   : CadastraTitulo
-    Created on : 09/04/2015, 08:31:58
+    Document   : EditarTitulo
+    Created on : 22/05/2015, 20:39:11
     Author     : Ruan
 --%>
-
 <%@page import="model.domain.Ator"%>
 <%@page import="model.domain.Diretor"%>
 <%@page import="model.domain.Classe"%>
@@ -15,54 +14,54 @@
 <%@page import="org.hibernate.SessionFactory"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="model.domain.Distribuidor"%>
+<%@page import="model.domain.Titulo"%>
+<%@page import="model.application.TituloBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset = "UTF-8"> 
-        <meta http-equiv="content-language" content="pt-br">
-        <meta name="Autor" content="Ruan">
-        <meta name="Reply-To" content="XYZ@hotmail.com">
-        <meta name="Generator" content="Sublime 3.0">
-        <TITLE>Cadastro de Título</TITLE>
+<head>
+    <meta charset = "UTF-8"> 
+    <meta http-equiv="content-language" content="pt-br">
+    <meta name="Autor" content="Ruan">
+    <meta name="Reply-To" content="XYZ@hotmail.com">
+    <meta name="GenerClasse" content="Sublime 3.0">
+    <TITLE>Editar Titulo</TITLE>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Carregando o CSS do Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <!-- Carregando o CSS do Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
 
-        <!-- Arquivo Css Criado -->
-        <link href="css/style.css" rel="stylesheet" media="screen">
-    </head>
-    <body bgcolor="white">
-        <!-- Menu Superior -->
-        <%@ include file="navBar.jsp"%>
-        <div class="container-fluid" style="overflow: hidden">
-            <div class="row">
-                <div class="col-md-2">
-                    <%@ include file="menu.jsp"%>
-                </div>
-                <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
-                    <h2>Cadastro de Título</h2>
-                    <%
-                        // Errors
-                        String error = request.getParameter("erro");
-                        if (error != null) {
-                            if (error.equals("0")) {
-                                out.println("<div class='alert alert-success' style = 'margin-right: 35px'>Ação realizada com sucesso!</div>");
-                            } else {
-                                out.println("<div class='alert alert-danger' style = 'margin-right: 35px'>Erro!</div>");
-                            }
-                        }
-                    %>
-                    <div class="row">
-                        <form action= "ControllerTitulo" method="POST">
-                            <input type="hidden" name="operacao" value="cadastrar">                    
+    <!-- Arquivo Css Criado -->
+    <link href="css/style.css" rel="stylesheet" media="screen">
+</head>
+<body bgcolor="white">
+    <%
+            //Pega o Registro do Cliente
+            String id = request.getParameter("valor");
+            System.out.println(id);
+            
+            Titulo titulo = (Titulo) TituloBD.consultaId(id);
+    %>
+    <!-- Menu Superior -->
+    <%@ include file="navBar.jsp"%>
+    <div class="container-fluid" style="overflow: hidden">
+        <div class="row">
+            <div class="col-md-2">
+                <%@ include file="menu.jsp"%>
+            </div>
+            <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
+                <h2>Editar Titulo</h2>
+                <div class="row">
+                    
+                    <form action= "ControllerTitulo" method="POST">
+                            <input type="hidden" name="operacao" value="alterar">
+                            <input type="hidden" name="idTitulo" value="<%out.print(titulo.getIdTitulo()); %>">                    
                             <div class="nav col-sm-12 "> 
                                 <div class="nav row">
                                     <label for="Nome" class="col-sm-12">Nome</label>
                                     <div class="input-group input-group-sm col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Nome" name="nome">
+                                        <input type="text" class="form-control" placeholder="Nome" name="nome" value="<%out.print(titulo.getNome()); %>">
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +74,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Ano</label>
                                                     <div class="col-sm-11" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder="Ano" name="ano">
+                                                        <input type="text" class="form-control" placeholder="Ano" name="ano" value="<%out.print(titulo.getAno()); %>">
                                                     </div> 
                                                 </div>
 
@@ -84,7 +83,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Categoria </label>
                                                     <div class="col-sm-12" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder="Categoria" name="categoria">
+                                                        <input type="text" class="form-control" placeholder="Categoria" name="categoria" value="<%out.print(titulo.getCategoria()); %>">
                                                     </div> 
                                                 </div>
 
@@ -114,14 +113,20 @@
                                                     %>
                                                     <label for="" class="col-sm-12">Distribuidor</label>
                                                     <div class="col-sm-11" style="padding :0">
-                                                        <select name="distribuidor" class="form-control">
+                                                        <select name="distribuidor" class="form-control" value="<%out.print(titulo.getDistribuidor()); %>">
                                                             <%                                                   
                                                                 Iterator i = dist.iterator();
                                                                 while (i.hasNext()) {
 
                                                                     Distribuidor d = (Distribuidor) i.next();
                                                             %>  
-                                                            <option value="<%out.println(d.getCnpj());%>"><%out.println(d.getRazaoSocial());%></option>
+                                                            <option value="<%out.println(d.getCnpj());%>"
+                                                                    <% if(titulo.getDistribuidor().getCnpj()== d.getCnpj()){
+                                                                out.println("selected");
+                                                            }%>
+                                                            >
+                                                                <%out.println(d.getRazaoSocial());%>
+                                                            </option>
                                                             <%}%>
                                                         </select>
                                                     </div> 
@@ -145,15 +150,20 @@
                                                     %>
                                                     <label for="" class="col-sm-12">Classe </label>
                                                     <div class="col-sm-12" style="padding :0">
-                                                        <select name="classe" class="form-control">
+                                                        <select name="classe" class="form-control" value="<%out.print(titulo.getClasse()); %>">
                                                             <%                                                   
                                                                 i = classes.iterator();
                                                                 while (i.hasNext()) {
 
                                                                     Classe cla = (Classe) i.next();
                                                             %>  
-                                                            <option value="<%out.println(cla.getIdClasse());%>"><%out.println(cla.getNome());%></option>
-                                                            <%}%>
+                                                            <option value="<%out.println(cla.getIdClasse());%>"
+                                                            <% if(titulo.getClasse().getIdClasse() == cla.getIdClasse()){
+                                                                out.println("selected");
+                                                            }%>        
+                                                            >
+                                                                <%out.println(cla.getNome());%></option>
+                                                     <%}%>
                                                         </select>
                                                     </div>  
                                                 </div>
@@ -182,14 +192,19 @@
                                     %>
                                     <label for="Nome" class="col-sm-12">Diretor</label>
                                     <div class="input-group input-group-sm col-sm-5">
-                                        <select name="diretor" class="form-control">
+                                        <select name="diretor" class="form-control" value="<%out.print(titulo.getDiretor().getNome()); %>">
                                             <%                                                
                                                 i = diretores.iterator();
                                                 while (i.hasNext()) {
 
                                                     Diretor dir = (Diretor) i.next();
                                             %>  
-                                            <option value="<%out.println(dir.getIdDiretor());%>"><%out.println(dir.getNome());%></option>
+                                            <option value="<%out.println(dir.getIdDiretor());%>"
+                                            <% if(titulo.getDiretor().getIdDiretor() == dir.getIdDiretor()){
+                                                out.println("selected");
+                                            }%> > 
+                                                <%out.println(dir.getNome());%>
+                                            </option>
                                             <%}%>
                                         </select>
                                     </div>
@@ -200,7 +215,7 @@
                                 <div class="nav row">
                                     <label for="sinopse" class="col-sm-12">Sinopse</label>
                                     <div class="input-group input-group-sm col-sm-5">
-                                        <textarea rows="4" cols="50" class="form-control" placeholder="Sinopse" name="sinopse">
+                                        <textarea rows="4" cols="50" class="form-control" placeholder="Sinopse" name="sinopse" value="<%out.print(titulo.getSinopse()); %>">
                                         </textarea>
                                     </div>
                                 </div>
@@ -264,10 +279,12 @@
                                                                 + "<td>" + at.getIdAtor() + "</td>"
                                                                 + "<td>" + at.getNome() + "</td>"
                                                                 + "<td>" 
-                                                                + "<INPUT TYPE=\"checkbox\" NAME=\"selecionado"+ at.getIdAtor()+ "\" VALUE=\"" + at.getIdAtor() +"\">" 
-                                                                + "</td>"
-                                                      + "</tr>");
+                                                                + "<INPUT TYPE=\"checkbox\" NAME=\"selecionado"+ at.getIdAtor()+ "\" VALUE=\"" + at.getIdAtor() +"\" ");
+                                                         for(Ator ator: titulo.getAtores()){if(ator.getIdAtor() == at.getIdAtor()){out.println("checked");}}
+                                                        out.print(">" + "</td>" + "</tr>");
                                                     }
+                                                    
+                                                    
                                                 %>
                                             </tbody>
                                         </table>  
@@ -283,14 +300,16 @@
                                     <button type ="submit" class="btn"> Salvar </button>
                                 </div> 
                             </div>
-                        </form>
-                    </div>
-                    <div class="divider divider-single"></div>
+                        </form> 
                 </div>
+                <div class="divider divider-single"></div>
             </div>
+
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/jsProject.js"></script>  
-    </body>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="js/jsProject.js"></script>-->   
+</body>
 </html>

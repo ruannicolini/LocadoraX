@@ -6,29 +6,30 @@
 
 package model.application;
 
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Set;
 import model.domain.Ator;
 import model.domain.Classe;
 import model.domain.Diretor;
+import model.domain.Distribuidor;
 import model.domain.Titulo;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.Transaction;
 
 /**
  *
  * @author Ruan
  */
 public class TituloBD {
-    public static int cadastrarTitulo(String nome, String ano, String sinopse, String categoria, Diretor diretor, Classe classe, Set<Ator> atores) {
+    public static int cadastrarTitulo(String nome, String ano, String sinopse, String categoria, Diretor diretor, Classe classe,Distribuidor distribuidor, Set<Ator> atores) {
 
         if (nome.equals("")) {
             return -1;
         }
-        Titulo t = new Titulo(nome, ano, sinopse, categoria, diretor, classe, atores);
+        Titulo t = new Titulo(nome, ano, sinopse, categoria, diretor, classe, distribuidor, atores);
         
         try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
@@ -38,36 +39,49 @@ public class TituloBD {
             session.getTransaction().commit();
             session.close();
         } catch (Exception x) {
-            PrintWriter out = null;
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Erro</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Erro " + x.getMessage() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            return -1;
         }
-        // Add Lista de Atores do Titulo
-//        for(int i = 0; i< atores.size(); i++){
-//            t.InserirAtor(atores.get(i));
-//        }
-
-        return 1;
+        return 0;
     }
     
     public static Titulo consultaId(String id){
 
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+        Session session = sessions.openSession();
+
+        String strQuery = "from Titulo where idTitulo = " + id;
+        session.beginTransaction();
+        Query qr = session.createQuery(strQuery);
+        List titulos = qr.list();
+        session.close();
+
+        return (Titulo) titulos.get(0);
+    }
+    public static int Editar(Titulo t){
+        try{
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-            Session session = sessions.openSession();
-
-            String strQuery = "from Titulo where idTitulo= " + id;
-            session.beginTransaction();
-            Query qr = session.createQuery(strQuery);
-            List classes = qr.list();
-            session.close();
-
-            return (Titulo) classes.get(0);
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.update(t);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
+    
+    public static int Excluir(Titulo t){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.delete(t);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
     }
 }
