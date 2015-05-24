@@ -73,7 +73,7 @@ public class ClienteBD {
         d.setNome(nome);
         d.setSexo(sexo);
         d.setAtivo(true);
-
+        socio.inserirDependente(d);
         try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessions.openSession();
@@ -85,19 +85,10 @@ public class ClienteBD {
             session.getTransaction().commit();
             session.close();
         } catch (Exception x) {
-            PrintWriter out = null;
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Erro</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Erro " + x.getMessage() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            return -1;
         }
-
-        return 1;
+        
+        return 0;
 
     }
 

@@ -7,6 +7,7 @@
 package model.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -18,6 +19,5 @@ public class Dependente extends Cliente{
     public Dependente() {
 
     }
-    
     
 }

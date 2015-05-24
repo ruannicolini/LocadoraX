@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.ClienteBD;
+import model.domain.Dependente;
 import model.domain.Socio;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -144,10 +145,12 @@ public class ControllerCliente extends HttpServlet {
 
             Socio socio = (Socio) clientes.get(0);
 
-            if (ClienteBD.inscreverDependente(socio, nome, sexo, nasc) == 1) {
-                // OK
-            } else {
-
+            if (ClienteBD.inscreverDependente(socio, nome, sexo, nasc) == 0) {
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("CadastraDependente.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("CadastraDependente.jsp?erro=-1");
             }
         } else if (operacao.equals("alterarSocio")) {
             
@@ -160,6 +163,19 @@ public class ControllerCliente extends HttpServlet {
             so.setTelefone(request.getParameter("tel"));
             
             ClienteBD.EditarCliente(so);
+            
+        } else if (operacao.equals("alterarDependente")) {
+            Socio so = (Socio) ClienteBD.consultaId(request.getParameter("idS"));
+            Dependente dep = (Dependente) ClienteBD.consultaId(request.getParameter("idDependente"));
+            dep.setNome(request.getParameter("nome"));
+            dep.setDataNascimento(request.getParameter("dataNascimento"));
+            dep.setSexo(request.getParameter("sex").charAt (0));
+            
+            so.inserirDependente(dep);
+            
+            ClienteBD.EditarCliente(dep);
+            //ClienteBD.EditarCliente(so);
+            
             
         } else if (operacao.equals("ExcluirSocio")) {
             String id = request.getParameter("btnExcluir");

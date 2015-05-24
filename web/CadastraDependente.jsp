@@ -59,21 +59,7 @@
 
                             List socios = qr.list();
                             %>
-                            <!--
-                            <div class="nav col-sm-12 "> 
-                                <div class="nav row">
-                                    <div class="col-sm-5 testeVermelho" style="padding :0">
-                                        
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Socio" nome ="socio">
-                                            <span class="input-group-addon" id="basic-addon2">Pesq</span>
-                                        </div> 
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            -->
-
+                            
                             <div class="nav col-sm-12 ">
                                 <div class="nav row">
                                     <label for="User" class="col-sm-12">Socio</label>
@@ -108,7 +94,7 @@
                                     <div class="col-sm-5" style="padding :0">
                                         <label for="User" class="col-sm-12">Sexo</label>
                                         <div class="col-sm-3 formCadastro-RadioButtom">
-                                            <input type="radio" name="sex" value="m">&nbsp Masculino
+                                            <input type="radio" name="sex" value="m" checked>&nbsp Masculino
                                         </div>
                                         <div class="col-sm-3 formCadastro-RadioButtom">
                                             <input type="radio" name="sex" value="f">&nbsp Feminino
@@ -122,7 +108,7 @@
                                 <div class="nav row">
                                     <div class="input-group input-group-sm col-sm-5">
                                         <label for="User" class="col-sm-12">Data de Nascimento</label>
-                                        <input type="date" class="form-control" placeholder="Data de Nascimento" name="dataNascimento">
+                                        <input type="text" class="form-control" placeholder="Data de Nascimento" name="dataNascimento">
                                     </div>
                                 </div>
                             </div>
