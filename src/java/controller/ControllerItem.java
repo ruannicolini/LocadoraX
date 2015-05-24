@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.application.ItemBD;
 import model.application.TipoItemBD;
 import model.application.TituloBD;
+import model.domain.Item;
 import model.domain.TipoItem;
 import model.domain.Titulo;
 
@@ -90,23 +91,44 @@ public class ControllerItem extends HttpServlet {
             String numSerie = request.getParameter("numDeSerie");
             String dtAquisicao = request.getParameter("dtAquisicao");
             
-            try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ControllerItem</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Titulo " + titulo.getNome() + "</h1>");
-                out.println("<h1>Tipo" + tipoitem.getNome() + "</h1>");
-                out.println("<h1>Num de Serie " + numSerie + "</h1>");
-                out.println("<h1>Data de Aquisicao " + dtAquisicao + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
+            if(ItemBD.cadastrarItem(numSerie, dtAquisicao, tipoitem, titulo) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("CadastraItem.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("CadastraItem.jsp?erro=-1");
             }
-            ItemBD.cadastrarItem(numSerie, dtAquisicao, tipoitem, titulo);
+        } else if (operacao.equals("alterar")) {
+            Item it =  ItemBD.consultaId(request.getParameter("idItem"));
+            String idTitulo = request.getParameter("titulo");
+            it.setTitulo(TituloBD.consultaId(idTitulo));
+            String idTipo = request.getParameter("tipo");
+            it.setTipo(TipoItemBD.consultaId(idTipo));
+            String numSerie = request.getParameter("numDeSerie");
             
+            it.setNumSerie(Integer.parseInt(request.getParameter("numDeSerie")));
+            
+            if(ItemBD.Editar(it) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaItem.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("ConsultaItem.jsp?erro=-1");
+            }
+
+        } else if (operacao.equals("excluir")) {
+            String id = request.getParameter("btnExcluir");
+            Item it =  ItemBD.consultaId(id);
+                        
+            if(ItemBD.Excluir(it) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaItem.jsp?erro=0");
+            }else{
+                // Colocar mensagem de Erro!
+                response.sendRedirect("ConsultaItem.jsp?erro=-1");
+            }
+        } else {
+            System.out.println("Operacao invalida");
         }
     }
 

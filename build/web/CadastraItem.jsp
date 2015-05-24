@@ -44,6 +44,19 @@
 
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
                     <h2>Cadastro de Item</h2>
+                    <%
+                        // Errors
+                        String error = request.getParameter("erro");
+                        if (error != null) {
+                            if (error.equals("0")) {
+                                out.println("<div class='alert alert-success' style = 'margin-right: 35px'>Ação realizada com sucesso!</div>");
+                            } else {
+                                out.println("<div class='alert alert-danger' style = 'margin-right: 35px'>Erro!</div>");
+                            }
+                        }
+
+                    %>
+                    
                     <div class="row">
                         <form action="ControllerItem" method="POST">
                             <input type="hidden" name="operacao" value="cadastrar">
