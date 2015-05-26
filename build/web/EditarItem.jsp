@@ -154,7 +154,7 @@
                                     <button type ="button" class="btn" onclick="location. href= 'ConsultaItem.jsp' "> Cancelar </button>
                                     <button type ="submit" class="btn"> Salvar </button>
                             </div>
-                        </div>
+                            </div>
                     </form>  
                 </div>
                 <div class="divider divider-single"></div>

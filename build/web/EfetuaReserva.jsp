@@ -43,6 +43,17 @@
                 </div>
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
                     <h2>Cadastro de Reserva</h2>
+                    <%
+                        // Errors
+                        String error = request.getParameter("erro");
+                        if (error != null) {
+                            if (error.equals("0")) {
+                                out.println("<div class='alert alert-success' style = 'margin-right: 35px'>Ação realizada com sucesso!</div>");
+                            } else {
+                                out.println("<div class='alert alert-danger' style = 'margin-right: 35px'>Erro!</div>");
+                            }
+                        }
+                    %>
                     <div class="row">
                         <form action= "ControllerReserva" method="POST">
                             <input type="hidden" name="operacao" value="cadastrar"> 
@@ -162,7 +173,7 @@
                                                     <label for="" class="col-sm-12">Reservar Para(Dia):</label>
                                                     <div class="col-sm-11" style="padding :0">
                                                         
-                                                        <input type="date" class="form-control" name="dtReserva">
+                                                        <input type="text" class="form-control" name="dtReserva">
                                                     </div> 
                                                 </div>
 

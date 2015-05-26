@@ -7,12 +7,15 @@
 package model.application;
 
 import java.io.PrintWriter;
+import java.util.List;
 import model.domain.Cliente;
 import model.domain.Reserva;
 import model.domain.TipoItem;
 import model.domain.Titulo;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
@@ -35,18 +38,49 @@ public class ReservaBD {
             session.getTransaction().commit();
             session.close();
         } catch (Exception x) {
-            PrintWriter out = null;
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Erro</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Erro " + x.getMessage() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            return -1;
         }
-        return 1;
+        return 0;
+    }
+    public static Reserva consultaId(String id) {
+
+        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+        Session session = sessions.openSession();
+
+        String strQuery = "from Reserva where idReserva = " + id;
+        session.beginTransaction();
+        Query qr = session.createQuery(strQuery);
+        List classes = qr.list();
+        session.close();
+
+        return (Reserva) classes.get(0);
     }
     
+    public static int Editar(Reserva r){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.update(r);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
+    
+    public static int Excluir(Reserva r){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.delete(r);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
 }
