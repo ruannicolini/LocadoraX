@@ -71,13 +71,6 @@
                                             <option value="<%out.println(c.getNumInscricao());%>"><%out.println(c.getNome());%></option>
                                             <%}%>
                                         </select>
-
-                                        <!--
-                                        <input type="text" class="form-control" placeholder="Nome" aria-describedby="cliente">
-                                        <span class="input-group-addon" id="cliente">Pesquisar</span>
-                                        -->
-
-
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +132,19 @@
                                         s.close();
 
                                     %>
+                                    <script type="text/javascript">
+                                        function FuncaoPreco(id)
+                                        {
+                                            var e = document.getElementById("id_select_Item");
+                                            var itemSelecionado = e.options[e.selectedIndex].value;
+                                            <%
+                                        
+                                            %>
+                                        }
+                                    </script>
 
                                     <div class="input-group col-sm-5">
-                                        <select name="item" class="form-control">
+                                        <select name="item" class="form-control" onchange="FuncaoPreco()" id="id_select_Item">
                                             <%                                                   
                                                 i = itens.iterator();
                                                 while (i.hasNext()) {
@@ -169,7 +172,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Data Prevista de Devolução</label>
                                                     <div class="col-sm-11" style="padding :0">
-                                                        <input type="date" class="form-control" placeholder="Nome" name="dtPrevDev">
+                                                        <input type="text" class="form-control" placeholder="Nome" name="dtPrevDev">
                                                         
                                                     </div>
                                                 </div>
@@ -190,16 +193,9 @@
                             </div>
                             <div class="col-sm-12" align="rigth">
                                 <div class="col-sm-6 formBTN2 " align="right"> 
-                                    <button class="btn"> Cancelar </button>
+                                    <button type ="button" class="btn" onclick="location. href= 'home.jsp' "> Cancelar </button>
                                     <button type ="submit" class="btn"> Salvar </button>
-                                    <!-- 
-                                    <a href="EfetuaPagamento.jsp">
-                                            <button type="button" class="btn btn-success btn-lg pull-left">
-                                                    <span class="glyphicon glyphicon-usd"></span>
-                                                    Efetuar Pagamento
-                                            </button>
-                                    </a>
-                                    -->
+                                    <button type ="button" class="btn" onclick="location. href= 'EfetuaPagamento2.jsp' "> Efetuar Pagamento </button>
                                 </div> 
                             </div>
                         </form>

@@ -116,7 +116,7 @@ public class ControllerReserva extends HttpServlet {
             
             String idTitulo = request.getParameter("titulo");
             res.setTitulo(TituloBD.consultaId(idTitulo));
-            
+
             String t = request.getParameter("dtReserva");
             res.setDtReserva(request.getParameter("dtReserva"));
             res.setHrReserva(request.getParameter("hrReserva"));

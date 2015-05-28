@@ -19,6 +19,7 @@ import model.application.ItemBD;
 import model.application.LocacaoBD;
 import model.domain.Cliente;
 import model.domain.Item;
+import model.domain.Locacao;
 
 /**
  *
@@ -84,12 +85,10 @@ public class ControllerLocacao extends HttpServlet {
         if (operacao.equals("cadastrar")) {
             
             String dtDevolucao = request.getParameter("dtPrevDev");
-            
-              
+ 
             SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
             Date data = new Date();
             String dtAquisicao = formatador.format( data );
-
 
             String valor = request.getParameter("valor");
 
@@ -98,8 +97,6 @@ public class ControllerLocacao extends HttpServlet {
 
             String numSerie = request.getParameter("item");
             Item item = ItemBD.consultaId(numSerie);
-
-            int resposta = LocacaoBD.cadastrarLocacao(dtAquisicao, dtDevolucao, valor, cliente, item);
             
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
@@ -114,14 +111,54 @@ public class ControllerLocacao extends HttpServlet {
                 out.println("<h1> Valor : " + valor + "</h1>");
                 out.println("<h1> Cliente : " + cliente.getNome() + "</h1>");
                 out.println("<h1> Item : " + item.getNumSerie() + "</h1>");
-                out.println("<h1> Resposta : " + resposta + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
-                if( resposta == 1){
-                    response.sendRedirect(request.getContextPath() + "/EfetuaPagamento.jsp");
-                }
+                
             }
             
+            if( LocacaoBD.cadastrarLocacao(dtAquisicao, dtDevolucao, valor, cliente, item) == 0 ){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("EfetuaLocacao.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("EfetuaLocacao.jsp?erro=-1");
+            }
+        } else if (operacao.equals("alterar")) {
+//            Locacao loc =  LocacaoBD.consultaId(request.getParameter("idLocacao"));
+//            
+//            
+//            loc.setDtDevolucaoPrevista(request.getParameter("dtPrevDev"));
+//
+//            loc.setValorCobrado(Float.parseFloat(request.getParameter("valor")));
+//
+//            String idCliente = request.getParameter("cliente");
+//            loc.setCliente(ClienteBD.consultaId(idCliente));
+//
+//            String numSerie = request.getParameter("item");
+//            loc.setItem(ItemBD.consultaId(numSerie));
+//            
+//            
+//            if(LocacaoBD.Editar(loc) == 0){
+//                // Coloca mensagem de sucesso!
+//                response.sendRedirect("ConsultaLocacao.jsp?erro=0");
+//            }else{
+//                // Coloca mensagem de Erro!
+//                response.sendRedirect("ConsultaLocacao.jsp?erro=-1");
+//            }
+
+        } else if (operacao.equals("excluir")) {
+//            String id = request.getParameter("btnExcluir");
+//            Locacao loc =  LocacaoBD.consultaId(id);
+//                        
+//            if(LocacaoBD.Excluir(loc) == 0){
+//                // Coloca mensagem de sucesso!
+//                response.sendRedirect("ConsultaLocacao.jsp?erro=0");
+//            }else{
+//                // Colocar mensagem de Erro!
+//                response.sendRedirect("ConsultaDiretor.jsp?erro=-1");
+//            }
+        } else {
+            System.out.println("Operacao invalida");
         }
     }
 

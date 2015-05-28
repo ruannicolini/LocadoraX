@@ -6,6 +6,9 @@
 
 package model.domain;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -136,5 +139,14 @@ public class Locacao {
         this.pagamentos = pagamentos;
     }
     
+    public Date somaDias(Date data, int dias) {  
+        Calendar cal = new GregorianCalendar();  
+
+        cal.setTime(data);  
+
+        cal.add(Calendar.DAY_OF_MONTH, dias);  
+
+        return cal.getTime();  
+}
     
 }

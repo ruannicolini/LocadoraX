@@ -46,7 +46,7 @@
                         SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
                         Session s = sessions.openSession();
 
-                        String strQuery = "from Cliente as c where c.class=Dependente";
+                        String strQuery = "from Socio as s where s.dependentes contains (Select * from Dependente where id = ?)";
 
                         s.beginTransaction();
                         Query qr = s.createQuery(strQuery);

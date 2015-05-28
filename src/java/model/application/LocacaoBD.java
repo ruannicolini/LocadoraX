@@ -11,6 +11,7 @@ import model.domain.Item;
 import model.domain.Locacao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
@@ -33,18 +34,36 @@ public class LocacaoBD {
             session.getTransaction().commit();
             session.close();
         } catch (Exception x) {
-            PrintWriter out = null;
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Erro</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Erro " + x.getMessage() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            return -1;
         }
-        return 1;
+        return 0;
     }
 
+    public static int Editar(Locacao l){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.update(l);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
+    
+    public static int Excluir(Locacao l){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.delete(l);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
 }
