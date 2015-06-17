@@ -28,11 +28,15 @@ public class InserirCliente_Restfull {
             @QueryParam("tel") String tel,
             @QueryParam("cpf") String cpf,
             @QueryParam("dataNascimento") String dtNasc, 
-            @QueryParam("status") Boolean ativo,
-            @QueryParam("sex") char sexo
+            @QueryParam("status") String ativo,
+            @QueryParam("sex") String sexo
             ){
+        // converter status string para boolean
         
-        return ClienteBD.cadastrarSocio(end,tel,cpf,nome,dtNasc,sexo);  
+        //converter ativo string para char
+        char s = sexo.charAt(0);
+        
+        return ClienteBD.cadastrarSocio(end,tel,cpf,nome,dtNasc,s);  
         
     }
     
