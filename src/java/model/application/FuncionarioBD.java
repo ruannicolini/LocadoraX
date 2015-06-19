@@ -8,17 +8,33 @@ package model.application;
 
 import java.util.List;
 import model.domain.Funcionario;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author Ruan
  */
 public class FuncionarioBD {
+        public static int consultaLogin(String userName, String senha){
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
+            Criteria crit = session.createCriteria(Funcionario.class);
+            crit.add(Restrictions.eq("username",userName));
+            crit.add(Restrictions.eq("senha",senha));
+            List results = crit.list(); 
+            if(results.size() != 1){
+                return -1;
+            }
+            return 0;
+            
+        }
+    
         public static int cadastrarFuncionario(String nome, String userName, String senha) {
         if (nome.equals("")) {
             return -1;

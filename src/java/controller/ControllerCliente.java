@@ -94,20 +94,13 @@ public class ControllerCliente extends HttpServlet {
             String endereco = request.getParameter("endereco");
             String tel = request.getParameter("tel");
             int resposta = 0;
-            try (PrintWriter out = response.getWriter()) {
-                resposta = ClienteBD.cadastrarSocio(endereco, tel, cpf, nome, dataNascimento, sexo);
-
-                /*
-                 out.println("<!DOCTYPE html>");
-                 out.println("<html>");
-                 out.println("<head>");
-                 out.println("<title>Servlet ControllerCliente</title>");            
-                 out.println("</head>");
-                 out.println("<body>");
-                 out.println("<h1> Resposta = " + resposta + "</h1>");
-                 out.println("</body>");
-                 out.println("</html>");
-                 */
+            
+            if (ClienteBD.cadastrarSocio(endereco, tel, cpf, nome, dataNascimento, sexo) == 0) {
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("CadastraCliente.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("CadastraCliente.jsp?erro=-1");
             }
 
         } else if (operacao.equals("cadastrarDependente")) {
@@ -144,8 +137,14 @@ public class ControllerCliente extends HttpServlet {
             so.setCpf(request.getParameter("cpf"));
             so.setEndereco(request.getParameter("endereco"));
             so.setTelefone(request.getParameter("tel"));
-            
-            ClienteBD.EditarCliente(so);
+
+            if(ClienteBD.EditarCliente(so) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaCliente.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("ConsultaCliente.jsp?erro=-1");
+            }
             
         } else if (operacao.equals("alterarDependente")) {
             Socio so = (Socio) ClienteBD.consultaId(request.getParameter("idS"));

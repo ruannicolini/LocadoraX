@@ -77,47 +77,58 @@ public class ControllerFuncionario extends HttpServlet {
             throws ServletException, IOException {
         String operacao = request.getParameter("operacao");
 
-        if (operacao.equals("cadastrar")) {
-            String nome = request.getParameter("nome");
-            String userName = request.getParameter("userName");
+        if (operacao.equals("login")) {
+            String userName = request.getParameter("username");
             String senha = request.getParameter("senha");
             
-            ;
-            if(FuncionarioBD.cadastrarFuncionario(nome, userName, senha) == 0){
-                // Coloca mensagem de sucesso!
-                response.sendRedirect("CadastraFuncionario.jsp?erro=0");
+            // 0 = login aceito, -1 = login recusado
+            if(FuncionarioBD.consultaLogin(userName, senha) ==0){
+                response.sendRedirect("ConsultaItem.jsp");
             }else{
-                // Coloca mensagem de Erro!
-                response.sendRedirect("CadastraFuncionario.jsp?erro=-1");
+                response.sendRedirect("index.jsp?erro=-1");
             }
-            
-        } else if (operacao.equals("alterar")) {
-            Funcionario dir =  FuncionarioBD.consultaId(request.getParameter("idFuncionario"));
-            dir.setNome(request.getParameter("nome"));
-            dir.setUsername(request.getParameter("userName"));
-            dir.setSenha(request.getParameter("senha"));
-            
-            if(FuncionarioBD.Editar(dir) == 0){
-                // Coloca mensagem de sucesso!
-                response.sendRedirect("ConsultaFuncionario.jsp?erro=0");
-            }else{
-                // Coloca mensagem de Erro!
-                response.sendRedirect("ConsultaFuncionario.jsp?erro=-1");
-            }
+        }else{
+            if (operacao.equals("cadastrar")) {
+                String nome = request.getParameter("nome");
+                String userName = request.getParameter("userName");
+                String senha = request.getParameter("senha");
 
-        } else if (operacao.equals("excluir")) {
-            String id = request.getParameter("btnExcluir");
-            Funcionario dir =  FuncionarioBD.consultaId(id);
-                        
-            if(FuncionarioBD.Excluir(dir) == 0){
-                // Coloca mensagem de sucesso!
-                response.sendRedirect("ConsultaFuncionario.jsp?erro=0");
-            }else{
-                // Colocar mensagem de Erro!
-                response.sendRedirect("ConsultaFuncionario.jsp?erro=-1");
+                if(FuncionarioBD.cadastrarFuncionario(nome, userName, senha) == 0){
+                    // Coloca mensagem de sucesso!
+                    response.sendRedirect("CadastraFuncionario.jsp?erro=0");
+                }else{
+                    // Coloca mensagem de Erro!
+                    response.sendRedirect("CadastraFuncionario.jsp?erro=-1");
+                }
+
+            } else if (operacao.equals("alterar")) {
+                Funcionario dir =  FuncionarioBD.consultaId(request.getParameter("idFuncionario"));
+                dir.setNome(request.getParameter("nome"));
+                dir.setUsername(request.getParameter("userName"));
+                dir.setSenha(request.getParameter("senha"));
+
+                if(FuncionarioBD.Editar(dir) == 0){
+                    // Coloca mensagem de sucesso!
+                    response.sendRedirect("ConsultaFuncionario.jsp?erro=0");
+                }else{
+                    // Coloca mensagem de Erro!
+                    response.sendRedirect("ConsultaFuncionario.jsp?erro=-1");
+                }
+
+            } else if (operacao.equals("excluir")) {
+                String id = request.getParameter("btnExcluir");
+                Funcionario dir =  FuncionarioBD.consultaId(id);
+
+                if(FuncionarioBD.Excluir(dir) == 0){
+                    // Coloca mensagem de sucesso!
+                    response.sendRedirect("ConsultaFuncionario.jsp?erro=0");
+                }else{
+                    // Colocar mensagem de Erro!
+                    response.sendRedirect("ConsultaFuncionario.jsp?erro=-1");
+                }
+            } else {
+                System.out.println("Operacao invalida");
             }
-        } else {
-            System.out.println("Operacao invalida");
         }
         
     }

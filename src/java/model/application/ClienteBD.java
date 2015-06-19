@@ -36,19 +36,10 @@ public class ClienteBD {
             session.getTransaction().commit();
             session.close();
         } catch (Exception x) {
-            PrintWriter out = null;
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Erro</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Erro " + x.getMessage() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            return -1;
         }
 
-        return 1;
+        return 0;
     }
 
     public static List consultaClientes() {
@@ -105,22 +96,32 @@ public class ClienteBD {
         return (Cliente) clientes.get(0);
     }
     
-    public static void EditarCliente(Cliente cli){
-        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-        Session s = sessions.openSession();
-        Transaction tx = s.beginTransaction();
-        s.update(cli);
-        tx.commit();
-        s.close();
+    public static int EditarCliente(Cliente cli){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.update(cli);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
     }
     
-    public static void ExcluiCliente(Cliente cli){
-        SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-        Session s = sessions.openSession();
-        Transaction tx = s.beginTransaction();
-        s.delete(cli);
-        tx.commit();
-        s.close();
+    public static int ExcluiCliente(Cliente cli){
+        try{
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.delete(cli);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
     }
 
 }
