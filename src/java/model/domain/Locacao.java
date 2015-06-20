@@ -150,6 +150,7 @@ public class Locacao {
         this.statusPagamento = statusPagamento;
     }
     
+    
     public Date somaDias(Date data, int dias) {  
         Calendar cal = new GregorianCalendar();  
 
