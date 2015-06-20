@@ -123,7 +123,7 @@
                                         s = sessions.openSession();
 
                                         //Listagem de socios
-                                        strQuery = "from Item where git statusLocado = false";
+                                        strQuery = "from Item where statusLocado = false";
 
                                         s.beginTransaction();
                                         qr = s.createQuery(strQuery);

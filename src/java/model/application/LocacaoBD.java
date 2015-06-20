@@ -6,9 +6,11 @@
 package model.application;
 
 import java.io.PrintWriter;
+import java.util.List;
 import model.domain.Cliente;
 import model.domain.Item;
 import model.domain.Locacao;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,6 +39,20 @@ public class LocacaoBD {
             return -1;
         }
         return 0;
+    }
+    
+    public static Locacao consultaId(String id){
+
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
+
+            String strQuery = "from Locacao where idLocacao = " + id;
+            session.beginTransaction();
+            Query qr = session.createQuery(strQuery);
+            List classes = qr.list();
+            session.close();
+
+            return (Locacao) classes.get(0);
     }
 
     public static int Editar(Locacao l){

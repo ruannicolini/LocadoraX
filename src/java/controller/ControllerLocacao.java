@@ -147,16 +147,16 @@ public class ControllerLocacao extends HttpServlet {
 //            }
 
         } else if (operacao.equals("excluir")) {
-//            String id = request.getParameter("btnExcluir");
-//            Locacao loc =  LocacaoBD.consultaId(id);
-//                        
-//            if(LocacaoBD.Excluir(loc) == 0){
-//                // Coloca mensagem de sucesso!
-//                response.sendRedirect("ConsultaLocacao.jsp?erro=0");
-//            }else{
-//                // Colocar mensagem de Erro!
-//                response.sendRedirect("ConsultaDiretor.jsp?erro=-1");
-//            }
+            String id = request.getParameter("btnExcluir");
+            Locacao loc =  LocacaoBD.consultaId(id);
+                        
+            if(LocacaoBD.Excluir(loc) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaLocacao.jsp?erro=0");
+            }else{
+                // Colocar mensagem de Erro!
+                response.sendRedirect("ConsultaDiretor.jsp?erro=-1");
+            }
         } else {
             System.out.println("Operacao invalida");
         }
