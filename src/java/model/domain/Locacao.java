@@ -36,7 +36,8 @@ public class Locacao {
     private String dtDevolucaoEfetiva;
     private float valorCobrado;
     private float multaCobrada;
-    
+    private boolean statusPagamento;
+
     @ManyToOne
     private Cliente cliente;
     
@@ -49,7 +50,7 @@ public class Locacao {
     public Locacao() {
     }
 
-    public Locacao(String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva, float valorCobrado, float multaCobrada, Cliente cliente, Item item) {
+    public Locacao(String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva, float valorCobrado, float multaCobrada, Cliente cliente, Item item, Boolean statusPagamento) {
         this.dtLocacao = dtLocacao;
         this.dtDevolucaoPrevista = dtDevolucaoPrevista;
         this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
@@ -57,14 +58,16 @@ public class Locacao {
         this.multaCobrada = multaCobrada;
         this.cliente = cliente;
         this.item = item;
+        this.statusPagamento = statusPagamento;
     }
 
-    public Locacao(String dtLocacao, String dtDevolucaoPrevista, float valorCobrado, Cliente cliente, Item item) {
+    public Locacao(String dtLocacao, String dtDevolucaoPrevista, float valorCobrado, Cliente cliente, Item item, Boolean statusPagamento) {
         this.dtLocacao = dtLocacao;
         this.dtDevolucaoPrevista = dtDevolucaoPrevista;
         this.valorCobrado = valorCobrado;
         this.cliente = cliente;
         this.item = item;
+        this.statusPagamento = statusPagamento;
     }
     
     public long getIdLocacao() {
@@ -137,6 +140,14 @@ public class Locacao {
 
     public void setPagamentos(Set<Pagamento> pagamentos) {
         this.pagamentos = pagamentos;
+    }
+
+    public boolean isStatusPagamento() {
+        return statusPagamento;
+    }
+
+    public void setStatusPagamento(boolean statusPagamento) {
+        this.statusPagamento = statusPagamento;
     }
     
     public Date somaDias(Date data, int dias) {  

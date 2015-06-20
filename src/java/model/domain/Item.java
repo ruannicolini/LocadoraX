@@ -27,15 +27,17 @@ public class Item {
     private TipoItem tipo;
     @OneToOne(fetch = FetchType.EAGER)
     private Titulo titulo;
+    private Boolean statusLocado;
 
     public Item() {
     }
     
-    public Item(int numSerie, String dtArquisicao, TipoItem tipo, Titulo titulo) {
+    public Item(int numSerie, String dtArquisicao, TipoItem tipo, Titulo titulo, Boolean statusLocado) {
         this.numSerie = numSerie;
         this.dtArquisicao = dtArquisicao;
         this.tipo = tipo;
         this.titulo = titulo;
+        this.statusLocado = statusLocado;
     }
 
     public Titulo getTitulo() {
@@ -68,6 +70,14 @@ public class Item {
 
     public void setTipo(TipoItem tipo) {
         this.tipo = tipo;
+    }
+
+    public Boolean getStatusLocado() {
+        return statusLocado;
+    }
+
+    public void setStatusLocado(Boolean statusLocado) {
+        this.statusLocado = statusLocado;
     }
     
     

@@ -116,7 +116,7 @@ public class ControllerLocacao extends HttpServlet {
                 
             }
             
-            if( LocacaoBD.cadastrarLocacao(dtAquisicao, dtDevolucao, valor, cliente, item) == 0 ){
+            if( LocacaoBD.cadastrarLocacao(dtAquisicao, dtDevolucao, valor, cliente, item, false) == 0 ){
                 // Coloca mensagem de sucesso!
                 response.sendRedirect("EfetuaLocacao.jsp?erro=0");
             }else{

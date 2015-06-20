@@ -4,6 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/web/EfetuaLocacao.jsp</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Pagamento.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Item.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Locacao.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/application/ItemBD.java</file>
             <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/web/EfetuaPagamento.jsp</file>
         </group>
     </open-files>

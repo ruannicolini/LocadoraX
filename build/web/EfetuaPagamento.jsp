@@ -49,7 +49,7 @@
                                                 Session s = sessions.openSession();
 
                                                 //Listagem de socios
-                                                String strQuery = "from Locacao";
+                                                String strQuery = "from Locacao where statusPagamento = false";
 
                                                 s.beginTransaction();
                                                 Query qr = s.createQuery(strQuery);
@@ -160,6 +160,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <!--
                                                 <div class="col-sm-4">
                                                     <div class="row">
                                                         
@@ -171,6 +173,7 @@
                                                     </div>
 
                                                 </div>
+                                                --> 
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +196,7 @@
                             <span id="no-rows" class="center-block text-center" style="display:none;">No results.</span>
 
                             <div class="col-sm-12" align="rigth">
-                                <div class="col-sm-6 formBTN2 " align="right"> 
+                                <div class="col-sm-12 formBTN2 " align="right"> 
                                 <button class="btn"> Cancelar </button>
                                 <button class="btn"> Salvar </button>
                                 </div> 

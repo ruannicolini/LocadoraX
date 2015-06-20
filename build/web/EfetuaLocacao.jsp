@@ -123,7 +123,7 @@
                                         s = sessions.openSession();
 
                                         //Listagem de socios
-                                        strQuery = "from Item";
+                                        strQuery = "from Item where statusLocado = false";
 
                                         s.beginTransaction();
                                         qr = s.createQuery(strQuery);

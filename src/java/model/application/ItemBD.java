@@ -25,7 +25,7 @@ public class ItemBD {
         if (numSerie.equals("") || titulo.getNome().equals("")) {
             return -1;
         }
-        Item i = new Item(Integer.parseInt(numSerie),dtArquisicao,tipo,titulo);
+        Item i = new Item(Integer.parseInt(numSerie),dtArquisicao,tipo,titulo, false);
         try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessions.openSession();

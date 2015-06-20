@@ -20,11 +20,11 @@ import org.hibernate.cfg.AnnotationConfiguration;
  */
 public class LocacaoBD {
 
-    public static int cadastrarLocacao(String dtLocacao, String dtDevolucaoPrevista, String valor, Cliente cliente, Item item) {
+    public static int cadastrarLocacao(String dtLocacao, String dtDevolucaoPrevista, String valor, Cliente cliente, Item item, boolean statusPagamento) {
         if (cliente.getNome().equals("")) {
             return -1;
         }
-        Locacao l = new Locacao(dtLocacao, dtDevolucaoPrevista, Float.parseFloat(valor), cliente, item);
+        Locacao l = new Locacao(dtLocacao, dtDevolucaoPrevista, Float.parseFloat(valor), cliente, item, statusPagamento);
 
         try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
