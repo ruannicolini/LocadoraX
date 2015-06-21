@@ -204,7 +204,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Data de &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Locação &nbsp <br></label>
                                                     <div class="col-sm-11" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder=" " nome="dtLocacao" value="<%out.print(loc.getDtLocacao()); %>">
+                                                        <input type="text" class="form-control" placeholder="" name="dtLocacao" value="<%out.print(loc.getDtLocacao()); %>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,7 +214,7 @@
                                                     <label for="" class="col-sm-12">Data Prevista de Devolução</label>
                                                     
                                                     <div class="col-sm-11" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder=" " nome="dtPrevDevolucao" value="<%out.print(loc.getDtDevolucaoPrevista()); %>">
+                                                        <input type="text" class="form-control" placeholder="" name="dtPrevDevolucao" value="<%out.print(loc.getDtDevolucaoPrevista()); %>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -223,7 +223,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Data Efetiva de Devolução</label>
                                                     <div class="col-sm-12" style="padding :0">
-                                                        <input type="tet" class="form-control" placeholder=" " nome="dtEfetDevolucao" value="<%out.print(loc.getDtDevolucaoEfetiva()); %>">
+                                                        <input type="text" class="form-control" placeholder="" name="dtEfetDevolucao" value="<%out.print(loc.getDtDevolucaoEfetiva()); %>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -242,7 +242,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Valor</label>
                                                     <div class="col-sm-11" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder=" " nome="valor" value="<%out.print(loc.getValorCobrado()); %>">
+                                                        <input type="text" class="form-control" placeholder="" name="valor" value="<%out.print(loc.getValorCobrado()); %>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -250,7 +250,7 @@
                                                 <div class="row">
                                                     <label for="" class="col-sm-12">Multa</label>
                                                     <div class="col-sm-12" style="padding :0">
-                                                        <input type="text" class="form-control" placeholder=" " nome="multa" value="<%out.print(loc.getMultaCobrada()); %>">
+                                                        <input type="text" class="form-control" placeholder="" name="multa" value="<%out.print(loc.getMultaCobrada()); %>">
                                                     </div>
                                                 </div>
                                                 
@@ -277,16 +277,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
 
                             <div class="col-sm-12" align="rigth">
                                 <div class="col-sm-6 formBTN2 " align="right"> 

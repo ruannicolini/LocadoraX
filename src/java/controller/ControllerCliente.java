@@ -155,8 +155,13 @@ public class ControllerCliente extends HttpServlet {
             
             so.inserirDependente(dep);
             
-            ClienteBD.EditarCliente(dep);
-            //ClienteBD.EditarCliente(so);
+            if (ClienteBD.EditarCliente(dep) == 0) {
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("CadastraDependente.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("CadastraDependente.jsp?erro=-1");
+            }
             
             
         } else if (operacao.equals("ExcluirSocio")) {

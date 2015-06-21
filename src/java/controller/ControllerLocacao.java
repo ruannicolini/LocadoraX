@@ -84,11 +84,11 @@ public class ControllerLocacao extends HttpServlet {
         String operacao = request.getParameter("operacao");
         if (operacao.equals("cadastrar")) {
             
-            String dtDevolucao = request.getParameter("dtPrevDev");
+            String dtprevDevolucao = request.getParameter("dtPrevDev");
  
             SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
             Date data = new Date();
-            String dtAquisicao = formatador.format( data );
+            String dtLocacao = formatador.format( data );
 
             String valor = request.getParameter("valor");
 
@@ -98,25 +98,7 @@ public class ControllerLocacao extends HttpServlet {
             String numSerie = request.getParameter("item");
             Item item = ItemBD.consultaId(numSerie);
             
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ControllerTitulo</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1> Data de Aquisição : " + dtAquisicao + "</h1>");
-                out.println("<h1> Data de Devolução : " + dtDevolucao + "</h1>");
-                out.println("<h1> Valor : " + valor + "</h1>");
-                out.println("<h1> Cliente : " + cliente.getNome() + "</h1>");
-                out.println("<h1> Item : " + item.getNumSerie() + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
-                
-            }
-            
-            if( LocacaoBD.cadastrarLocacao(dtAquisicao, dtDevolucao, valor, cliente, item, false) == 0 ){
+            if( LocacaoBD.cadastrarLocacao(dtLocacao, dtprevDevolucao, valor, cliente, item, false) == 0 ){
                 // Coloca mensagem de sucesso!
                 response.sendRedirect("EfetuaLocacao.jsp?erro=0");
             }else{
@@ -124,27 +106,39 @@ public class ControllerLocacao extends HttpServlet {
                 response.sendRedirect("EfetuaLocacao.jsp?erro=-1");
             }
         } else if (operacao.equals("alterar")) {
-//            Locacao loc =  LocacaoBD.consultaId(request.getParameter("idLocacao"));
-//            
-//            
-//            loc.setDtDevolucaoPrevista(request.getParameter("dtPrevDev"));
-//
-//            loc.setValorCobrado(Float.parseFloat(request.getParameter("valor")));
-//
-//            String idCliente = request.getParameter("cliente");
-//            loc.setCliente(ClienteBD.consultaId(idCliente));
-//
-//            String numSerie = request.getParameter("item");
-//            loc.setItem(ItemBD.consultaId(numSerie));
-//            
-//            
-//            if(LocacaoBD.Editar(loc) == 0){
-//                // Coloca mensagem de sucesso!
-//                response.sendRedirect("ConsultaLocacao.jsp?erro=0");
-//            }else{
-//                // Coloca mensagem de Erro!
-//                response.sendRedirect("ConsultaLocacao.jsp?erro=-1");
-//            }
+            Locacao loc =  LocacaoBD.consultaId(request.getParameter("idLocacao"));
+
+            String valor = request.getParameter("valor");
+            loc.setValorCobrado(Float.parseFloat(valor));
+
+            String idCliente = request.getParameter("cliente");
+            Cliente cliente = ClienteBD.consultaId(idCliente);
+            loc.setCliente(cliente);
+
+            String numSerie = request.getParameter("item");
+            Item item = ItemBD.consultaId(numSerie);
+            loc.setItem(item);
+            
+            String multa = request.getParameter("multa");
+            loc.setMultaCobrada(Float.parseFloat(multa));
+            
+            String dtLocacao = request.getParameter("dtLocacao");
+            loc.setDtLocacao(dtLocacao);
+            String dtPrevDevolucao = request.getParameter("dtPrevDevolucao");
+            loc.setDtDevolucaoPrevista(dtPrevDevolucao);
+            
+            String dtEfetDevolucao = request.getParameter("dtEfetDevolucao");
+            if(dtEfetDevolucao != null){
+                loc.setDtDevolucaoEfetiva(dtEfetDevolucao);
+            }
+            
+            if(LocacaoBD.Editar(loc) == 0){
+                // Coloca mensagem de sucesso!
+                response.sendRedirect("ConsultaLocacao.jsp?erro=0");
+            }else{
+                // Coloca mensagem de Erro!
+                response.sendRedirect("ConsultaLocacao.jsp?erro=-1");
+            }
 
         } else if (operacao.equals("excluir")) {
             String id = request.getParameter("btnExcluir");
