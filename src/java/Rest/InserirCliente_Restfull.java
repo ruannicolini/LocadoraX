@@ -31,13 +31,12 @@ public class InserirCliente_Restfull {
             @QueryParam("status") String ativo,
             @QueryParam("sex") String sexo
             ){
-        // converter status string para boolean
-        
-        //converter ativo string para char
         char s = sexo.charAt(0);
         
         return ClienteBD.cadastrarSocio(end,tel,cpf,nome,dtNasc,s);  
         
     }
+    
+    
     
 }

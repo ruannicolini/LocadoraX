@@ -91,7 +91,24 @@ public class ClienteBD {
         return 0;
     }
 
-    public static int inscreverDependente(Socio socio, String nome, char sexo, String dtNasc) {
+    public static int inscreverDependente(int idSocio, String nome, char sexo, String dtNasc) {
+        Socio socio = null;
+        try {
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
+
+            String strQuery = "from Cliente where numInscricao = " + idSocio;
+            session.beginTransaction();
+            Query qr = session.createQuery(strQuery);
+            List clientes = qr.list();
+            session.close();
+
+            socio = (Socio) clientes.get(0);
+        } catch (Exception x) {
+            return -1;
+        }
+        
+        
         if (nome.equals("")) {
             return -1;
         }
@@ -110,7 +127,6 @@ public class ClienteBD {
             socio.inserirDependente(d);
             session.update(socio);
             session.getTransaction().commit();
-            session.close();
         } catch (Exception x) {
             return -1;
         }

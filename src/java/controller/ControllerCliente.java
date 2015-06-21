@@ -111,18 +111,9 @@ public class ControllerCliente extends HttpServlet {
             char sexo = ((request.getParameter("sex")).toCharArray())[0];
             String nasc = request.getParameter("dataNascimento");
 
-            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-            Session session = sessions.openSession();
+            
 
-            String strQuery = "from Cliente where numInscricao = " + idSocio;
-            session.beginTransaction();
-            Query qr = session.createQuery(strQuery);
-            List clientes = qr.list();
-            session.close();
-
-            Socio socio = (Socio) clientes.get(0);
-
-            if (ClienteBD.inscreverDependente(socio, nome, sexo, nasc) == 0) {
+            if (ClienteBD.inscreverDependente(Integer.parseInt(idSocio), nome, sexo, nasc) == 0) {
                 // Coloca mensagem de sucesso!
                 response.sendRedirect("CadastraDependente.jsp?erro=0");
             }else{
