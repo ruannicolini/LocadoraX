@@ -4,6 +4,9 @@
     Author     : Ruan
 --%>
 
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.Set"%>
+<%@page import="model.domain.Socio"%>
 <%@page import="model.domain.Cliente"%>
 <%@page import="org.hibernate.Query"%>
 <%@page import="org.hibernate.Session"%>
@@ -46,14 +49,14 @@
                         SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
                         Session s = sessions.openSession();
 
-                        String strQuery = "from Socio as s where s.dependentes contains (Select * from Dependente where id = ?)";
+                        String strQuery = "from Socio";
 
                         s.beginTransaction();
                         Query qr = s.createQuery(strQuery);
-                        List  dependentes = qr.list();
+                        List socios = qr.list();
                     %>
 
-                    
+
                     <div class="col-sm-12" style="padding : 0"> 
                         <div class="row">
                             <div class="col-sm-3" style="padding :0">
@@ -70,15 +73,15 @@
 
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div class="col-sm-12" style="padding :0">
 
                                 <%
-                                     // Errors
+                                    // Errors
                                     String error = request.getParameter("erro");
-                                    if( error != null) {
-                                        if(error.equals("0")) {
+                                    if (error != null) {
+                                        if (error.equals("0")) {
                                             out.println("<div class='alert alert-success' style = 'margin-right: 35px'>Ação realizada com sucesso!</div>");
                                         } else {
                                             out.println("<div class='alert alert-danger' style = 'margin-right: 35px'>Erro!</div>");
@@ -89,9 +92,9 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
+
+
+
                     <div class="row" style="margin-right: 18px">
                         <table class="table table-responsive table-striped table-hover table-users">
                             <thead>
@@ -99,6 +102,7 @@
                                     <th class="hidden-phone">Cod</th>
                                     <th>Nome</th>
                                     <th>Sócio Responsável</th>
+                                    <th>Cod Responsável</th>
                                     <th>Status</th>
                                     <th>Editar</th>
                                     <th>Excluir</th>
@@ -107,47 +111,62 @@
 
                             <tbody>
 
-                                <script type="text/javascript">
-                                function consultaDep(id)
+                            <script type="text/javascript">
+                                function consultaDep(idDep, idSoc)
                                 {
-                                    location.href= "EditarDependente.jsp?valor="+id;
+                                    location.href = "EditarDependente.jsp?valor=" + idDep + "&idSocio=" + idSoc;
                                 }
-                                </script>
+                            </script>
 
-                                <%
-                                    Iterator<Dependente> i = dependentes.iterator();
-                                    while (i.hasNext()){            
-                                        Dependente depend = (Dependente)i.next();
-                                            out.println("<form action= \"ControllerDependente\" method=\"POST\">"
-                                               +" <input type=\"hidden\" name=\"operacao\" value=\"excluir\">");
-                                        
-                                                                               
-                                            out.println("<tr>");
-                                            out.println("<td class= \"hidden-phone\">" + depend.getNumInscricao()+ "</td>"
-                                                + "<td>" + depend.getNome() + "</td>"
-                                                + "<td>" + "depend.getSocio().getNome()" + "</td>");
-                                            
-                                            if(((Cliente)depend).isAtivo() == true) {
-                                                    out.println("<td>" 
-                                                            + "<span class= \"label label-danger\"> Ativo </span>" 
-                                                            + "</td>");  
-                                            }else{
-                                                    out.println("<td>" 
-                                                    + "<span class= \"label label-warning\"> Não Ative </span>" 
-                                                    + "</td>");
+                            <%                                    
+                                Iterator<Socio> iS = socios.iterator();
+                                Set<Dependente> dependentes = new HashSet<Dependente>();
+
+                                while (iS.hasNext()) {
+                                    Socio soc = (Socio) iS.next();
+
+                                    if (soc.getDependentes() != null) {
+                                        for (Dependente d : soc.getDependentes()) {
+                                            if (d != null) {
+
+                                                try {
+                                                    dependentes.add(d);
+                                                    out.println("<form action= \"ControllerDependente\" method=\"POST\">"
+                                                            + " <input type=\"hidden\" name=\"operacao\" value=\"excluir\">");
+
+                                                    out.println("<tr>");
+                                                    out.println("<td class= \"hidden-phone\">" + d.getNumInscricao() + "</td>"
+                                                            + "<td>" + d.getNome() + "</td>"
+                                                            + "<td>" + soc.getNome() + "</td>"
+                                                            + "<td>" + soc.getNumInscricao() + "</td>");
+
+                                                    if (((Cliente) d).isAtivo() == true) {
+                                                        out.println("<td>"
+                                                                + "<span class= \"label label-danger\"> Ativo </span>"
+                                                                + "</td>");
+                                                    } else {
+                                                        out.println("<td>"
+                                                                + "<span class= \"label label-warning\"> Não Ative </span>"
+                                                                + "</td>");
+                                                    }
+
+                                                    out.println("<td>"
+                                                            + "<button type=\"button\" onClick= \"consultaDep(" + d.getNumInscricao() +","+ soc.getNumInscricao()+")\">Editar</button>"
+                                                            + "</td>"
+                                                            + "<td>"
+                                                            + "<button type=\"submit\" name = \"btnExcluir\" value = " + d.getNumInscricao() + ">Excluir</button>"
+                                                            + "</td>"
+                                                            + "</tr>");
+                                                    out.println("</form>");
+                                                } catch (Exception x) {
+                                                    System.out.println("Erro: " + x.getMessage());
+                                                }
                                             }
-
-                                            out.println("<td>"
-                                                            + "<button type=\"button\" onClick= \"consultaDep(" + depend.getNumInscricao() + ")\">Editar</button>"
-                                                    + "</td>"       
-                                                    + "<td>"
-                                                        + "<button type=\"submit\" name = \"btnExcluir\" value = "+ depend.getNumInscricao() +">Excluir</button>"
-                                                    + "</td>"                                           
-                                            + "</tr>");
-                                            out.println("</form>");
+                                        }
                                     }
-                                    s.close();
-                                %>                               
+                                }
+                                s.close();
+                            %>                               
                             </tbody>
                         </table>
                     </div>
@@ -163,6 +182,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jsProject.js"></script>
-        
+
     </body>
 </html>

@@ -147,7 +147,7 @@ public class ControllerCliente extends HttpServlet {
             }
             
         } else if (operacao.equals("alterarDependente")) {
-            Socio so = (Socio) ClienteBD.consultaId(request.getParameter("idS"));
+            Socio so = (Socio) ClienteBD.consultaId(request.getParameter("idSocio"));
             Dependente dep = (Dependente) ClienteBD.consultaId(request.getParameter("idDependente"));
             dep.setNome(request.getParameter("nome"));
             dep.setDataNascimento(request.getParameter("dataNascimento"));
@@ -157,10 +157,10 @@ public class ControllerCliente extends HttpServlet {
             
             if (ClienteBD.EditarCliente(dep) == 0) {
                 // Coloca mensagem de sucesso!
-                response.sendRedirect("CadastraDependente.jsp?erro=0");
+                response.sendRedirect("ConsultaDependente.jsp?erro=0");
             }else{
                 // Coloca mensagem de Erro!
-                response.sendRedirect("CadastraDependente.jsp?erro=-1");
+                response.sendRedirect("ConsultaDependente.jsp?erro=-1");
             }
             
             

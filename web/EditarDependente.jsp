@@ -4,6 +4,7 @@
     Author     : Ruan
 --%>
 
+<%@page import="model.domain.Socio"%>
 <%@page import="org.hibernate.cfg.AnnotationConfiguration"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="org.hibernate.SessionFactory"%>
@@ -36,8 +37,11 @@
     <%
             //Pega o Registro do Cliente
             String id = request.getParameter("valor");
-            System.out.println(id);
             
+            //Pega o Registro do Cliente
+            String idSocio = request.getParameter("idSocio");
+            
+            Socio soc = (Socio) ClienteBD.consultaId(idSocio);
             Dependente dep = (Dependente) ClienteBD.consultaId(id);
     %>
     <!-- Menu Superior -->
@@ -54,6 +58,7 @@
                     <form action="ControllerCliente" method="POST">
                         <input type="hidden" name="operacao" value="alterarDependente">
                         <input type="hidden" name="idDependente" value="<%out.print(dep.getNumInscricao()); %>">
+                        <input type="hidden" name="idSocio" value="<%out.print(soc.getNumInscricao()); %>">
                         
                             <%
                             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
@@ -81,9 +86,8 @@
                                                     Cliente c = (Cliente)i.next();
                                                 %>  
                                                     <option value="<%out.println(c.getNumInscricao());%>"
-                                                        <% if(c.getNumInscricao() == dep.getNumInscricao()){
+                                                        <% if(c.getNumInscricao() == soc.getNumInscricao()){
                                                                 out.println("selected");
-                                                                out.print("<input type=\"hidden\" name=\"idS\" value=\" "+ dep.getNumInscricao() + "\">");
                                                         }%>
                                                     >
                                                         <%out.println(c.getNome());%> 
