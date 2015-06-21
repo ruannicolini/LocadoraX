@@ -76,4 +76,7 @@ public class Socio extends Cliente{
 		dependentes.add(dep);
     }
     
+    public void removerDependente(Dependente dep){
+		dependentes.remove(dep);
+    }
 }

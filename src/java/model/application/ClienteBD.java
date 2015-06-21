@@ -6,7 +6,10 @@
 package model.application;
 
 import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import model.domain.Cliente;
 import model.domain.Dependente;
 import model.domain.Socio;
@@ -53,12 +56,45 @@ public class ClienteBD {
         return clientes;
     }
 
-    public static int inscreverDependente(Socio socio, String nome, char sexo, String dtNasc) {
+    public static int removerDependente(Socio so, Dependente dep) {
+        Set<Dependente> dependentes = new HashSet<Dependente>();
+        Collection<Dependente> aux = new HashSet<Dependente>();
+        dependentes = so.getDependentes();
+        aux.add(dep);
+        
+        dependentes.removeAll(aux);
 
+        so.setDependentes(dependentes);
+
+        try {
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session session = sessions.openSession();
+            session.beginTransaction();
+            so.setDependentes(dependentes);
+            session.update(so);          
+            session.getTransaction().commit();
+            session.close();
+           
+        } catch (Exception x) {
+            return -1;
+        }
+        try {
+            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+            Session s = sessions.openSession();
+            Transaction tx = s.beginTransaction();
+            s.delete(dep);
+            tx.commit();
+            s.close();
+        } catch (Exception x) {
+            return -1;
+        }
+        return 0;
+    }
+
+    public static int inscreverDependente(Socio socio, String nome, char sexo, String dtNasc) {
         if (nome.equals("")) {
             return -1;
         }
-
         Dependente d = new Dependente();
         d.setDataNascimento(dtNasc);
         d.setNome(nome);
@@ -78,9 +114,7 @@ public class ClienteBD {
         } catch (Exception x) {
             return -1;
         }
-        
         return 0;
-
     }
 
     public static Cliente consultaId(String id) {
@@ -95,9 +129,9 @@ public class ClienteBD {
 
         return (Cliente) clientes.get(0);
     }
-    
-    public static int EditarCliente(Cliente cli){
-        try{
+
+    public static int EditarCliente(Cliente cli) {
+        try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session s = sessions.openSession();
             Transaction tx = s.beginTransaction();
@@ -109,9 +143,9 @@ public class ClienteBD {
         }
         return 0;
     }
-    
-    public static int ExcluiCliente(Cliente cli){
-        try{
+
+    public static int ExcluiCliente(Cliente cli) {
+        try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session s = sessions.openSession();
             Transaction tx = s.beginTransaction();

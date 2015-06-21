@@ -131,8 +131,8 @@
 
                                                 try {
                                                     dependentes.add(d);
-                                                    out.println("<form action= \"ControllerDependente\" method=\"POST\">"
-                                                            + " <input type=\"hidden\" name=\"operacao\" value=\"excluir\">");
+                                                    out.println("<form action= \"ControllerCliente\" method=\"POST\">"
+                                                            + " <input type=\"hidden\" name=\"operacao\" value=\"excluirDependente\">");
 
                                                     out.println("<tr>");
                                                     out.println("<td class= \"hidden-phone\">" + d.getNumInscricao() + "</td>"
@@ -154,7 +154,7 @@
                                                             + "<button type=\"button\" onClick= \"consultaDep(" + d.getNumInscricao() +","+ soc.getNumInscricao()+")\">Editar</button>"
                                                             + "</td>"
                                                             + "<td>"
-                                                            + "<button type=\"submit\" name = \"btnExcluir\" value = " + d.getNumInscricao() + ">Excluir</button>"
+                                                            + "<button type=\"submit\" name=\"btnExcluir"+ d.getNumInscricao()+ "\" value = " + soc.getNumInscricao() + ">Excluir</button>"
                                                             + "</td>"
                                                             + "</tr>");
                                                     out.println("</form>");

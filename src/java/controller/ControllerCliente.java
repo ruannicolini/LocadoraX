@@ -8,6 +8,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -162,13 +163,38 @@ public class ControllerCliente extends HttpServlet {
                 // Coloca mensagem de Erro!
                 response.sendRedirect("ConsultaDependente.jsp?erro=-1");
             }
-            
-            
         } else if (operacao.equals("ExcluirSocio")) {
             String id = request.getParameter("btnExcluir");
             Socio so = (Socio) ClienteBD.consultaId(id);
             ClienteBD.ExcluiCliente(so);
             
+            
+        } else if (operacao.equals("excluirDependente")) {
+            
+            Socio so = new Socio();
+            Dependente dep = new Dependente();
+            
+            
+            // Obtendo Socio e Dependente
+            Enumeration e = request.getParameterNames();
+            while(e.hasMoreElements()){
+                Object o = e.nextElement();
+                if (o.toString().toLowerCase().contains("btnExcluir".toLowerCase())){
+                    String teste = o.toString();
+                    
+                    //Obtendo Dependente a ser excluído
+                    System.out.println("Dependente: " + teste.substring(10));
+                    dep = (Dependente) ClienteBD.consultaId(  (teste.substring(10))  );
+                    
+                    System.out.println("Socio="+request.getParameter(o.toString()));
+                    so = (Socio) ClienteBD.consultaId(request.getParameter(o.toString()));
+                    
+                    ClienteBD.removerDependente(so, dep);
+                }
+            }
+            
+            
+            System.out.println("KBÔ");
         } else {
             System.out.println("Operacao invalida");
         }
