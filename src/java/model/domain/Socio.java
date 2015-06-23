@@ -6,7 +6,9 @@
 
 package model.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,12 +24,14 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Socio extends Cliente{
+    @Column
     private String endereco;
+    @Column
     private String telefone;
     @Column(nullable = false, columnDefinition = "varchar(255) default '0'")
     private String cpf;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Dependente> dependentes = new HashSet<Dependente>();
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Dependente> dependentes = new ArrayList<Dependente>();
 
     public Socio(String endereco, String telefone, String cpf, String nome, String dataNascimento, Boolean ativo, char sexo) {
         super(nome, dataNascimento, ativo, sexo);
@@ -64,11 +68,11 @@ public class Socio extends Cliente{
         this.cpf = cpf;
     }
 
-    public Set<Dependente> getDependentes() {
+    public List<Dependente> getDependentes() {
         return dependentes;
     }
 
-    public void setDependentes(Set<Dependente> dependentes) {
+    public void setDependentes(List<Dependente> dependentes) {
         this.dependentes = dependentes;
     }
     

@@ -57,27 +57,34 @@ public class ClienteBD {
     }
 
     public static int removerDependente(Socio so, Dependente dep) {
-        Set<Dependente> dependentes = new HashSet<Dependente>();
-        Collection<Dependente> aux = new HashSet<Dependente>();
-        dependentes = so.getDependentes();
-        aux.add(dep);
+        //Set<Dependente> dependentes = new HashSet<Dependente>();
+        //Collection<Dependente> aux = new HashSet<Dependente>();
+        //dependentes = so.getDependentes();
+        //aux.add(dep);
         
-        dependentes.removeAll(aux);
+        //dependentes.removeAll(aux);
 
-        so.setDependentes(dependentes);
+        so.getDependentes().remove(dep);
+        
+        System.out.println("========="+so.getDependentes().contains(dep));
 
         try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessions.openSession();
             session.beginTransaction();
-            so.setDependentes(dependentes);
-            session.update(so);          
+            //so.setDependentes(dependentes);
+            session.update(so);
+            session.delete(dep);
             session.getTransaction().commit();
             session.close();
            
         } catch (Exception x) {
+            
             return -1;
         }
+        
+        
+        /*
         try {
             SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
             Session s = sessions.openSession();
@@ -86,8 +93,10 @@ public class ClienteBD {
             tx.commit();
             s.close();
         } catch (Exception x) {
+            x.printStackTrace();
             return -1;
         }
+          */      
         return 0;
     }
 
@@ -105,6 +114,7 @@ public class ClienteBD {
 
             socio = (Socio) clientes.get(0);
         } catch (Exception x) {
+            x.printStackTrace();
             return -1;
         }
         
@@ -124,10 +134,12 @@ public class ClienteBD {
 
             session.beginTransaction();
 
-            socio.inserirDependente(d);
+            //socio.inserirDependente(d);
+            session.save(d);
             session.update(socio);
             session.getTransaction().commit();
         } catch (Exception x) {
+            x.printStackTrace();
             return -1;
         }
         return 0;

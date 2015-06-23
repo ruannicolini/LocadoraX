@@ -24,11 +24,14 @@ import javax.persistence.OneToMany;
 public class Cliente{
     @Column(nullable = false)
     private String nome;
+    @Column
     private String dataNascimento;
     @Id
     @GeneratedValue
-    private long numInscricao;
+    private long numInscricao = 0;
+    @Column
     private Boolean ativo;
+    @Column
     private char sexo;
     //@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     //private Set<Locacao> locacoes;
@@ -84,5 +87,14 @@ public class Cliente{
         this.sexo = sexo;
     }
     
-    
+    public boolean equals(Object o){
+        
+        Cliente c = (Cliente)o;
+        
+        if ((this.getNumInscricao() == 0) || (c.getNumInscricao() == 0))
+            return (this == c);
+        else
+            return (this.getNumInscricao() == c.getNumInscricao());
+        
+    }
 }

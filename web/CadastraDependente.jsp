@@ -84,7 +84,7 @@
                                                     
                                                     Cliente c = (Cliente)i.next();
                                                 %>  
-                                                    <option value="<%out.println(c.getNumInscricao());%>"><%out.println(c.getNome());%></option>
+                                                    <option value="<%out.print(c.getNumInscricao());%>"><%out.println(c.getNome());%></option>
                                                 <%}%>
                                             </select>  
                                         </div>
