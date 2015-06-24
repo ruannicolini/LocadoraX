@@ -6,14 +6,17 @@
 
 package model.domain;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -33,9 +36,13 @@ public class Locacao {
     private String dtLocacao;
     @Column(nullable = false)
     private String dtDevolucaoPrevista;
+    @Column
     private String dtDevolucaoEfetiva;
+    @Column
     private float valorCobrado;
+    @Column
     private float multaCobrada;
+    @Column
     private boolean statusPagamento;
 
     @ManyToOne
@@ -44,8 +51,9 @@ public class Locacao {
     @ManyToOne
     private Item item;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Pagamento> pagamentos = new HashSet<Pagamento>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Pagamento> pagamentos = new ArrayList<Pagamento>();
+    
     
     public Locacao() {
     }
@@ -134,11 +142,11 @@ public class Locacao {
         this.item = item;
     }
 
-    public Set<Pagamento> getPagamentos() {
+    public List<Pagamento> getPagamentos() {
         return pagamentos;
     }
 
-    public void setPagamentos(Set<Pagamento> pagamentos) {
+    public void setPagamentos(List<Pagamento> pagamentos) {
         this.pagamentos = pagamentos;
     }
 

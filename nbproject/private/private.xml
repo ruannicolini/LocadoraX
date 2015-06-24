@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/application/ClienteBD.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/controller/ControllerCliente.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Cliente.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Socio.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Dependente.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/web/CadastraDependente.jsp</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Pagamento.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Titulo.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/controller/ControllerPagamento.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/TipoItem.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/application/PagamentoBD.java</file>
         </group>
     </open-files>
 </project-private>

@@ -40,8 +40,8 @@
                 </div>
                 <div class="nav col-sm-10 formCadastro" style="padding-left: 20px">
                     <div class="row">
-                        <form action= "ControllerLocacao" method="POST">
-                            <input type="hidden" name="operacao" value="pagamento"> 
+                        <form action= "ControllerPagamento" method="POST">
+                            <input type="hidden" name="operacao" value="cadastrar"> 
                             <div class="row">
 
                                 <%
@@ -57,7 +57,7 @@
                                                 List locacoes = qr.list();
                                                 s.close();
 
-                                            %>
+                                %>
                                 <div class="col-sm-12" style="padding : 0; margin-left: 40px;"> 
                                     <div class="row">
                                         <div class="col-sm-3" style="padding :0">
@@ -126,9 +126,10 @@
                                                                     + "<td>" + loc.getItem().getTitulo().getNome() + "</td>"
                                                                     + "<td>" + loc.getItem().getNumSerie() + "</td>"
                                                                     + "<td>" + loc.getCliente().getNome() + "</td>"
+                                                                    + "<td>" + loc.isStatusPagamento() + "</td>"
                                                                     + "<td>" + loc.getDtLocacao() + "</td>"
                                                                     + "<td>" + loc.getItem().getTitulo().getClasse().getValor() + "</td>"
-                                                                    + "<td>" + "teste" + "</td>"
+                                                                    
                                                                     + "<td>" 
                                                                     + "<INPUT TYPE=\"checkbox\" NAME=\"selecionado"+ loc.getIdLocacao()+ "\" VALUE=\"" + loc.getIdLocacao() +"\">" 
                                                                     + "</td>"

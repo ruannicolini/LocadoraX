@@ -26,13 +26,10 @@ public class Pagamento {
     private String data;
     private float valor;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Locacao> locacoes = new HashSet<Locacao>();
-
     public Pagamento() {
     }
 
-    public Pagamento(String data, float valor) {
+public Pagamento(String data, float valor) {
         this.data = data;
         this.valor = valor;
     }
@@ -60,14 +57,5 @@ public class Pagamento {
     public void setValor(float valor) {
         this.valor = valor;
     }
-
-    public Set<Locacao> getLocacoes() {
-        return locacoes;
-    }
-
-    public void setLocacoes(Set<Locacao> locacoes) {
-        this.locacoes = locacoes;
-    }
-    
     
 }
