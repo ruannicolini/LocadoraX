@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.application.FuncionarioBD;
 import model.domain.Funcionario;
 
@@ -83,6 +84,10 @@ public class ControllerFuncionario extends HttpServlet {
             
             // 0 = login aceito, -1 = login recusado
             if(FuncionarioBD.consultaLogin(userName, senha) ==0){
+                HttpSession sessao = request.getSession();
+		// setando um atributo da sessao
+		sessao.setAttribute("username", request.getParameter("username"));
+		sessao.setAttribute("senha", request.getParameter("senha"));
                 response.sendRedirect("ConsultaItem.jsp");
             }else{
                 response.sendRedirect("index.jsp?erro=-1");
