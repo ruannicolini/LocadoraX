@@ -81,22 +81,7 @@ public class ClienteBD {
         } catch (Exception x) {
             
             return -1;
-        }
-        
-        
-        /*
-        try {
-            SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-            Session s = sessions.openSession();
-            Transaction tx = s.beginTransaction();
-            s.delete(dep);
-            tx.commit();
-            s.close();
-        } catch (Exception x) {
-            x.printStackTrace();
-            return -1;
-        }
-          */      
+        }      
         return 0;
     }
 
@@ -117,7 +102,6 @@ public class ClienteBD {
             x.printStackTrace();
             return -1;
         }
-        
         
         if (nome.equals("")) {
             return -1;
