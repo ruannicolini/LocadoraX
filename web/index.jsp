@@ -38,10 +38,14 @@
                         <div class="row" style="padding-left: 20px; padding-right: 20px;">
                             <div class="navbar-brand col-sm-4" href="#" style=" padding-top: 10px">
                                 <div class="row">
-                                    <div class="nav col-sm-12">
+                                    <div class="nav col-sm-6">
                                         <img alt="" src="img/logo.png">
                                         Locadora   
-                                    </div>   
+                                    </div>
+                                    <div class="nav col-sm-5">
+                                        <li><a href="Titulos.jsp">Consultar Títulos</a></li> 
+                                    </div>
+                                      
                                 </div>
                             </div>
                             <div class="nav col-sm-8" style="float: right; padding-top: 10px;"> 
