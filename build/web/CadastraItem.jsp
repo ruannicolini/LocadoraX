@@ -3,7 +3,7 @@
     Created on : 04/04/2015, 23:54:10
     Author     : Ruan
 --%>
-
+<%@ include file="sessao1.jsp"%>
 <%@page import="model.domain.TipoItem"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="org.hibernate.cfg.AnnotationConfiguration"%>
@@ -168,6 +168,6 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <!--<script type="text/javascript" src="js/jsProject.js"></script>-->
 
-
     </body>
 </html>
+<%@ include file="sessao2.jsp"%>

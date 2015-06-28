@@ -80,7 +80,11 @@
                     if (error.equals("0")) {
                         out.println("<div class='alert alert-success' style = 'margin-right: 35px'>Ação realizada com sucesso!</div>");
                     } else {
-                        out.println("<div class='alert alert-danger' style = 'margin-right: 35px'>Erro!</div>");
+                        if(error.equals("-2")){
+                            out.println("<div class='alert alert-danger' style = 'margin-right: 35px'>É Necessário Logar!</div>");
+                        }else{
+                            out.println("<div class='alert alert-danger' style = 'margin-right: 35px'>Erro!</div>");
+                        }
                     }
                 }
 

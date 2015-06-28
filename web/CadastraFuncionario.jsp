@@ -3,7 +3,7 @@
     Created on : 19/04/2015, 10:37:08
     Author     : Ruan
 --%>
-
+<%@ include file="sessao1.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -106,3 +106,4 @@
         <!--<script type="text/javascript" src="js/jsProject.js"></script>-->
     </body>
 </html>
+<%@ include file="sessao2.jsp"%>

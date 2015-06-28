@@ -8,6 +8,7 @@
 <%@page import="model.application.DiretorBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ include file="sessao1.jsp"%>
 <html>
 <head>
     <meta charset = "UTF-8"> 
@@ -75,3 +76,4 @@
     <!--<script type="text/javascript" src="js/jsProject.js"></script>-->   
 </body>
 </html>
+<%@ include file="sessao2.jsp"%>

@@ -3,7 +3,7 @@
     Created on : 09/04/2015, 08:31:58
     Author     : Ruan
 --%>
-
+<%@ include file="sessao1.jsp"%>
 <%@page import="model.domain.Ator"%>
 <%@page import="model.domain.Diretor"%>
 <%@page import="model.domain.Classe"%>
@@ -294,3 +294,4 @@
         <script type="text/javascript" src="js/jsProject.js"></script>  
     </body>
 </html>
+<%@ include file="sessao2.jsp"%>

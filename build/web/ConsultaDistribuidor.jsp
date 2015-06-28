@@ -13,6 +13,7 @@
 <%@page import="model.domain.Distribuidor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ include file="sessao1.jsp"%>
 <html>
     <head>
         <meta charset = "UTF-8"> 
@@ -152,3 +153,4 @@
         
     </body>
 </html>
+<%@ include file="sessao2.jsp"%>

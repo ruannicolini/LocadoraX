@@ -4,11 +4,7 @@
     Author     : Ruan
 --%>
 
-<%
-	// verificando se tem um atributo login na sessao
-	// se tiver vai continuar e mostrar o menu
-	if(session.getAttribute("username") != null) {
-%>
+<%@ include file="sessao1.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -116,12 +112,5 @@
         <!--<script type="text/javascript" src="js/jsProject.js"></script>-->
     </body>
 </html>
-<%
-	// se não existir um login na sessao, 
-	// vai enviar para a página de login novamente
-	} else {
-%>
-    <jsp:forward page="index.jsp"></jsp:forward>
-<%
-}
-%>
+
+<%@ include file="sessao2.jsp"%>
