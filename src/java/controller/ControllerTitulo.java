@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.application.AtorBD;
 import model.application.ClasseBD;
 import model.application.DiretorBD;
@@ -74,7 +75,12 @@ public class ControllerTitulo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        HttpSession sessao = request.getSession();
+        if(sessao.getAttribute("username") != null) {
+
+        } else {
+            response.sendRedirect("index.jsp?erro=-2");
+        }
     }
 
     /**
@@ -88,98 +94,100 @@ public class ControllerTitulo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        HttpSession sessao = request.getSession();
+        if(sessao.getAttribute("username") != null) {
+            String operacao = request.getParameter("operacao");
+            if (operacao.equals("cadastrar")) {
+                String nome = request.getParameter("nome");
+                String ano = request.getParameter("ano");
+                String categoria = request.getParameter("categoria");
+                String sinopse = request.getParameter("sinopse");
 
-        String operacao = request.getParameter("operacao");
-        if (operacao.equals("cadastrar")) {
-            String nome = request.getParameter("nome");
-            String ano = request.getParameter("ano");
-            String categoria = request.getParameter("categoria");
-            String sinopse = request.getParameter("sinopse");
-            
-            String cnpjDist = request.getParameter("distribuidor");
-            Distribuidor distribuidor = DistribuidorBD.consultaId(cnpjDist);
-            
-            String idClasse = request.getParameter("classe");
-            Classe classe = ClasseBD.consultaId(idClasse);
-            
-            String idDiretor = request.getParameter("diretor");
-            Diretor diretor = DiretorBD.consultaId(idDiretor);        
-            
-            // Lista de Atores
-            Enumeration e = request.getParameterNames();
-            Set<Ator> atores = new HashSet<Ator>();
-            while(e.hasMoreElements()){
-                Object o = e.nextElement();
-                System.out.println("==="+o);
-        
-                if (o.toString().toLowerCase().contains("selecionado".toLowerCase())){
-                    System.out.println("ator="+request.getParameter(o.toString()));
-                    atores.add(AtorBD.consultaId(request.getParameter(o.toString())));
-                }
-            }
-            
-            if(TituloBD.cadastrarTitulo(nome, ano, sinopse, categoria, diretor, classe, distribuidor, atores) == 0){
-                // Coloca mensagem de sucesso!
-                response.sendRedirect("CadastraTitulo.jsp?erro=0");
-            }else{
-                // Coloca mensagem de Erro!
-                response.sendRedirect("CadastraTitulo.jsp?erro=-1");
-            }
-            
-        } else if (operacao.equals("alterar")) {
-            Titulo t =  TituloBD.consultaId(request.getParameter("idTitulo"));
-            t.setNome(request.getParameter("nome"));
-            t.setAno(request.getParameter("ano"));
-            t.setCategoria(request.getParameter("categoria"));
-            t.setSinopse(request.getParameter("sinopse"));
-            
-            String cnpjDist = request.getParameter("distribuidor");
-            t.setDistribuidor(DistribuidorBD.consultaId(cnpjDist));
-            
-            String idClasse = request.getParameter("classe");
-            t.setClasse(ClasseBD.consultaId(idClasse));
-            
-            String idDiretor = request.getParameter("diretor");
-            t.setDiretor(DiretorBD.consultaId(idDiretor));
-            
-            // Lista de Atores
-            Enumeration e = request.getParameterNames();
-            Set<Ator> atores = new HashSet<Ator>();
-            while(e.hasMoreElements()){
-                Object o = e.nextElement();
-                System.out.println("==="+o);
-        
-                if (o.toString().toLowerCase().contains("selecionado".toLowerCase())){
-                    System.out.println("ator="+request.getParameter(o.toString()));
-                    atores.add(AtorBD.consultaId(request.getParameter(o.toString())));
-                }
-            }
-            t.setAtores(atores);
-            
-            if(TituloBD.Editar(t) == 0){
-                // Coloca mensagem de sucesso!
-                response.sendRedirect("ConsultaTitulo.jsp?erro=0");
-            }else{
-                // Coloca mensagem de Erro!
-                response.sendRedirect("ConsultaTitulo.jsp?erro=-1");
-            }
+                String cnpjDist = request.getParameter("distribuidor");
+                Distribuidor distribuidor = DistribuidorBD.consultaId(cnpjDist);
 
-        } else if (operacao.equals("excluir")) {
-            String id = request.getParameter("btnExcluir");
-            Titulo t =  TituloBD.consultaId(id);
-                        
-            if(TituloBD.Excluir(t) == 0){
-                // Coloca mensagem de sucesso!
-                response.sendRedirect("ConsultaTitulo.jsp?erro=0");
-            }else{
-                // Colocar mensagem de Erro!
-                response.sendRedirect("ConsultaTitulo.jsp?erro=-1");
+                String idClasse = request.getParameter("classe");
+                Classe classe = ClasseBD.consultaId(idClasse);
+
+                String idDiretor = request.getParameter("diretor");
+                Diretor diretor = DiretorBD.consultaId(idDiretor);        
+
+                // Lista de Atores
+                Enumeration e = request.getParameterNames();
+                Set<Ator> atores = new HashSet<Ator>();
+                while(e.hasMoreElements()){
+                    Object o = e.nextElement();
+                    System.out.println("==="+o);
+
+                    if (o.toString().toLowerCase().contains("selecionado".toLowerCase())){
+                        System.out.println("ator="+request.getParameter(o.toString()));
+                        atores.add(AtorBD.consultaId(request.getParameter(o.toString())));
+                    }
+                }
+
+                if(TituloBD.cadastrarTitulo(nome, ano, sinopse, categoria, diretor, classe, distribuidor, atores) == 0){
+                    // Coloca mensagem de sucesso!
+                    response.sendRedirect("CadastraTitulo.jsp?erro=0");
+                }else{
+                    // Coloca mensagem de Erro!
+                    response.sendRedirect("CadastraTitulo.jsp?erro=-1");
+                }
+
+            } else if (operacao.equals("alterar")) {
+                Titulo t =  TituloBD.consultaId(request.getParameter("idTitulo"));
+                t.setNome(request.getParameter("nome"));
+                t.setAno(request.getParameter("ano"));
+                t.setCategoria(request.getParameter("categoria"));
+                t.setSinopse(request.getParameter("sinopse"));
+
+                String cnpjDist = request.getParameter("distribuidor");
+                t.setDistribuidor(DistribuidorBD.consultaId(cnpjDist));
+
+                String idClasse = request.getParameter("classe");
+                t.setClasse(ClasseBD.consultaId(idClasse));
+
+                String idDiretor = request.getParameter("diretor");
+                t.setDiretor(DiretorBD.consultaId(idDiretor));
+
+                // Lista de Atores
+                Enumeration e = request.getParameterNames();
+                Set<Ator> atores = new HashSet<Ator>();
+                while(e.hasMoreElements()){
+                    Object o = e.nextElement();
+                    System.out.println("==="+o);
+
+                    if (o.toString().toLowerCase().contains("selecionado".toLowerCase())){
+                        System.out.println("ator="+request.getParameter(o.toString()));
+                        atores.add(AtorBD.consultaId(request.getParameter(o.toString())));
+                    }
+                }
+                t.setAtores(atores);
+
+                if(TituloBD.Editar(t) == 0){
+                    // Coloca mensagem de sucesso!
+                    response.sendRedirect("ConsultaTitulo.jsp?erro=0");
+                }else{
+                    // Coloca mensagem de Erro!
+                    response.sendRedirect("ConsultaTitulo.jsp?erro=-1");
+                }
+
+            } else if (operacao.equals("excluir")) {
+                String id = request.getParameter("btnExcluir");
+                Titulo t =  TituloBD.consultaId(id);
+
+                if(TituloBD.Excluir(t) == 0){
+                    // Coloca mensagem de sucesso!
+                    response.sendRedirect("ConsultaTitulo.jsp?erro=0");
+                }else{
+                    // Colocar mensagem de Erro!
+                    response.sendRedirect("ConsultaTitulo.jsp?erro=-1");
+                }
+            } else {
+                System.out.println("Operacao invalida");
             }
         } else {
-            System.out.println("Operacao invalida");
+            response.sendRedirect("index.jsp?erro=-2");
         }
-
     }
 
     /**

@@ -46,7 +46,7 @@
                             </div>
                             <div class="nav col-sm-8" style="float: right; padding-top: 10px;"> 
                                 <div class="row" style="float: right">
-                                    <form action= "ControllerFuncionario" method="POST">
+                                    <form action= "ControllerSessao" method="POST">
                                         <input type="hidden" name="operacao" value="login">
                                         <div class="form-group col-sm-4">
                                             <label class="sr-only" for="exampleInputEmail3">Email</label>

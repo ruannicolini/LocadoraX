@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.application.ClasseBD;
 import model.domain.Classe;
 
@@ -61,7 +62,12 @@ public class ControllerClasse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession sessao = request.getSession();
+        if(sessao.getAttribute("username") != null) {
+
+        } else {
+            response.sendRedirect("index.jsp?erro=-2");
+        }
     }
 
     /**
@@ -75,49 +81,54 @@ public class ControllerClasse extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String operacao = request.getParameter("operacao");
-		
-        if (operacao.equals("cadastrar")){
-            String nome = request.getParameter("nome");
-            String valor = request.getParameter("valor");
-            String prazo = request.getParameter("prazo");
-            
-             
-            if(ClasseBD.cadastrarClasse(nome, valor, prazo) == 0){
-                // Coloca mensagem de sucesso!
-                response.sendRedirect("CadastraClasse.jsp?erro=0");
-            }else{
-                // Coloca mensagem de Erro!
-                response.sendRedirect("CadastraClasse.jsp?erro=-1");
-            }
-       } else if (operacao.equals("alterar")) {
-            Classe cl =  ClasseBD.consultaId(request.getParameter("idClasse"));
-            cl.setNome(request.getParameter("nome"));
-            cl.setPrazo(Integer.parseInt(request.getParameter("prazo")));
-            cl.setValor(Float.parseFloat(request.getParameter("valor")));
-            
-            if(ClasseBD.Editar(cl) == 0){
-                // Coloca mensagem de sucesso!
-                response.sendRedirect("ConsultaClasse.jsp?erro=0");
-            }else{
-                // Coloca mensagem de Erro!
-                response.sendRedirect("ConsultaClasse.jsp?erro=-1");
-            }
+        
+        HttpSession sessao = request.getSession();
+        if(sessao.getAttribute("username") != null) {
+            String operacao = request.getParameter("operacao");
 
-        } else if (operacao.equals("excluir")) {
-            String id = request.getParameter("btnExcluir");
-            Classe cl =  ClasseBD.consultaId(id);
-                        
-            if(ClasseBD.Excluir(cl) == 0){
-                // Coloca mensagem de sucesso!
-                response.sendRedirect("ConsultaClasse.jsp?erro=0");
-            }else{
-                // Colocar mensagem de Erro!
-                response.sendRedirect("ConsultaClasse.jsp?erro=-1");
+            if (operacao.equals("cadastrar")){
+                String nome = request.getParameter("nome");
+                String valor = request.getParameter("valor");
+                String prazo = request.getParameter("prazo");
+
+
+                if(ClasseBD.cadastrarClasse(nome, valor, prazo) == 0){
+                    // Coloca mensagem de sucesso!
+                    response.sendRedirect("CadastraClasse.jsp?erro=0");
+                }else{
+                    // Coloca mensagem de Erro!
+                    response.sendRedirect("CadastraClasse.jsp?erro=-1");
+                }
+           } else if (operacao.equals("alterar")) {
+                Classe cl =  ClasseBD.consultaId(request.getParameter("idClasse"));
+                cl.setNome(request.getParameter("nome"));
+                cl.setPrazo(Integer.parseInt(request.getParameter("prazo")));
+                cl.setValor(Float.parseFloat(request.getParameter("valor")));
+
+                if(ClasseBD.Editar(cl) == 0){
+                    // Coloca mensagem de sucesso!
+                    response.sendRedirect("ConsultaClasse.jsp?erro=0");
+                }else{
+                    // Coloca mensagem de Erro!
+                    response.sendRedirect("ConsultaClasse.jsp?erro=-1");
+                }
+
+            } else if (operacao.equals("excluir")) {
+                String id = request.getParameter("btnExcluir");
+                Classe cl =  ClasseBD.consultaId(id);
+
+                if(ClasseBD.Excluir(cl) == 0){
+                    // Coloca mensagem de sucesso!
+                    response.sendRedirect("ConsultaClasse.jsp?erro=0");
+                }else{
+                    // Colocar mensagem de Erro!
+                    response.sendRedirect("ConsultaClasse.jsp?erro=-1");
+                }
+            } else {
+                System.out.println("Operacao invalida");
             }
         } else {
-            System.out.println("Operacao invalida");
+            response.sendRedirect("index.jsp?erro=-2");
         }
     }
 

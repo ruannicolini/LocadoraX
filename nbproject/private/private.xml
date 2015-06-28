@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Pagamento.java</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/web/CadastraClasse.jsp</file>
-            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/model/domain/Locacao.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/controller/ControllerAtor.java</file>
             <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/web/index.jsp</file>
             <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/controller/ControllerFuncionario.java</file>
+            <file>file:/C:/Users/Ruan/Documents/NetBeansProjects/LocadoraX/src/java/controller/ControllerSessao.java</file>
         </group>
     </open-files>
 </project-private>
